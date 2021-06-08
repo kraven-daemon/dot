@@ -1,7 +1,6 @@
 {
 	"home":
 	[
-		"$HOME",
 		".xinitrc",
 		".profile",
 		".zshenv"
@@ -9,8 +8,8 @@
 	"config": [ 
 		"picom",
 		"alacritty",
-		"zsh"
-		
+		"zsh",
+		"rofi"
 	],
 	"local":[
 		"scripts"

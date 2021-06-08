@@ -15,9 +15,11 @@ xdg(){
 xdg "$XDG_CONFIG_HOME"
 xdg "$XDG_DATA_HOME"
 
-FILES=$(ls -A)
-for line in $FILES; do
-	echo "$line"
-done
+jq '.' ftree.json
+
+#FILES=$(ls -A)
+#for line in $FILES; do
+#	echo "$line"
+#done
 
 

@@ -5,14 +5,14 @@
 
 ### Adding the subtree as a remote
 
-git remote add -f dmenu https://git.suckless.org/dmenu
+git remote add -f `remote-name` htts://url...
 
 ### Pulling the remote repo under file(--prefix) from-remote-name on-branch 
 
-git subtree add --prefix .vim/bundle/tpope-vim-surround tpope-vim-surround master --squash
+git subtree add --prefix `dir-path` `remote-name` master --squash
 
 
 ### Updating the repo
 
-git fetch `repo` master 
+git fetch `remote-name` master 
 git subtree pull --prefix `path` `remote-name` master --squash

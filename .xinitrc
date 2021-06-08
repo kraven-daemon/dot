@@ -34,10 +34,11 @@ xset r rate 300 100
 setxkbmap -option "caps:swapescape"
 sxhkd &
 feh --bg-scale --no-fehbg "$WALLPAPERS/wall.jpg"
-picom -b
+picom &
+dwmblocks &
 nm-applet &
 volumeicon &
 
-exec herbstluftwm
+exec dwm
 
 

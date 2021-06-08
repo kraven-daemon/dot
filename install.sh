@@ -15,7 +15,7 @@ xdg(){
 xdg "$XDG_CONFIG_HOME"
 xdg "$XDG_DATA_HOME"
 
-FILES=$(ls -a)
+FILES=$(ls -A)
 for line in $FILES; do
 	echo "$line"
 done

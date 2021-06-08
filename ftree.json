@@ -1,3 +1,18 @@
 {
-	"config": ["picom","alacritty"]
+	"home":
+	[
+		"$HOME",
+		".xinitrc",
+		".profile",
+		".zshenv"
+	],
+	"config": [ 
+		"picom",
+		"alacritty",
+		"zsh"
+		
+	],
+	"local":[
+		"scripts"
+	]
 }

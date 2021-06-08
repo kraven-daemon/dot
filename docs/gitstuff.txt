@@ -1,0 +1,18 @@
+
+
+
+## Subtree
+
+### Adding the subtree as a remote
+
+git remote add -f dmenu https://git.suckless.org/dmenu
+
+### Pulling the remote repo under file(--prefix) from-remote-name on-branch 
+
+git subtree add --prefix .vim/bundle/tpope-vim-surround tpope-vim-surround master --squash
+
+
+### Updating the repo
+
+git fetch `repo` master 
+git subtree pull --prefix `path` `remote-name` master --squash

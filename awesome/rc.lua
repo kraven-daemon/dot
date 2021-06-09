@@ -1,14 +1,6 @@
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
---[[
-Awesomewm modules recap
-
-
-beautiful -> themes 
-
-
-]]--
 
 -- Standard awesome library
 local gears = require("gears")
@@ -35,7 +27,6 @@ if awesome.startup_errors then
                      text = awesome.startup_errors })
 end
 
-
 -- Handle runtime errors after startup
 do
     local in_error = false
@@ -51,6 +42,16 @@ do
     end)
 end
 -- }}}
+
+
+--[[
+gears	Utilities such as color parsing and objects
+wibox	Awesome own generic widget framework
+awful	Everything related to window managment
+naughty	Notifications
+menubar	XDG (application) menu implementation
+beautiful	Awesome theme module
+]]--
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
@@ -84,7 +85,8 @@ myawesomemenu = {
    { "quit", function() awesome.quit() end },
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+mymainmenu = awful.menu({ items = { 
+				    { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "open terminal", terminal }
                                   }
                         })
@@ -102,6 +104,9 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
+
+
+dofile(os.getenv("XDG_CONFIG_HOME").."/awesome/praise.lua")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -199,6 +204,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             mylauncher,
+	    praisewidget,
             s.mytaglist,
             s.mypromptbox,
         },
@@ -485,7 +491,7 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = true }
+      }, -- properties = { titlebars_enabled = true }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
@@ -557,3 +563,7 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+naughty.notify({ title = "Achtaksjdbakbdkasbdka", text = "You're idling", timeout = 4 })
+
+

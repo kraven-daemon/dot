@@ -57,7 +57,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 theme.menu_submenu_icon = themes_path.."default/submenu.png"
-theme.menu_height = dpi(50)
+theme.menu_height = dpi(25)
 theme.menu_width  = dpi(150)
 
 -- You can add as many variables as
@@ -119,7 +119,7 @@ theme.awesome_icon = theme_assets.awesome_icon(
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
-theme.icon_theme = nil
+theme.icon_theme = os.getenv("XDG_DATA_HOME").."/icons/candy-icons"
 
 return theme
 

@@ -14,18 +14,18 @@ compinit
 # alias
 #
 # modifier
-alias ls="exa"
-alias la="exa -a"
-alias ll="exa -la"
-alias l="exa"
-alias l.="exa -a | rg '^\..*'"
+alias ls="lsd"
+alias la="lsd -a"
+alias ll="lsd -l"
+alias l="lsd"
+alias l.="lsd -A | rg '^\..*'"
 alias cl="clear"
 alias grep="rg --color=auto"
 alias vi="nvim"
 
 # info
 alias df="df -h"
-alias free="free -mt"
+alias free="free -ht"
 alias wget="wget -c"
 alias userlist="cut -d: -f1 /etc/passwd"
 
@@ -33,6 +33,7 @@ alias userlist="cut -d: -f1 /etc/passwd"
 alias merge="xrdb -merge ~/.Xresources"
 alias printlock="printf '\t\    |    /\n\n\n.^_^-  SCREENLOCKED  -^_^.\n\n\n\t/    |    \'"
 alias lock="slock -m '$(printlock)'"
+alias testwm="Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome"
 
 # read screen brightness
 alias brightness="cat /sys/class/backlight/acpi_video0/brightness"
@@ -42,14 +43,8 @@ alias dlight="redshift -x"
 
 alias pp="echo $PATH | sed 's/:/\n/g'"
 
-# Git CONFIG reminder
-# with this alias
-alias config="git --git-dir=$HOME/.dotdotdot --work-tree=$HOME"
-
-#herbstluft helpers
-alias hh="herbstclient help"
-alias hs="herbstclient set_attr"
-
+# cd into config repo
+alias cdd="cd $HOME/Desktop/dot"
 
 ex ()
 {

@@ -5,6 +5,9 @@ SAVEHIST=1000
 setopt autocd extendedglob nomatch
 unsetopt beep
 
+# TODO: check the zshzle manpage for keybindings
+#bindkey -e
+
 # compinstall 
 zstyle :compinstall filename "$ZDOTDIR/.zshrc"
 autoload -Uz compinit

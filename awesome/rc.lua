@@ -11,38 +11,16 @@ local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
-local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
--- {{{ Error handling
--- Check if awesome encountered an error during startup and fell back to
--- another config (This code will only ever execute for the fallback config)
-if awesome.startup_errors then
-    naughty.notify({ preset = naughty.config.presets.critical,
-                     title = "Oops, there were errors during startup!",
-                     text = awesome.startup_errors })
-end
 
--- Handle runtime errors after startup
-do
-    local in_error = false
-    awesome.connect_signal("debug::error", function (err)
-        -- Make sure we don't go into an endless error loop
-        if in_error then return end
-        in_error = true
+local conf_path = os.getenv("XDG_CONFIG_HOME").."/awesome/"
 
-        naughty.notify({ preset = naughty.config.presets.critical,
-                         title = "Oops, an error happened!",
-                         text = tostring(err) })
-        in_error = false
-    end)
-end
--- }}}
-
+dofile(conf_path.."startup.lua")
 
 --[[
 gears	Utilities such as color parsing and objects
@@ -53,9 +31,8 @@ menubar	XDG (application) menu implementation
 beautiful	Awesome theme module
 ]]--
 
--- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(os.getenv("XDG_CONFIG_HOME") .. "/awesome/theme.lua")
+beautiful.init(conf_path.."theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "st"
@@ -107,6 +84,8 @@ mytextclock = wibox.widget.textclock()
 
 
 dofile(os.getenv("XDG_CONFIG_HOME").."/awesome/praise.lua")
+
+
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -563,7 +542,3 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
-
-naughty.notify({ title = "Achtaksjdbakbdkasbdka", text = "You're idling", timeout = 4 })
-
-

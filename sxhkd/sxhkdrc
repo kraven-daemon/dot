@@ -5,15 +5,9 @@
 #  xev -event keyboard
 # SXHKD_SHELL="sh"
 
-alt + p
-	dmenu_run
+super + a
+	rofi -show run
 super + Return
 	LIBGL_ALWAYS_SOFTWARE=1 alacritty	
-alt + l
-	lemonrun.sh
-alt + k
-	killall lemonbar
-alt + s
-	stalonetray -bg "#000000" -v --geometry +0+339 --window-type "toolbar" -i 34
-alt + a 
-	killall stalonetray
+
+

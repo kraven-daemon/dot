@@ -15,7 +15,12 @@ xdg(){
 xdg "$XDG_CONFIG_HOME"
 xdg "$XDG_DATA_HOME"
 
-jq '.' ftree.json
+echo -e "In home"
+jq --raw-output ".home[]" ftree.json
+
+echo -e "In config"
+jq --raw-output ".config[]" ftree.json
+
 
 #FILES=$(ls -A)
 #for line in $FILES; do

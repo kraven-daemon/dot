@@ -1,5 +1,5 @@
 local wibox = require("wibox")
-praisewidget = wibox.widget.textbox()
-praisewidget.text = "You are great!"
+Arrow = wibox.widget.textbox()
+Arrow.text = "->"
 
 

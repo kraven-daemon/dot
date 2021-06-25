@@ -20,8 +20,6 @@ require("awful.hotkeys_popup.keys")
 
 local conf_path = os.getenv("XDG_CONFIG_HOME").."/awesome/"
 
-dofile(conf_path.."startup.lua")
-
 --[[
 gears	Utilities such as color parsing and objects
 wibox	Awesome own generic widget framework
@@ -34,10 +32,11 @@ beautiful	Awesome theme module
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(conf_path.."theme.lua")
 
+dofile(conf_path.."startup.lua")
 -- This is used later as the default terminal and editor to run.
-terminal = "st"
-editor = os.getenv("EDITOR")
-editor_cmd = terminal .. " -e " .. editor
+local terminal = "st"
+local editor = os.getenv("EDITOR")
+local editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -183,7 +182,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             mylauncher,
-	    praisewidget,
+	    Arrow,
             s.mytaglist,
             s.mypromptbox,
         },

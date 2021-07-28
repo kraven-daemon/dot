@@ -18,7 +18,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 
 
-local conf_path = os.getenv("XDG_CONFIG_HOME").."/awesome/"
+local conf_path = os.getenv("HOME").. "/.config/awesome/"
 
 --[[
 gears	Utilities such as color parsing and objects
@@ -34,8 +34,8 @@ beautiful.init(conf_path.."theme.lua")
 
 dofile(conf_path.."startup.lua")
 -- This is used later as the default terminal and editor to run.
-local terminal = "st"
-local editor = os.getenv("EDITOR")
+local terminal = "alacritty"
+local editor = "nvim"
 local editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -82,7 +82,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 mytextclock = wibox.widget.textclock()
 
 
-dofile(os.getenv("XDG_CONFIG_HOME").."/awesome/praise.lua")
+-- dofile(os.getenv("XDG_CONFIG_HOME").."/awesome/praise.lua")
 
 
 
@@ -538,6 +538,6 @@ client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = false})
 end)
 
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("focus", function(c) c.border_color = "#fefefe" end)
+client.connect_signal("unfocus", function(c) c.border_color = "#efefef" end)
 -- }}}

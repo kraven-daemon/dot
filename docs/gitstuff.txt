@@ -1,6 +1,3 @@
-
-
-
 ## Subtree
 
 ### Adding the subtree as a remote

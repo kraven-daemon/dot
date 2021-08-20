@@ -8,7 +8,7 @@ local themes_path = gfs.get_themes_dir()
 local theme = {}
 
 theme.font          = "SauceCodePro Nerd Font Mono:style=Semibold,Regular:size=10"
-theme.wallpaper     = os.getenv("WALLPAPERS").."/walls.jpg"
+--theme.wallpaper     = os.getenv("WALLPAPERS").."/walls.jpg"
 
 theme.bg_normal     = "#120707"
 theme.bg_focus      = "#543c52"
@@ -21,8 +21,8 @@ theme.fg_focus      = "#ffffff"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#000000"
 
-theme.useless_gap   = dpi(3)
-theme.border_width  = dpi(2)
+theme.useless_gap   = 3 -- dpi(3)
+theme.border_width  = 2 -- dpi(2)
 theme.border_normal = "#341C3A"
 theme.border_focus  = "#f55951"
 theme.border_marked = "#00ff00"

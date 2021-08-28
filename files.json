@@ -1,0 +1,17 @@
+{
+    "home":[
+        ".profile",
+        ".zshenv",
+        ".xinitrc",
+        ".Xresources"
+    ],
+    "config":[
+        "alacritty",
+        "tmux",
+        "zsh",
+        "nvim"
+    ],
+    "data":[
+        ""
+    ]
+}

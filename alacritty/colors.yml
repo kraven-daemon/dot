@@ -3,11 +3,11 @@ colors:
         background: '#181B24'
         foreground: '#EEEEEE'
     cursor:
-        text: '#000000' 
+        text: '#000000'
         cursor: '#FFFFFF'
     selection:
-        text: '#FFFFFF' 
-        background: '#0AA503' 
+        text: '#FFFFFF'
+        background: '#0AA503'
     normal:
         black:   '#000000'
         red:     '#FF0000'

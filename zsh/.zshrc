@@ -14,17 +14,6 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-# alias
-#
-# modifier
-alias ls="lsd"
-alias la="lsd -a"
-alias ll="lsd -l"
-alias l="lsd"
-alias l.="lsd -A | rg '^\..*'"
-alias cl="clear"
-alias grep="rg --color=auto"
-alias vi="nvim"
 
 # info
 alias df="df -h"
@@ -45,9 +34,6 @@ alias nlight="redshift -O 4000"
 alias dlight="redshift -x"
 
 alias pp="echo $PATH | sed 's/:/\n/g'"
-
-# cd into config repo
-alias cdd="cd $HOME/Desktop/dot"
 
 ex ()
 {
@@ -72,7 +58,4 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
-
-# exstarship prompt
-eval "$(starship init zsh)"
 

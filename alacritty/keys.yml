@@ -1,0 +1,3 @@
+key_bindings:
+  - { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ScrollHalfPageUp   }
+  - { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ScrollHalfPageDown }

@@ -1,0 +1,53 @@
+# launch rust documentation
+alias rbook="rustup docs --book"
+
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# some more ls aliases
+#alias ll='ls -alF'
+#alias la='ls -A'
+#alias l='ls -CF'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias ls="lsd"
+alias la="lsd -a"
+alias ll="lsd -l"
+alias l="lsd -F"
+alias l.="lsd -A | rg '^\..*'"
+alias cl="clear"
+alias grep="rg --color=auto"
+alias vi='LD_LIBRARY_PATH="/nix/store/l2516vxb7kznb9q7a0xmxcnqbq6818vh-gcc-10.3.0-lib/lib64/" nvim'
+
+# info
+alias df="df -h"
+alias free="free -ht"
+alias wget="wget -c"
+alias userlist="cut -d: -f1 /etc/passwd"
+
+# xrelated
+alias merge="xrdb -merge ~/.Xresources"
+#alias printlock="printf '\t\    |    /\n\n\n.^_^-  SCREENLOCKED  -^_^.\n\n\n\t/    |    \'"
+#alias lock="slock -m '$(printlock)'"
+#alias testwm="Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome"
+
+# screen brightness
+#alias nlight="redshift -O 4000"
+#alias dlight="redshift -x"
+
+alias pp="echo $PATH | sed 's/:/\n/g'"
+
+# cd into config repo
+alias cdc="cd $HOME/Desktop/dot"

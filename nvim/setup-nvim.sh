@@ -5,5 +5,5 @@
 # provide , html, css, and json
 npm install -g vscode-langservers-extracted
 
-npm install -g 
+# npm install -g 
 

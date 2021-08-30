@@ -1,3 +1,0 @@
-key_bindings:
-  - { key: PageUp,   action: ScrollHalfPageUp,   mode:  ~Alt      }
-  - { key: PageDown, action: ScrollHalfPageDown, mode: ~Alt       }

@@ -9,11 +9,11 @@
 -- use_rocks {'openssl' env = {OPENSSL_DIR = "/path/to/dir"}}
 
 -------------------- Ensure packer is installed ------------
--- this is data directory -> XDG_DATA_HOME on xdg standards...
 
 local fn, cmd = vim.fn, vim.cmd
 local syscall = vim.fn.system
 
+-- `data` directory -> XDG_DATA_HOME on xdg standards...
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
     syscall({"git", "clone", "https://github.com/wbthomason/packer.nvim", install_path})

@@ -5,6 +5,11 @@ SAVEHIST=1000
 setopt autocd extendedglob nomatch
 unsetopt beep
 
+# prompt
+# info at `man zshmisc`
+# under title : /SIMPLE PROMPT ESCAPES
+PROMPT="%B(%F{green}%n%f%F{magenta}@%f%F{yellow}%m%f)%K{red}%F{black}:%k%K{white}%2d%k%K{red}>%k%f%b"
+
 # TODO: check the zshzle manpage for keybindings
 #bindkey -e
 
@@ -35,7 +40,7 @@ alias dlight="redshift -x"
 
 alias pp="echo $PATH | sed 's/:/\n/g'"
 
-ex ()
+extract()
 {
   if [ -f $1 ] ; then
     case $1 in

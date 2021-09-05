@@ -37,12 +37,12 @@
 
 local saga = require("lspsaga")
 saga.init_lsp_saga {
-    error_sign = '->'
+    error_sign = '->',
     warn_sign = '->',
     hint_sign = '->',
     infor_sign = '->',
     dianostic_header_icon = 'D',
-    code_action_icon = 'A',
+    code_action_icon = 'A'
 }
 
 -- or use default config

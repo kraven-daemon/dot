@@ -40,6 +40,17 @@ function Trim_space()
     vim.cmd(":%s/\\s\\+$//e")
 end
 
+function _G.put(...)
+  local objects = {}
+  for i = 1, select('#', ...) do
+    local v = select(i, ...)
+    table.insert(objects, vim.inspect(v))
+  end
+
+  print(table.concat(objects, '\n'))
+  return ...
+end
+
 --[[ kinda cool wrapper around require
 local function prequire(...)
 local status, lib = pcall(require, ...)
@@ -49,7 +60,13 @@ end
 ]]--
 
 -- all public plugins and related config
-require("plugins")
+require("pkgs")
+require("lsp-conf")
+require("lspsaga-conf")
+--require("test-fmt")
+require("treesitter-conf")
+
+
 -- vim editor options
 require("options")
 -- remapings

@@ -1,7 +1,17 @@
+
+#     _    _     _          _    ____   ___  _   _ _____   _____ _   ___     __
+#    / \  | |   | |        / \  | __ ) / _ \| | | |_   _| | ____| \ | \ \   / /
+#   / _ \ | |   | |       / _ \ |  _ \| | | | | | | | |   |  _| |  \| |\ \ / /
+#  / ___ \| |___| |___   / ___ \| |_) | |_| | |_| | | |   | |___| |\  | \ V /
+# /_/   \_\_____|_____| /_/   \_\____/ \___/ \___/  |_|   |_____|_| \_|  \_/
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+#----------------------------------------------------------------------------------
 # otherwise read and uncomment what's missing for your desktop
 #export LC_ALL=C
 #export LANG=en_ca.utf-8
-
 
 # Ui toolkit stuff for gtk/qt
 #export QT_QPA_PLATFORMTHEME="qt5ct"
@@ -34,11 +44,28 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # on openrc and others generally under /tmp
 # make a directory in tmp and flush it with some kind of rule in your process management routine
 
-# Helpers
-export EDITOR="$(which nvim)"
+# Temporary
+# because nix linker needs to know about his shared libs
+nixvim='LD_LIBRARY_PATH="/nix/store/l2516vxb7kznb9q7a0xmxcnqbq6818vh-gcc-10.3.0-lib/lib64/" nvim'
+
+
+# Userland helpers
+export EDITOR="$nixvim"
 export WALLPAPERS="$XDG_DATA_HOME/wallpapers"
 export LBIN="$HOME/.local/bin"
 export DOT="$HOME/Desktop/dot"
 
 # simple hotkey daemon default shell variable
 # export SXHKD_SHELL="sh"
+
+# RUST
+. "$HOME/.cargo/env"
+
+# NIX
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . /home/kraven/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# NODEJS
+# this is where npm -g intall will reside, in user-space
+# because npm in nix is immutable, so you cannot modify the global state
+# dont forget `npm set prefix ~/.npm-global`
+if [ -d $HOME/.npm-global ]; then PATH="$HOME/.npm-global/bin:$PATH"; fi

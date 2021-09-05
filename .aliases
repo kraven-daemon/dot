@@ -1,3 +1,6 @@
+# alias are used in interactive mode only
+# shopt -s expand_aliases  # to enable alias in shell script
+
 # launch rust documentation
 alias rbook="rustup docs --book"
 
@@ -6,7 +9,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
-    alias grep='grep --color=auto'
+    #alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
@@ -14,19 +17,23 @@ fi
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-#alias ll='ls -alF'
-#alias la='ls -A'
-#alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
+# notification
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# list
 alias ls="lsd"
 alias la="lsd -a"
 alias ll="lsd -l"
 alias l="lsd -F"
-alias l.="lsd -A | rg '^\..*'"
+
+# not an alias but kinda..
+l.(){
+    lsd -A |
+    rg '^\..*' |
+    column -x
+}
+
+alias lt="lsd --tree"
 alias cl="clear"
 alias grep="rg --color=auto"
 alias vi='LD_LIBRARY_PATH="/nix/store/l2516vxb7kznb9q7a0xmxcnqbq6818vh-gcc-10.3.0-lib/lib64/" nvim'
@@ -36,6 +43,7 @@ alias df="df -h"
 alias free="free -ht"
 alias wget="wget -c"
 alias userlist="cut -d: -f1 /etc/passwd"
+alias pp="echo $PATH | sed 's/:/\n/g'"
 
 # xrelated
 alias merge="xrdb -merge ~/.Xresources"
@@ -47,7 +55,11 @@ alias merge="xrdb -merge ~/.Xresources"
 #alias nlight="redshift -O 4000"
 #alias dlight="redshift -x"
 
-alias pp="echo $PATH | sed 's/:/\n/g'"
-
 # cd into config repo
 alias cdc="cd $HOME/Desktop/dot"
+
+# read screen brightness
+alias brightness="cat /sys/class/backlight/acpi_video0/brightness"
+
+alias nlight="redshift -O 4000"
+alias dlight="redshift -x"

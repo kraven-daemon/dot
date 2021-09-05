@@ -8,7 +8,7 @@ unsetopt beep
 # prompt
 # info at `man zshmisc`
 # under title : /SIMPLE PROMPT ESCAPES
-PROMPT="%B(%F{green}%n%f%F{magenta}@%f%F{yellow}%m%f)%K{red}%F{black}:%k%K{white}%2d%k%K{red}>%k%f%b"
+PROMPT="%B(%F{green}%n%f%F{magenta}@%f%F{yellow}%m%f)%K{red}%F{black}:%k%K{white}%2d%k%K{red}>%k%f%b "
 
 # TODO: check the zshzle manpage for keybindings
 #bindkey -e
@@ -18,27 +18,6 @@ zstyle :compinstall filename "$ZDOTDIR/.zshrc"
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
-
-
-# info
-alias df="df -h"
-alias free="free -ht"
-alias wget="wget -c"
-alias userlist="cut -d: -f1 /etc/passwd"
-
-# xrelated
-alias merge="xrdb -merge ~/.Xresources"
-alias printlock="printf '\t\    |    /\n\n\n.^_^-  SCREENLOCKED  -^_^.\n\n\n\t/    |    \'"
-alias lock="slock -m '$(printlock)'"
-alias testwm="Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome"
-
-# read screen brightness
-alias brightness="cat /sys/class/backlight/acpi_video0/brightness"
-
-alias nlight="redshift -O 4000"
-alias dlight="redshift -x"
-
-alias pp="echo $PATH | sed 's/:/\n/g'"
 
 extract()
 {
@@ -57,7 +36,7 @@ extract()
       *.7z)        7z x $1      ;;
       *.deb)       ar x $1      ;;
       *.tar.xz)    tar xf $1    ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
+      *)           echo "'$1' cannot be extracted" ;;
     esac
   else
     echo "'$1' is not a valid file"

@@ -77,6 +77,11 @@ lspc.bashls.setup {
     on_attach = on_attach
 }
 
+lspc.denols.setup{
+    capabilities = capabilities,
+    on_attach = on_attach
+}
+
 -------------------------------------------------------
 ---   _    _   _   _
 --   | |  | | | | / \          _                 _

@@ -3,24 +3,24 @@ BASICS
 ## This is probably the most accurate global summary of what is nix
 ### I've found this inside the nix manual and could not explain it better.
 
-In Nix, different users can have different “views” on the set of installed applications. 
+In Nix, different users can have different “views” on the set of installed applications.
 That is, there might be lots of applications present on the system (possibly in many different versions),
-but users can have a specific selection of those active — where “active” just means that it appears in a directory in the user’s PATH. 
+but users can have a specific selection of those active — where “active” just means that it appears in a directory in the user’s PATH.
 Such a view on the set of installed applications is called a user environment,
 which is just a directory tree consisting of symlinks to the files of the active applications.
 Components are installed from a set of Nix expressions that tell Nix how to build those packages, including, if necessary, their dependencies.
-There is a collection of Nix expressions called the Nixpkgs package collection that contains packages ranging from basic development stuff such as GCC and Glibc, 
-to end-user applications like Mozilla Firefox. 
+There is a collection of Nix expressions called the Nixpkgs package collection that contains packages ranging from basic development stuff such as GCC and Glibc,
+to end-user applications like Mozilla Firefox.
 
 (Nix is however not tied to the Nixpkgs package collection; you could write your own Nix expressions based on Nixpkgs, or completely new ones.)
 
 
 # Installing
-The install script will modify the first writable file from amongst 
-    .bash_profile, 
+The install script will modify the first writable file from amongst
+    .bash_profile,
     .bash_login or
-    .profile 
-    -> to 
+    .profile
+    -> to
     source ~/.nix-profile/etc/profile.d/nix.sh
 You can set the NIX_INSTALLER_NO_MODIFY_PROFILE environment variable before executing the install script to disable this behaviour.
 
@@ -48,11 +48,11 @@ Nix comes with a set of utilities:
         of the packages installed on your system is done
     nix
         this is a global wrapper around the more precise functions,
-        kind of like: 
+        kind of like:
             apt is to dpkg for debian distros
             rpm/yum to dnf for redhat distros
             yay,paru, or other `AUR+pacman` pkg tool wrapper for arch-based distro
-        It's also a bit more, as nix is not only a pkg manager
+        It`s also a bit more, as nix is not only a pkg manager
         repl,etc...
     nix-build
         used to build nix expressions into generations (something.nix)
@@ -104,15 +104,15 @@ nix is a wrapper used to simplify using nix-toolofsomesort
 
 nix-env -q // q:query installed packages
         -qa some-package // qa: query from available(from channels)
-        -qaf /path/to/nixExpression  // qaf: querie 
+        -qaf /path/to/nixExpression  // qaf: querie
            The default is ~/.nix-defexpr. and point to the channels
-           If the argument starts with http:// or https://, 
+           If the argument starts with http:// or https://,
            it is interpreted as the URL of a tarball that will be downloaded and unpacked to a temporary location.
            The tarball must include a single top-level directory containing at least a file named default.nix.
         -qs // query status of pkgs
             // where status is --S/-PS/IPS I:installed, P:present on the system, S:substitute exists
             //--? substitute is a prebuild binary, because in nix the default behavior is
-            //    to install a prebuild or build from NixExpression(respectively 
+            //    to install a prebuild or build from NixExpression(respectively
             //    each official channel have 2 urls, cache.nix.... for prebuild and a list of buildfiles)
         -q --description +| --json
             query info
@@ -127,7 +127,7 @@ rollback is upgrade breaks
     nix-env --install some-packages
     nix-env -i some packages
 
-## Uninstall 
+## Uninstall
     nix-env --uninstall some-package
     nix-env -e some-package // e:erase the user's alias to the store
 
@@ -142,7 +142,7 @@ nix will output what operation is about to happen without running it
 # About profile
 ## Generation
 Operations that modify the profile are creating generations
-They physically live in 
+They physically live in
     ls -l /nix/var/nix/profiles/
 which point to the /nix/store/ka...2cqib-user-environment
                    /nix/store/a3...98sd3-user-environment
@@ -195,10 +195,10 @@ Nix will first check if the path is available on the server avalon,
 then the default binary cache(https://cache.nixos.org)
 If not, it will fall back to building from source.
 
-### Over ssh, copy or serve 
+### Over ssh, copy or serve
 The command nix-copy-closure copies a Nix store path along with all its dependencies to
-or from another machine via the SSH protocol. 
-It doesn’t copy store paths that are already present on the target machine. 
+or from another machine via the SSH protocol.
+It doesn’t copy store paths that are already present on the target machine.
 
 This gets a bit verbose, refer to
 Nix manual(v. 2.3.15) section 13.2, 13.3
@@ -216,14 +216,20 @@ And the backend is functionnal, using a subset of haskell
 2- Write a builder, a shellscript => to build the file from input
 3- Add the pkg to the file pkgs/top-level/all-packages.nix
     Actually 1&2 combine
-    In this step you put it all together, i.e., 
+    In this step you put it all together, i.e.,
     you call the function with the right arguments to build the actual package.
 
 
 The builders for almost all Unix packages look like this —>
 set up some environment variables, unpack the sources, configure, build, and install
 
-It is 
+nix repl : test, .drv, :b build it, no link
+
+nix-build
+    1- nix-instantiate : parse and evaluate simple.nix and return the .drv file corresponding to the parsed derivation set
+    2- nix-store -r : realise the .drv file, which actually builds it.
+    3- Finally, it creates the symlink.
+
 
 
 

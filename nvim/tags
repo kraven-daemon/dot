@@ -1,0 +1,33 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/kraven/Desktop/dot/nvim/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	//
+Toggle_hls	init.lua	/^function Toggle_hls()$/;"	f
+Trim_space	init.lua	/^function Trim_space()$/;"	f
+_G.put	init.lua	/^function _G.put(...)$/;"	f
+buf_set_keymap	lua/lsp-conf.lua	/^    local function buf_set_keymap(...)$/;"	f
+buf_set_option	lua/lsp-conf.lua	/^    local function buf_set_option(...)$/;"	f
+buffer_not_empty	lua/evil_lualine.lua	/^  buffer_not_empty = function() return vim.fn.empty(vim.fn.expand('%:t')) ~= 1 end,$/;"	f
+check_git_workspace	lua/evil_lualine.lua	/^  check_git_workspace = function()$/;"	f
+error_msg	plugin/packer_compiled.lua	/^local no_errors, error_msg = pcall(function()$/;"	f
+format_file_size	lua/evil_lualine.lua	/^    local function format_file_size(file)$/;"	f
+g:colors_name	colors/chucky-theme.vim	/^let g:colors_name="chucky-theme"$/;"	v
+hide_in_width	lua/evil_lualine.lua	/^  hide_in_width = function() return vim.fn.winwidth(0) > 80 end,$/;"	f
+ins_left	lua/evil_lualine.lua	/^local function ins_left(component)$/;"	f
+ins_right	lua/evil_lualine.lua	/^local function ins_right(component)$/;"	f
+map	lua/controls.lua	/^local function map(mode, lhs, rhs, opts)$/;"	f
+on_attach	lua/lsp-conf.lua	/^local on_attach = function(client, bufnr)$/;"	f
+prequire	init.lua	/^local function prequire(...)$/;"	f
+prequire	lua/init.lua	/^local function prequire(...)$/;"	f
+save_profiles	plugin/packer_compiled.lua	/^local function save_profiles(threshold)$/;"	f
+theme	lua/lush_theme/chucky-theme.lua	/^local theme = lush(function()$/;"	f
+time	plugin/packer_compiled.lua	/^    time = function(chunk, start) end$/;"	f
+time	plugin/packer_compiled.lua	/^    time = function(chunk, start)$/;"	f
+try_loadstring	plugin/packer_compiled.lua	/^local function try_loadstring(s, component, name)$/;"	f

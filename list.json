@@ -1,6 +1,7 @@
 {
     "home":[
         ".profile",
+        ".aliases",
         ".zshenv",
         ".xinitrc",
         ".Xresources"
@@ -12,6 +13,12 @@
         "nvim"
     ],
     "data":[
-        ""
+        "backgrounds",
+        "fonts",
+        "icons"
+    ],
+    "local":[
+        "bin",
+        "lib"
     ]
 }

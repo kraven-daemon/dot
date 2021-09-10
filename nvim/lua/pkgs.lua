@@ -30,8 +30,8 @@ packer.startup(
         use {"wbthomason/packer.nvim"}
 
         -- LSP and completion
-        use {"neovim/nvim-lspconfig"}
-        use {"nvim-lua/completion-nvim"}
+        use "neovim/nvim-lspconfig"
+        use "nvim-lua/completion-nvim"
         use "glepnir/lspsaga.nvim"
         use "windwp/nvim-autopairs"
         use "L3MON4D3/LuaSnip"
@@ -46,9 +46,11 @@ packer.startup(
         use {"tpope/vim-fugitive"}
 
         -- Syntax and Treesitter
+        use  "preservim/tagbar"
         use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"} -- trigger update on :PackerSync
         use "nvim-treesitter/playground"
         use "sheerun/vim-polyglot"
+
         -- 3 in 1 , plenary(set of functions), popup(vimbuffer overlay boxes) and telescope(fuzzy finder)
         use {
             "nvim-telescope/telescope.nvim",
@@ -57,8 +59,8 @@ packer.startup(
 
         -- Candy
         use {"hoob3rt/lualine.nvim", requires = {"kyazdani42/nvim-web-devicons", opt = true}}
-        use {"kyazdani42/nvim-tree.lua", requires = {"kyazdani42/nvim-web-devicons", opt = true}}
-        use {"PyGamer0/darc.nvim", requires = {"rktjmp/lush.nvim"}}
+        -- use {"kyazdani42/nvim-tree.lua", requires = {"kyazdani42/nvim-web-devicons", opt = true}}
+        use "rktjmp/lush.nvim"
 
         -- rocks test
         use_rocks {"lua-fmt", server = 'https://luarocks.org/dev'}

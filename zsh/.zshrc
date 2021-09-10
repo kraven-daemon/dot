@@ -43,3 +43,4 @@ extract()
   fi
 }
 
+setxkbmap -option "caps:swapescape"

@@ -77,10 +77,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kraven/.local/share/nvim/site/pack/packer/start/completion-nvim"
   },
-  ["darc.nvim"] = {
-    loaded = true,
-    path = "/home/kraven/.local/share/nvim/site/pack/packer/start/darc.nvim"
-  },
   ["lspsaga.nvim"] = {
     loaded = true,
     path = "/home/kraven/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
@@ -105,10 +101,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kraven/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
-  ["nvim-tree.lua"] = {
-    loaded = true,
-    path = "/home/kraven/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
-  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/kraven/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
@@ -132,6 +124,10 @@ _G.packer_plugins = {
   ["popup.nvim"] = {
     loaded = true,
     path = "/home/kraven/.local/share/nvim/site/pack/packer/start/popup.nvim"
+  },
+  tagbar = {
+    loaded = true,
+    path = "/home/kraven/.local/share/nvim/site/pack/packer/start/tagbar"
   },
   ["telescope.nvim"] = {
     loaded = true,

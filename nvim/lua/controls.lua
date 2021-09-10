@@ -10,10 +10,11 @@ end
 --- KEYMAP
 ---
 vim.g.mapleader = " "
--- map('n', '<leader>f', ':Lexplore<CR> :vertical resize 33%<CR>')
-map("n", "<leader>f", ":NvimTreeToggle<CR>")
+map('n', '<leader>f', ':Vexplore<CR> :vertical resize 33%<CR>')
+--map("n", "<leader>f", ":NvimTreeToggle<CR>")
 map("n", "<leader>h", ":lua Toggle_hls()<CR>")
 map("n", "<leader>w", ":lua Trim_space()<CR>")
+map("n", "<leader>t", ":TagbarToggle<CR>")
 
 -- Primeagen's top 5, you're so right :D
 -- "If you press that P, you get exactly what you wanted from that P"

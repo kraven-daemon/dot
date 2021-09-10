@@ -22,7 +22,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # list
 alias ls="lsd"
-alias la="lsd -a"
+alias la="lsd -Al"
 alias ll="lsd -l"
 alias l="lsd -F"
 
@@ -63,3 +63,7 @@ alias brightness="cat /sys/class/backlight/acpi_video0/brightness"
 
 alias nlight="redshift -O 4000"
 alias dlight="redshift -x"
+
+# youtube download shortcut
+alias yta="youtube-dl -x --audio-quality 0"
+

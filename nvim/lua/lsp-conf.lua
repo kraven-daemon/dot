@@ -1,7 +1,9 @@
 -- FOR ALL LSP in neovim
--- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
+-- https://github.com/neovim/nvim-lsponfig/blob/master/CONFIG.md
 
-local lspc = require("lspconfig")
+local lsp = require("lspconfig")
+local coq = require("coq")
+
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -14,7 +16,7 @@ local on_attach = function(client, bufnr)
     end
 
     -- Enable completion triggered by <c-x><c-o>
-    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+    --buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
     -- Mappings.
     local opts = {noremap = true, silent = true}
@@ -38,46 +40,48 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
     buf_set_keymap("n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
-    require("completion").on_attach()
+    -- require("completion").on_attach()
 end
 
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+
+
 -- from vscode-langservers-extracted
-lspc.html.setup {
+lsp.html.setup {
     capabilities = capabilities,
     on_attach = on_attach
 }
 
-lspc.cssls.setup {
+lsp.cssls.setup {
     capabilities = capabilities,
     on_attach = on_attach
 }
 
-lspc.jsonls.setup {
+lsp.jsonls.setup {
     capabilities = capabilities,
     on_attach = on_attach
 }
 
-lspc.tsserver.setup {
+lsp.tsserver.setup {
     capabilities = capabilities,
     on_attach = on_attach
 }
 
-lspc.rust_analyzer.setup {
+lsp.rust_analyzer.setup {
     capabilities = capabilities,
     on_attach = on_attach
 }
 
 -- from
-lspc.bashls.setup {
+lsp.bashls.setup {
     capabilities = capabilities,
     on_attach = on_attach
 }
 
-lspc.denols.setup{
+lsp.denols.setup{
     capabilities = capabilities,
     on_attach = on_attach
 }
@@ -97,35 +101,32 @@ local sumneko_root_path = "/home/kraven/Desktop/lua-lsp"
 local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
 
 -- To get builtin LSP running, do something like:
--- NOTE: This replaces the calls where you would have before done `require('nvim_lsp').sumneko_lua.setup()`
-require("nlua.lsp.nvim").setup(
-    require("lspconfig"),
-    {
+lsp.sumneko_lua.setup {
         cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
         -- An example of settings for an LSP server.
-        --    For more options, see nvim-lspconfig
-        settings = {
-            Lua = {
-                runtime = {
-                    -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                    version = "LuaJIT",
-                    -- Setup your lua path
-                    path = vim.split(package.path, ";")
-                },
-                diagnostics = {
-                    -- Include globals you want to tell the LSP are real :)
-                    globals = {"use"}
-                },
-                workspace = {
-                    -- Make the server aware of Neovim runtime files
-                    library = {
-                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                        [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
-                    }
-                }
-            }
-        },
-        capabilities = capabilities,
-        on_attach = on_attach
-    }
-)
+        --    For more options, see nvim-lsponfig
+       -- settings = {
+       --     Lua = {
+       --         runtime = {
+       --             -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+       --             version = "LuaJIT",
+       --             -- Setup your lua path
+       --             path = vim.split(package.path, ";")
+       --         },
+       --         diagnostics = {
+       --             -- Include globals you want to tell the LSP are real :)
+       --             globals = {"use"}
+       --         },
+       --         workspace = {
+       --             -- Make the server aware of Neovim runtime files
+       --             library = {
+       --                 [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+       --                 [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
+       --             }
+       --         }
+       --     }
+       -- },
+       -- capabilities = capabilities,
+       -- on_attach = on_attach
+}
+

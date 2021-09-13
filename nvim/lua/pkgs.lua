@@ -31,7 +31,11 @@ packer.startup(
 
         -- LSP and completion
         use "neovim/nvim-lspconfig"
-        use "nvim-lua/completion-nvim"
+--        use "nvim-lua/completion-nvim"
+--      -- packer
+        use { 'ms-jpq/coq_nvim', branch = 'coq'} -- main one
+        use { 'ms-jpq/coq.artifacts', branch= 'artifacts'} -- 9000+ Snippets
+
         use "glepnir/lspsaga.nvim"
         use "windwp/nvim-autopairs"
         use "L3MON4D3/LuaSnip"
@@ -40,10 +44,9 @@ packer.startup(
         use {"tjdevries/nlua.nvim"}
 
         -- Vim dispatch
-        use {"tpope/vim-dispatch"}
-
-        -- Fugitive for Git
-        use {"tpope/vim-fugitive"}
+        use "tpope/vim-dispatch"
+        use "tpope/vim-commentary"
+        use "tpope/vim-fugitive"
 
         -- Syntax and Treesitter
         use  "preservim/tagbar"

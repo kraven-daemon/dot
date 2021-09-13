@@ -85,7 +85,7 @@ _linkable(){
     list="$(jq -r ".$1[]" ${SRC})"
     for file in $list
     do
-        echo "$(realpath "$file") to $2/$file"
+        echo "$(realpath "${file}") to ${2}/${file}"
     done
 }
 # ln -s "$(realpath "$link") to $2/$link"
@@ -113,9 +113,10 @@ _parse(){
             "local" )
                 echo "In $HOME/.local"
                 _linkable "$key" "$HOME/.local"
+                ;;
             "null" )
                 echo "List done!"
-                break;
+                break
                 ;;
         esac
         iter="$(( iter + 1 ))"

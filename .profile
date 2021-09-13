@@ -44,9 +44,6 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # on openrc and others generally under /tmp
 # make a directory in tmp and flush it with some kind of rule in your process management routine
 
-# Temporary
-# because nix linker needs to know about his shared libs
-nixvim='LD_LIBRARY_PATH="/nix/store/l2516vxb7kznb9q7a0xmxcnqbq6818vh-gcc-10.3.0-lib/lib64/" nvim'
 
 
 # Userland helpers
@@ -63,9 +60,15 @@ export DOT="$HOME/Desktop/dot"
 
 # NIX
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . /home/kraven/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+# because nix dont link stdc++.6.so
+export LD_LIBRARY_PATH=$(nix eval --raw nixpkgs.stdenv.cc.cc.lib)/lib64:$LD_LIBRARY_PATH
 
+#home-manager
+. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 # NODEJS
 # this is where npm -g intall will reside, in user-space
 # because npm in nix is immutable, so you cannot modify the global state
 # dont forget `npm set prefix ~/.npm-global`
 if [ -d $HOME/.npm-global ]; then PATH="$HOME/.npm-global/bin:$PATH"; fi
+export LUA_PATH='/home/kraven/.luarocks/share/lua/5.1/?.lua;/home/kraven/.luarocks/share/lua/5.1/?/init.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua;./?.lua;/usr/local/lib/lua/5.1/?.lua;/usr/local/lib/lua/5.1/?/init.lua;/usr/share/lua/5.1/?.lua;/usr/share/lua/5.1/?/init.lua'
+export LUA_CPATH='/home/kraven/.luarocks/lib/lua/5.1/?.so;/usr/local/lib/lua/5.1/?.so;./?.so;/usr/lib/x86_64-linux-gnu/lua/5.1/?.so;/usr/lib/lua/5.1/?.so;/usr/local/lib/lua/5.1/loadall.so'

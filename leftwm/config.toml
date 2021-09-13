@@ -1,0 +1,270 @@
+# Full reference online at
+# https://github.com/leftwm/leftwm/wiki/Config
+
+# Also keys are remapped from xorg native xk_whatever..
+# the compatibility list is here in the code
+# https://github.com/leftwm/leftwm/blob/master/src/utils/xkeysym_lookup.rs
+
+# General
+modkey = "Mod4"
+mousekey = "Mod4"
+workspaces = [] # The default means 1 screen = 1 workspace, or 1 tagstack
+tags = ["1", "2", "3", "4", "5"]
+layouts = [
+            "MainAndVertStack",
+            "MainAndHorizontalStack"
+          ]
+# scratchpad = [ ]
+disable_current_tag_swap = false
+focus_behaviour = "ClickTo"
+focus_new_windows = true
+
+# Launcher
+[[keybind]]
+command = "Execute"
+value = "rofi -show window"
+modifier = ["modkey"]
+key = "o"
+
+[[keybind]]
+command = "Execute"
+value = "rofi -show run"
+modifier = ["modkey"]
+key = "p"
+
+
+[[keybind]]
+command = "Execute"
+value = "alacritty"
+modifier = ["modkey"]
+key = "Return"
+
+# Leftwm
+[[keybind]]
+command = "CloseWindow"
+modifier = ["modkey"]
+key = "q"
+
+[[keybind]]
+command = "SoftReload"
+modifier = ["modkey", "Shift"]
+key = "r"
+
+[[keybind]]
+command = "HardReload"
+modifier = ["modkey", "Shift"]
+key = "b"
+
+[[keybind]]
+command = "Execute"
+value = "loginctl kill-session $XDG_SESSION_ID"
+modifier = ["modkey", "Shift"]
+key = "x"
+
+[[keybind]]
+command = "Execute"
+value = "pactl set-sink-volume @DEFAULT_SINK@ +5%"
+modifier = []
+key = "XF86XK_AudioRaiseVolume"
+
+[[keybind]]
+command = "Execute"
+value = "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+modifier = []
+key = "XF86XK_AudioLowerVolume"
+
+[[keybind]]
+command = "Execute"
+value = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+modifier = []
+key = "XF86XK_AudioMute"
+
+
+# lockscreen from the suckless
+# [[keybind]]
+# command = "Execute"
+# value = "slock"
+# modifier = ["modkey", "Control"]
+# key = "l"
+
+# Workspaces
+# [[keybind]]
+# command = "MoveToLastWorkspace"
+# modifier = ["modkey", "Shift"]
+# key = "w"
+
+# [[keybind]]
+# command = "FocusWorkspaceNext"
+# modifier = ["modkey"]
+# key = "l"
+
+# [[keybind]]
+# command = "FocusWorkspacePrevious"
+# modifier = ["modkey"]
+# key = "h"
+
+# Tags
+[[keybind]]
+command = "SwapTags"
+modifier = ["modkey"]
+key = "l"
+
+# Windows
+[[keybind]]
+command = "MoveWindowUp"
+modifier = ["modkey", "Shift"]
+key = "k"
+[[keybind]]
+command = "MoveWindowUp"
+modifier = ["modkey", "Shift"]
+key = "Up"
+
+[[keybind]]
+command = "MoveWindowDown"
+modifier = ["modkey", "Shift"]
+key = "j"
+[[keybind]]
+command = "MoveWindowDown"
+modifier = ["modkey", "Shift"]
+key = "Down"
+
+[[keybind]]
+command = "MoveWindowTop"
+modifier = ["modkey"]
+key = "h"
+
+[[keybind]]
+command = "FocusWindowUp"
+modifier = ["modkey"]
+key = "k"
+[[keybind]]
+command = "FocusWindowUp"
+modifier = ["modkey"]
+key = "Up"
+
+[[keybind]]
+command = "FocusWindowDown"
+modifier = ["modkey"]
+key = "Down"
+[[keybind]]
+command = "FocusWindowDown"
+modifier = ["modkey"]
+key = "j"
+
+[[keybind]]
+command = "IncreaseMainWidth"
+value = "5"
+modifier = ["modkey"]
+key = "u"
+
+[[keybind]]
+command = "DecreaseMainWidth"
+value = "5"
+modifier = ["modkey"]
+key = "i"
+
+[[keybind]]
+command = "FloatingToTile"
+modifier = ["modkey"]
+key = "t"
+
+
+# Layout
+[[keybind]]
+command = "ToggleFullScreen"
+modifier = ["modkey"]
+key = "f"
+
+[[keybind]]
+command = "SetLayout"
+value = "Monocle"
+modifier = ["modkey"]
+key = "m"
+
+[[keybind]]
+command = "SetLayout"
+value = "MainAndVertStack"
+modifier = ["modkey"]
+key = "comma"
+
+[[keybind]]
+command = "SetLayout"
+value = "MainAndHorizontalStack"
+modifier = ["modkey"]
+key = "period"
+
+# Tags
+[[keybind]]
+command = "SetMarginMultiplier"
+value = "2.5"
+modifier = ["modkey"]
+key = "v"
+[[keybind]]
+command = "FocusNextTag"
+modifier = ["modkey"]
+key = "Right"
+
+[[keybind]]
+command = "FocusPreviousTag"
+modifier = ["modkey"]
+key = "Left"
+
+[[keybind]]
+command = "GotoTag"
+value = "1"
+modifier = ["modkey"]
+key = "1"
+
+[[keybind]]
+command = "GotoTag"
+value = "2"
+modifier = ["modkey"]
+key = "2"
+
+[[keybind]]
+command = "GotoTag"
+value = "3"
+modifier = ["modkey"]
+key = "3"
+
+[[keybind]]
+command = "GotoTag"
+value = "4"
+modifier = ["modkey"]
+key = "4"
+
+[[keybind]]
+command = "GotoTag"
+value = "5"
+modifier = ["modkey"]
+key = "5"
+
+[[keybind]]
+command = "MoveToTag"
+value = "1"
+modifier = ["modkey", "Shift"]
+key = "1"
+
+[[keybind]]
+command = "MoveToTag"
+value = "2"
+modifier = ["modkey", "Shift"]
+key = "2"
+
+[[keybind]]
+command = "MoveToTag"
+value = "3"
+modifier = ["modkey", "Shift"]
+key = "3"
+
+[[keybind]]
+command = "MoveToTag"
+value = "4"
+modifier = ["modkey", "Shift"]
+key = "4"
+
+[[keybind]]
+command = "MoveToTag"
+value = "5"
+modifier = ["modkey", "Shift"]
+key = "5"

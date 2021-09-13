@@ -73,9 +73,13 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kraven/.local/share/nvim/site/pack/packer/start/LuaSnip"
   },
-  ["completion-nvim"] = {
+  ["coq.artifacts"] = {
     loaded = true,
-    path = "/home/kraven/.local/share/nvim/site/pack/packer/start/completion-nvim"
+    path = "/home/kraven/.local/share/nvim/site/pack/packer/start/coq.artifacts"
+  },
+  coq_nvim = {
+    loaded = true,
+    path = "/home/kraven/.local/share/nvim/site/pack/packer/start/coq_nvim"
   },
   ["lspsaga.nvim"] = {
     loaded = true,
@@ -132,6 +136,10 @@ _G.packer_plugins = {
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/kraven/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+  },
+  ["vim-commentary"] = {
+    loaded = true,
+    path = "/home/kraven/.local/share/nvim/site/pack/packer/start/vim-commentary"
   },
   ["vim-dispatch"] = {
     loaded = true,

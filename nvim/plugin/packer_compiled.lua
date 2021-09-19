@@ -69,10 +69,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  LuaSnip = {
-    loaded = true,
-    path = "/home/kraven/.local/share/nvim/site/pack/packer/start/LuaSnip"
-  },
   ["coq.artifacts"] = {
     loaded = true,
     path = "/home/kraven/.local/share/nvim/site/pack/packer/start/coq.artifacts"

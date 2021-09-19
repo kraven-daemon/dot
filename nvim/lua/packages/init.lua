@@ -9,7 +9,6 @@
 -- use_rocks {'openssl' env = {OPENSSL_DIR = "/path/to/dir"}}
 
 -------------------- Ensure packer is installed ------------
-
 local fn, cmd = vim.fn, vim.cmd
 local syscall = vim.fn.system
 
@@ -31,14 +30,12 @@ packer.startup(
 
         -- LSP and completion
         use "neovim/nvim-lspconfig"
---        use "nvim-lua/completion-nvim"
---      -- packer
+        -- Coq use python3-venv and sqlite3
         use { 'ms-jpq/coq_nvim', branch = 'coq'} -- main one
         use { 'ms-jpq/coq.artifacts', branch= 'artifacts'} -- 9000+ Snippets
 
         use "glepnir/lspsaga.nvim"
         use "windwp/nvim-autopairs"
-        use "L3MON4D3/LuaSnip"
 
         -- Lua development
         use {"tjdevries/nlua.nvim"}
@@ -69,3 +66,4 @@ packer.startup(
         use_rocks {"lua-fmt", server = 'https://luarocks.org/dev'}
     end
 )
+

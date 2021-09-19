@@ -1,14 +1,18 @@
 -- Vim global options configuration
--- 
-
+---@diagnostic disable: undefined-global
 local opt = vim.opt
+local cmd = vim.cmd
 
 -------------------- OPTIONS -------------------------------
---  for more info
---  :set all -->
+--  :set all --> for info
 
 local indent = 4
--- opt.colorcolumn = tostring(width)   -- Line length marker
+
+-- This is for Treesitter folding
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+-- opt.colorcolumn = tostring(width)   -- Line length marker for python, mostly..
 -- opt.textwidth = width               -- Maximum width of text
 opt.completeopt = {"menuone", "noselect"} -- Completion options
 opt.cursorline = true -- Highlight cursor line
@@ -36,4 +40,5 @@ opt.updatetime = 100 -- Delay before swap file is saved
 opt.wildmode = {"longest", "full"} -- Command-line completion mode
 opt.wrap = false -- Disable line wrap
 opt.mouse = "a"
--- cmd "colorscheme darc"
+cmd "colorscheme chucky-theme"
+

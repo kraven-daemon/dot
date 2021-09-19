@@ -1,9 +1,15 @@
 #!/usr/bin/env sh
 
-# check for `npm set prefix 'somepath in userland'`
+# list of neovim dependancies for poweruse
 
+# lsp server
+# check for `npm set prefix 'somepath in userland'`
 # provide , html, css, and json
 npm install -g vscode-langservers-extracted
 
-# npm install -g 
+
+
+# Telescope use rg(ripgrep) and fd(find alternative)
+
+# Also make sure a nerdfont is in the term
 

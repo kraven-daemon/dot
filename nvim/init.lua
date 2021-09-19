@@ -6,8 +6,6 @@ nvim/lua resources
     :help :lua
     :help :lua-heredoc
 ]]--
-
-
 --[[
 Directory that can load lua files
 in XDG_CONFIG_HOME/nvim/ or any runtimepaths
@@ -22,10 +20,19 @@ in XDG_CONFIG_HOME/nvim/ or any runtimepaths
 
 ]]--
 
+---@diagnostic disable: undefined-global
+
 -------------------- HELPERS -------------------------------
 local api, cmd, fn, g = vim.api, vim.cmd, vim.fn, vim.g
 local opt, wo = vim.opt, vim.wo
 
+
+-- Some safety require wrapper
+local function prequire(...)
+    local status, lib = pcall(require, ...)
+    if (status) then return lib end
+        return nil
+end
 
 -- Usefull global functions, see KEYMAPS later
 function Toggle_hls()
@@ -60,21 +67,31 @@ end
 ]]--
 
 -- all public plugins and related config
-require("pkgs")
-require("lsp-conf")
-require("lspsaga-conf")
---require("test-fmt")
-require("treesitter-conf")
+require("packages")
 
+-- Language server/ builtin lsp wrapper and saga
+require("lspies.lsp-conf")
+require("lspies.lspsaga-conf")
 
--- vim editor options
+-- Treesitter configuration
+require("ts-config")
+
+-- about menu help: IME
+-- :source $VIMRUNTIME/menu.vim
+-- :set wildmenu
+-- :set cpo-=<
+-- :set wcm=<C-Z>
+-- :map <F4> :emenu <C-Z>
+
+-- options settings
 require("options")
--- remapings
-require("controls")
-
+-- keybindings
+require("mappings")
 -- Status line
-require("evil_lualine")
+require("statusline")
 
 -- some additions
 require("nvim-autopairs").setup{}
 
+-- Nice little rock
+--require("test-fmt")

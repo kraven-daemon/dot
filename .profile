@@ -10,7 +10,6 @@
 #umask 022
 #----------------------------------------------------------------------------------
 # otherwise read and uncomment what's missing for your desktop
-#export LC_ALL=C
 #export LANG=en_ca.utf-8
 
 # Ui toolkit stuff for gtk/qt
@@ -44,10 +43,9 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # on openrc and others generally under /tmp
 # make a directory in tmp and flush it with some kind of rule in your process management routine
 
-
-
 # Userland helpers
-export EDITOR="$nixvim"
+export VISUAL="bat"
+export EDITOR="nvim"
 export WALLPAPERS="$XDG_DATA_HOME/wallpapers"
 export LBIN="$HOME/.local/bin"
 export DOT="$HOME/Desktop/dot"
@@ -70,5 +68,7 @@ export LD_LIBRARY_PATH=$(nix eval --raw nixpkgs.stdenv.cc.cc.lib)/lib64:$LD_LIBR
 # because npm in nix is immutable, so you cannot modify the global state
 # dont forget `npm set prefix ~/.npm-global`
 if [ -d $HOME/.npm-global ]; then PATH="$HOME/.npm-global/bin:$PATH"; fi
+
+# lua stuff, for neovim and awesome
 export LUA_PATH='/home/kraven/.luarocks/share/lua/5.1/?.lua;/home/kraven/.luarocks/share/lua/5.1/?/init.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua;./?.lua;/usr/local/lib/lua/5.1/?.lua;/usr/local/lib/lua/5.1/?/init.lua;/usr/share/lua/5.1/?.lua;/usr/share/lua/5.1/?/init.lua'
 export LUA_CPATH='/home/kraven/.luarocks/lib/lua/5.1/?.so;/usr/local/lib/lua/5.1/?.so;./?.so;/usr/lib/x86_64-linux-gnu/lua/5.1/?.so;/usr/lib/lua/5.1/?.so;/usr/local/lib/lua/5.1/loadall.so'

@@ -10,7 +10,7 @@ end
 --- KEYMAP
 ---
 vim.g.mapleader = " "
-map('n', '<leader>f', ':Vexplore<CR> :vertical resize 33%<CR>')
+map('n', '<leader>f', ':Telescope file_browser<CR>')
 --map("n", "<leader>f", ":NvimTreeToggle<CR>")
 map("n", "<leader>h", ":lua Toggle_hls()<CR>")
 map("n", "<leader>w", ":lua Trim_space()<CR>")

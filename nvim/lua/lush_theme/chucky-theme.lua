@@ -1,10 +1,51 @@
--- Ade du dambela
+-- Ade du dambela give me the color i beg of YOUU!!!
 -- :Lushify
 
 local lush = require('lush')
 local hsl = lush.hsl
 
-local bgg = hsl(135,15,5)
+-- eye
+local pupil = hsl(249,93,6) -- eye center
+local sclera = hsl(228,2,95) -- eye white
+local pupil_border = hsl(43,46,34)       -- eye round
+local iris = hsl(198,28,46)
+
+-- shirt
+local shirt1 = hsl(354, 88, 80)
+local shirt2 = hsl(217,77,67)
+local shirt3 = hsl(338, 46, 82)
+local shirt4 = hsl(250, 3, 75)
+local shirt5 = hsl(213, 70, 42)
+local shirt6 = hsl(155, 82,38)
+
+--overalls
+local over1 = hsl(220, 65, 20)
+local over2 = hsl(46,70,66)
+local over3 = hsl(359,99,59)
+
+-- hair and skin
+local hair1 = hsl(6,95,12)
+local hair2 = hsl(14,96,40)
+local hair3 = hsl(22,87,73)
+local skin = hsl(19, 43, 80)
+
+-- knife
+local handle = hsl(39, 14, 1)
+local blade = hsl(280, 2, 34)
+
+-- BLOOD
+local blood1 = hsl(2, 98, 15)
+local blood2 = hsl(355, 83, 43)
+local blood3 = hsl(5, 90, 55)
+local metalandblood = hsl(357, 33, 26)
+
+-- nvim logo
+local nvim1 = hsl(97, 61, 61)
+local nvim2 = hsl(209, 91, 74)
+
+-- pure classics
+local canari = hsl(55, 100, 60)
+
 
 
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
@@ -12,81 +53,88 @@ local bgg = hsl(135,15,5)
 ---@diagnostic disable: undefined-global
 local theme = lush(function()
   return {
-    -- The following are all the Neovim default highlight groups from the docs
-    -- as of 0.5.0-nightly-446, to aid your theme creation. Your themes should
-    -- probably style all of these at a bare minimum.
-    --
-    -- Referenced/linked groups must come before being referenced/lined,
-    -- so the order shown ((mostly) alphabetical) is likely
-    -- not the order you will end up with.
-    --
-    -- You can uncomment these and leave them empty to disable any
-    -- styling for that group (meaning they mostly get styled as Normal)
-    -- or leave them commented to apply vims default colouring or linking.
+    --   <HighlightGroupName> { bg = <hsl>, fg = <hsl>, sp = <hsl>, gui = <string> },
+    Normal        { bg = hair1.darken(75), fg = sclera }, -- normal text
+    Visual        { bg =  hair2.darken(60), fg = sclera },
+    VisualNOS     { bg = canari }, -- Visual mode selection when vim is "Not Owning the Selection".
+    Comment       { fg = shirt4.darken(33) },
+    Whitespace    { bg = hair1 ,fg = skin },
 
-    Comment      { fg = hsl(0,50,50) }, -- any comment
-    ColorColumn  { }, -- used for the columns set with 'colorcolumn'
+    -- Left-side: numbers,
+    LineNr        { fg = blood3 }, -- Line number, when 'number' or 'relativenumber' option is set.
+
+    -- Cursor
+    Cursor       { fg = blood3 }, -- character under the cursor
+    lCursor      { bg = blood3 }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
+    CursorIM     { bg = blood3 }, -- like Cursor, but used when in IME mode |CursorIM|
+    CursorColumn { bg = Normal.bg.lighten(5) }, -- Screen-column when 'cursorcolumn' is set.
+    CursorLine   { bg = Normal.bg.lighten(5) }, -- Screen-line when 'cursorline' is set.
+    CursorLineNr { bg = CursorLine.bg }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+
+    -- Terminal
+    TermCursor   { bg = blood1, fg = blood3}, -- cursor in a focused terminal
+    TermCursorNC { }, -- cursor in an unfocused terminal
+
+
+    -- Search and replacement
+    sedstuff     { bg = canari, fg = handle },
+    Search       { sedstuff },
+    IncSearch    { sedstuff },
+    Substitute   { sedstuff }, -- |:substitute| replacement text highlighting
+    QuickFixLine { sedstuff }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
+
+
+    Pmenu        { bg = over1.darken(10), fg = sclera, gui = "bold" }, -- Popup menu: normal item.
+    PmenuSel     { bg = blood1, gui = "bold"  }, -- Popup menu: selected item.
+    PmenuSbar    { bg = blood2}, -- scrollbar.
+    PmenuThumb   { bg = over2 }, -- slider of the scrollbar.
+
+
+
     -- Conceal      { }, -- placeholder characters substituted for concealed text (see 'conceallevel')
-    -- Cursor       { }, -- character under the cursor
-    -- lCursor      { }, -- the character under the cursor when |language-mapping| is used (see 'guicursor')
-    -- CursorIM     { }, -- like Cursor, but used when in IME mode |CursorIM|
-    -- CursorColumn { }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-    -- CursorLine   { }, -- Screen-line at the cursor, when 'cursorline' is set.  Low-priority if foreground (ctermfg OR guifg) is not set.
-    -- Directory    { }, -- directory names (and other special names in listings)
+
+
+    Directory    { fg = shirt5 }, -- directory names in listing
     -- DiffAdd      { }, -- diff mode: Added line |diff.txt|
     -- DiffChange   { }, -- diff mode: Changed line |diff.txt|
     -- DiffDelete   { }, -- diff mode: Deleted line |diff.txt|
     -- DiffText     { }, -- diff mode: Changed text within a changed line |diff.txt|
-    -- EndOfBuffer  { }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
-    -- TermCursor   { }, -- cursor in a focused terminal
-    -- TermCursorNC { }, -- cursor in an unfocused terminal
-    -- ErrorMsg     { }, -- error messages on the command line
+    ErrorMsg     { bg = blood2, fg = sclera, gui = "bold" }, -- error messages on the command line
     -- VertSplit    { }, -- the column separating vertically split windows
     -- Folded       { }, -- line used for closed folds
     -- FoldColumn   { }, -- 'foldcolumn'
-    -- SignColumn   { }, -- column where |signs| are displayed
-    -- IncSearch    { }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-    -- Substitute   { }, -- |:substitute| replacement text highlighting
-    -- LineNr       { }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-    -- CursorLineNr { }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+    SignColumn      { bg = iris, fg = pupil }, -- column where |signs| are displayed
     -- MatchParen   { }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
     -- ModeMsg      { }, -- 'showmode' message (e.g., "-- INSERT -- ")
     -- MsgArea      { }, -- Area for messages and cmdline
     -- MsgSeparator { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     -- MoreMsg      { }, -- |more-prompt|
     -- NonText      { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    Normal       { bg = bgg }, -- normal text
     -- NormalFloat  { }, -- Normal text in floating windows.
     -- NormalNC     { }, -- normal text in non-current windows
-    Pmenu        { }, -- Popup menu: normal item.
-    -- PmenuSel     { }, -- Popup menu: selected item.
-    -- PmenuSbar    { }, -- Popup menu: scrollbar.
-    -- PmenuThumb   { }, -- Popup menu: Thumb of the scrollbar.
+    --
     -- Question     { }, -- |hit-enter| prompt and yes/no questions
-    -- QuickFixLine { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-    -- Search       { }, -- Last search pattern highlighting (see 'hlsearch').  Also used for similar items that need to stand out.
     -- SpecialKey   { }, -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
-    -- SpellBad     { }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise. 
+    -- SpellBad     { }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
     -- SpellCap     { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
     -- SpellLocal   { }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     -- SpellRare    { }, -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
     -- StatusLine   { }, -- status line of current window
     -- StatusLineNC { }, -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-    -- TabLine      { }, -- tab pages line, not active tab page label
-    -- TabLineFill  { }, -- tab pages line, where there are no labels
-    -- TabLineSel   { }, -- tab pages line, active tab page label
-    -- Title        { }, -- titles for output from ":set all", ":autocmd" etc.
-    -- Visual       { }, -- Visual mode selection
-    -- VisualNOS    { }, -- Visual mode selection when vim is "Not Owning the Selection".
-    -- WarningMsg   { }, -- warning messages
+    TabLine      { }, -- tab pages line, not active tab page label
+    TabLineFill  { }, -- tab pages line, where there are no labels
+    TabLineSel   { }, -- tab pages line, active tab page label
+    Title        { }, -- titles for output from ":set all", ":autocmd" etc.
+    WarningMsg   { }, -- warning messages
     -- Whitespace   { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
-    -- WildMenu     { }, -- current match in 'wildmenu' completion
-
+    WildMenu     { bg = nvim1, fg = handle }, -- current match in 'wildmenu' completion
     -- These groups are not listed as default vim groups,
     -- but they are defacto standard group names for syntax highlighting.
     -- commented out groups should chain up to their "preferred" group by
     -- default,
     -- Uncomment and edit if you want more specific syntax highlighting.
+
+    -- Code
 
     -- Constant       { }, -- (preferred) any constant
     -- String         { }, --   a string constant: "this is a string"
@@ -124,16 +172,16 @@ local theme = lush(function()
     -- SpecialComment { }, -- special things inside a comment
     -- Debug          { }, --    debugging statements
 
-    -- Underlined { gui = "underline" }, -- (preferred) text that stands out, HTML links
-    -- Bold       { gui = "bold" },
-    -- Italic     { gui = "italic" },
+    Underlined { fg = shirt2 ,gui = "underline" }, -- (preferred) text that stands out, HTML links
+    Bold       { fg = blood3 ,gui = "bold" },
+    Italic     { fg = pupil_border , gui = "italic" },
 
     -- ("Ignore", below, may be invisible...)
     -- Ignore         { }, -- (preferred) left blank, hidden  |hl-Ignore|
 
-    -- Error          { }, -- (preferred) any erroneous construct
+    Error          { }, -- (preferred) any erroneous construct
 
-    -- Todo           { }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+    Todo           { }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
     -- These groups are for the native LSP client. Some other LSP clients may
     -- use these groups, or use their own. Consult your LSP client's
@@ -143,10 +191,10 @@ local theme = lush(function()
     -- LspReferenceRead                     { }, -- used for highlighting "read" references
     -- LspReferenceWrite                    { }, -- used for highlighting "write" references
 
-    -- LspDiagnosticsDefaultError           { }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    -- LspDiagnosticsDefaultWarning         { }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    -- LspDiagnosticsDefaultInformation     { }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
-    -- LspDiagnosticsDefaultHint            { }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsDefaultError           { bg = blood2, fg = handle, gui ="bold" }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsDefaultWarning         { bg = over2,  fg = handle, gui ="bold" }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsDefaultInformation     { bg = shirt6, fg = handle }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
+    LspDiagnosticsDefaultHint            { bg = shirt5, fg = handle }, -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline)
 
     -- LspDiagnosticsVirtualTextError       { }, -- Used for "Error" diagnostic virtual text
     -- LspDiagnosticsVirtualTextWarning     { }, -- Used for "Warning" diagnostic virtual text
@@ -178,7 +226,7 @@ local theme = lush(function()
     -- TSAttribute          { };    -- (unstable) TODO: docs
     -- TSBoolean            { };    -- For booleans.
     -- TSCharacter          { };    -- For characters.
-    -- TSComment            { };    -- For comment blocks.
+    TSComment            { fg = nvim2 };    -- For comment blocks.
     -- TSConstructor        { };    -- For constructor calls and definitions: ` { }` in Lua, and Java constructors.
     -- TSConditional        { };    -- For keywords related to conditionnals.
     -- TSConstant           { };    -- For constants
@@ -227,11 +275,11 @@ local theme = lush(function()
     -- TSURI                { };    -- Any URI like a link or email.
 
     -- Telescope plugin hl group
-    -- TelescopeBorder { },
+    TelescopeBorder { bg = Normal.bg, fg = shirt1, gui="bold underline" },
     TelescopePromptPrefix {},
     TelescopeSelection {},
+
+    EndOfBuffer  { bg = hsl(0,0,0), fg = hsl(0,0,0) }, -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
   }
 end)
 return theme
-
--- vi:nowrap

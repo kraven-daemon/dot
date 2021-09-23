@@ -35,7 +35,6 @@ packer.startup(
         use { 'ms-jpq/coq.artifacts', branch= 'artifacts'} -- 9000+ Snippets
 
         use "glepnir/lspsaga.nvim"
-        use "windwp/nvim-autopairs"
 
         -- Lua development
         use {"tjdevries/nlua.nvim"}
@@ -50,6 +49,7 @@ packer.startup(
         use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"} -- trigger update on :PackerSync
         use "nvim-treesitter/playground"
         use "sheerun/vim-polyglot"
+        use "windwp/nvim-autopairs" -- it use treesitter to autopair (){}[]'"'
 
         -- 3 in 1 , plenary(set of functions), popup(vimbuffer overlay boxes) and telescope(fuzzy finder)
         use {
@@ -61,6 +61,7 @@ packer.startup(
         use {"hoob3rt/lualine.nvim", requires = {"kyazdani42/nvim-web-devicons", opt = true}}
         -- use {"kyazdani42/nvim-tree.lua", requires = {"kyazdani42/nvim-web-devicons", opt = true}}
         use "rktjmp/lush.nvim"
+        use "chriskempson/base16-vim"
 
         -- rocks test
         use_rocks {"lua-fmt", server = 'https://luarocks.org/dev'}

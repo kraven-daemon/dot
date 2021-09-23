@@ -1,15 +1,52 @@
-## Subtree
+# Subtree/Submodule
 
+subtree : a copy of a repository that is pulled into a parent repository,
+submodule : like a pointer to a specific commit in another repository.
+
+## Submodule
+
+Usage : use a submodule if you dont need to update quite often or
+consuming a subproject and wanted to get updates from it from time to time but were not actually modifying anything in your checkout
+git submodule add https://git.suckless.org/dmenu adirectory/dmenu
+
+This creates a .gitmodules that points to another repo
+
+git submodule update dmenu
+
+cloning repos doesnt clone submodule
+
+### To pull submodule src
+git submodule init
+git submodule update
+
+OR
+
+git clone --recurse-submodules https://git.suckless.org/dmenu
+
+OR
+
+git clone 'repo'
+and
+git submodule update --init --recursive
+
+UPDATE
+cd into submodule
+git fetch and git merge origin/branch
+the upstream branch will get updated and merge into the parent repo
+
+=========================================================================
 ### Adding the subtree as a remote
 
 git remote add -f `remote-name` htts://url...
 
-### Pulling the remote repo under file(--prefix) from-remote-name on-branch 
+### Pulling the remote repo under file(--prefix) from-remote-name on-branch
 
 git subtree add --prefix `dir-path` `remote-name` master --squash
 
 
 ### Updating the repo
 
-git fetch `remote-name` master 
+git fetch `remote-name` master
 git subtree pull --prefix `path` `remote-name` master --squash
+
+

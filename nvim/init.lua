@@ -23,9 +23,7 @@ in XDG_CONFIG_HOME/nvim/ or any runtimepaths
 ---@diagnostic disable: undefined-global
 
 -------------------- HELPERS -------------------------------
-local api, cmd, fn, g = vim.api, vim.cmd, vim.fn, vim.g
-local opt, wo = vim.opt, vim.wo
-
+local api, cmd = vim.api, vim.cmd
 
 -- Some safety require wrapper
 local function prequire(...)
@@ -44,7 +42,7 @@ function Toggle_hls()
 end
 
 function Trim_space()
-    vim.cmd(":%s/\\s\\+$//e")
+    cmd(":%s/\\s\\+$//e")
 end
 
 function _G.put(...)
@@ -75,6 +73,12 @@ require("lspies.lspsaga-conf")
 
 -- Treesitter configuration
 require("ts-config")
+-- autopairing using treesitter block scope
+require("nvim-autopairs").setup{
+    enable_check_bracket_line = false,
+    ignored_next_char = "[%w%.]" -- will ignore alphanumeric and `.` symbol
+}
+
 
 -- about menu help: IME
 -- :source $VIMRUNTIME/menu.vim
@@ -90,8 +94,8 @@ require("mappings")
 -- Status line
 require("statusline")
 
--- some additions
-require("nvim-autopairs").setup{}
+require("auto-events")
+
 
 -- Nice little rock
 --require("test-fmt")

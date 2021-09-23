@@ -11,7 +11,6 @@ end
 ---
 vim.g.mapleader = " "
 map('n', '<leader>f', ':Telescope file_browser<CR>')
---map("n", "<leader>f", ":NvimTreeToggle<CR>")
 map("n", "<leader>h", ":lua Toggle_hls()<CR>")
 map("n", "<leader>w", ":lua Trim_space()<CR>")
 map("n", "<leader>t", ":TagbarToggle<CR>")
@@ -45,3 +44,19 @@ map("i", "<C-k>", "<esc>:m .-2<CR>")
 map("i", "<C-j>", "<esc>:m .+1<CR>")
 map("v", "K", ":m '<-2<CR>gv=gv")
 map("v", "J", ":m '>+1<CR>gv=gv")
+
+
+-- Window Move => alt + h|j|k|l everywhere except for visualmode
+map("t", "<A-h>", "<C-\\><C-N><C-w>h")
+map("t", "<A-j>", "<C-\\><C-N><C-w>j")
+map("t", "<A-k>", "<C-\\><C-N><C-w>k")
+map("t", "<A-l>", "<C-\\><C-N><C-w>l")
+map("i", "<A-h>", "<ESC><C-w>h")
+map("i", "<A-j>", "<ESC><C-w>j")
+map("i", "<A-k>", "<ESC><C-w>k")
+map("i", "<A-l>", "<ESC><C-w>l")
+map("n", "<A-h>", "<C-w>h")
+map("n", "<A-j>", "<C-w>j")
+map("n", "<A-k>", "<C-w>k")
+map("n", "<A-l>", "<C-w>l")
+

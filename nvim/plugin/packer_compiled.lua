@@ -69,6 +69,10 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["base16-vim"] = {
+    loaded = true,
+    path = "/home/kraven/.local/share/nvim/site/pack/packer/start/base16-vim"
+  },
   ["coq.artifacts"] = {
     loaded = true,
     path = "/home/kraven/.local/share/nvim/site/pack/packer/start/coq.artifacts"

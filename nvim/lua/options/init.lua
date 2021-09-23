@@ -42,3 +42,12 @@ opt.wrap = false -- Disable line wrap
 opt.mouse = "a"
 cmd "colorscheme chucky-theme"
 
+-- Find a way to set these options
+-- only when in terminal mode, buffer
+--[[
+-- options
+  :set signcolumn=no
+  :set foldcolumn=0
+  :set nonumber
+  :set norelativenumber
+]]--

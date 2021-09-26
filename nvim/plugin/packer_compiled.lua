@@ -73,10 +73,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kraven/.local/share/nvim/site/pack/packer/start/base16-vim"
   },
-  ["coq.artifacts"] = {
-    loaded = true,
-    path = "/home/kraven/.local/share/nvim/site/pack/packer/start/coq.artifacts"
-  },
   coq_nvim = {
     loaded = true,
     path = "/home/kraven/.local/share/nvim/site/pack/packer/start/coq_nvim"

@@ -8,7 +8,7 @@
 # General
 modkey = "Mod4"
 mousekey = "Mod4"
-workspaces = [] # The default means 1 screen = 1 workspace, or 1 tagstack
+#workspaces = [] # The default means 1 screen = 1 workspace, or 1 tagstack
 tags = ["1", "2", "3", "4", "5"]
 layouts = [
             "MainAndVertStack",
@@ -18,6 +18,18 @@ layouts = [
 disable_current_tag_swap = false
 focus_behaviour = "ClickTo"
 focus_new_windows = true
+
+[[workspaces]]
+y = 0
+x = 0
+height = 1080
+width = 1920
+
+[[workspaces]]
+y = 0
+x = 1920
+height = 1080
+width = 1920
 
 # Launcher
 [[keybind]]
@@ -88,20 +100,20 @@ key = "XF86XK_AudioMute"
 # key = "l"
 
 # Workspaces
-# [[keybind]]
-# command = "MoveToLastWorkspace"
-# modifier = ["modkey", "Shift"]
-# key = "w"
+[[keybind]]
+command = "MoveToLastWorkspace"
+modifier = ["modkey", "Shift"]
+key = "l"
 
-# [[keybind]]
-# command = "FocusWorkspaceNext"
-# modifier = ["modkey"]
-# key = "l"
+[[keybind]]
+command = "FocusWorkspaceNext"
+modifier = ["modkey"]
+key = "l"
 
-# [[keybind]]
-# command = "FocusWorkspacePrevious"
-# modifier = ["modkey"]
-# key = "h"
+[[keybind]]
+command = "FocusWorkspacePrevious"
+modifier = ["modkey"]
+key = "h"
 
 # Tags
 [[keybind]]
@@ -114,6 +126,7 @@ key = "l"
 command = "MoveWindowUp"
 modifier = ["modkey", "Shift"]
 key = "k"
+
 [[keybind]]
 command = "MoveWindowUp"
 modifier = ["modkey", "Shift"]

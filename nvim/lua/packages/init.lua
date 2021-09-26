@@ -32,7 +32,7 @@ packer.startup(
         use "neovim/nvim-lspconfig"
         -- Coq use python3-venv and sqlite3
         use { 'ms-jpq/coq_nvim', branch = 'coq'} -- main one
-        use { 'ms-jpq/coq.artifacts', branch= 'artifacts'} -- 9000+ Snippets
+        -- too much snippet ... use { 'ms-jpq/coq.artifacts', branch= 'artifacts'} -- 9000+ Snippets
 
         use "glepnir/lspsaga.nvim"
 

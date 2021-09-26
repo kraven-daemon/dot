@@ -65,16 +65,16 @@ end
 ]]--
 
 -- all public plugins and related config
-require("packages")
+prequire("packages")
 
 -- Language server/ builtin lsp wrapper and saga
-require("lspies.lsp-conf")
-require("lspies.lspsaga-conf")
+prequire("lspies.lsp-conf")
+prequire("lspies.lspsaga-conf")
 
 -- Treesitter configuration
-require("ts-config")
+prequire("ts-config")
 -- autopairing using treesitter block scope
-require("nvim-autopairs").setup{
+prequire("nvim-autopairs").setup{
     enable_check_bracket_line = false,
     ignored_next_char = "[%w%.]" -- will ignore alphanumeric and `.` symbol
 }
@@ -88,13 +88,13 @@ require("nvim-autopairs").setup{
 -- :map <F4> :emenu <C-Z>
 
 -- options settings
-require("options")
+prequire("options")
 -- keybindings
-require("mappings")
+prequire("mappings")
 -- Status line
-require("statusline")
+prequire("statusline")
 
-require("auto-events")
+prequire("auto-events")
 
 
 -- Nice little rock

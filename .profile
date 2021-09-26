@@ -46,7 +46,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # Userland helpers
 export VISUAL="bat"
 export EDITOR="nvim"
-export WALLPAPERS="$XDG_DATA_HOME/wallpapers"
+export WALLPAPERS="$XDG_DATA_HOME/backgrounds"
 export LBIN="$HOME/.local/bin"
 export DOT="$HOME/Desktop/dot"
 

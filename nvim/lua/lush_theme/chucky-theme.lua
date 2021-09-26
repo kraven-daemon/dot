@@ -101,8 +101,8 @@ local theme = lush(function()
     -- DiffText     { }, -- diff mode: Changed text within a changed line |diff.txt|
     ErrorMsg     { bg = blood2, fg = sclera, gui = "bold" }, -- error messages on the command line
     -- VertSplit    { }, -- the column separating vertically split windows
-    -- Folded       { }, -- line used for closed folds
-    -- FoldColumn   { }, -- 'foldcolumn'
+    Folded       { bg = blood3, fg = handle, gui = "bold" }, -- line used for closed folds
+    FoldColumn   { Folded }, -- 'foldcolumn'
     SignColumn      { bg = iris, fg = pupil }, -- column where |signs| are displayed
     -- MatchParen   { }, -- The character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
     -- ModeMsg      { }, -- 'showmode' message (e.g., "-- INSERT -- ")

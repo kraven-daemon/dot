@@ -30,9 +30,10 @@
 
 # install`xdg-utils` and run `xdg-user-dirs-update`
 # in user's "$HOME" path to generate the file structure
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
+H=${HOME}
+export XDG_DATA_HOME="${H}/.local/share"
+export XDG_CONFIG_HOME="${H}/.config"
+export XDG_CACHE_HOME="${H}/.cache"
 # a lot of distributions implement ..._DIRS, for system-wide settings
 #export XDG_DATA_DIRS="$XDG_DATA_HOME:/usr/local/share:/usr/share"
 #export XDG_CONFIG_DIRS="$XDG_CONFIG_HOME:/etc/xdg:/etc"
@@ -46,28 +47,28 @@ export XDG_CACHE_HOME="$HOME/.cache"
 # Userland helpers
 export VISUAL="bat"
 export EDITOR="nvim"
-export WALLPAPERS="$XDG_DATA_HOME/backgrounds"
-export LBIN="$HOME/.local/bin"
-export DOT="$HOME/Desktop/dot"
+export WALLPAPERS="${XDG_DATA_HOME}/backgrounds"
 
 # simple hotkey daemon default shell variable
 # export SXHKD_SHELL="sh"
 
+# local bin
+if [ -d "${H}"/.local/bin ]; then PATH="${H}/.local/bin:$PATH"; fi
+
 # RUST
-. "$HOME/.cargo/env"
+if [ -e "${H}"/.cargo/env ]; then . "${H}/.cargo/env"; fi
 
 # NIX
-if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . /home/kraven/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+if [ -e "${H}"/.nix-profile/etc/profile.d/nix.sh ]; then . /home/kraven/.nix-profile/etc/profile.d/nix.sh; fi
 # because nix dont link stdc++.6.so
-export LD_LIBRARY_PATH=$(nix eval --raw nixpkgs.stdenv.cc.cc.lib)/lib64:$LD_LIBRARY_PATH
+rawlink="$(nix eval --raw nixpkgs.stdenv.cc.cc.lib)/lib64"
+export LD_LIBRARY_PATH="${rawlink}:${LD_LIBRARY_PATH}"
 
-#home-manager
-. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 # NODEJS
 # this is where npm -g intall will reside, in user-space
 # because npm in nix is immutable, so you cannot modify the global state
 # dont forget `npm set prefix ~/.npm-global`
-if [ -d $HOME/.npm-global ]; then PATH="$HOME/.npm-global/bin:$PATH"; fi
+if [ -d "${H}"/.npm-global ]; then PATH="${H}/.npm-global/bin:${PATH}"; fi
 
 # lua stuff, for neovim and awesome
 export LUA_PATH='/home/kraven/.luarocks/share/lua/5.1/?.lua;/home/kraven/.luarocks/share/lua/5.1/?/init.lua;/usr/local/share/lua/5.1/?.lua;/usr/local/share/lua/5.1/?/init.lua;./?.lua;/usr/local/lib/lua/5.1/?.lua;/usr/local/lib/lua/5.1/?/init.lua;/usr/share/lua/5.1/?.lua;/usr/share/lua/5.1/?/init.lua'

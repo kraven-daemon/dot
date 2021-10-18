@@ -45,5 +45,6 @@ saga.init_lsp_saga {
     code_action_icon = 'A'
 }
 
+
 -- or use default config
 -- saga.init_lsp_saga()

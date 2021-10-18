@@ -7,6 +7,7 @@ local cmd = vim.cmd
 --  :set all --> for info
 
 -- Folding with treesitter
+opt.foldenable = false
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.fillchars = "fold: ,foldclose:*,foldopen:>,foldsep:|"

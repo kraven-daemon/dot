@@ -11,6 +11,7 @@ end
 ---
 vim.g.mapleader = " "
 map('n', '<leader>f', ':Telescope file_browser<CR>')
+map('n', '<leader>b', ':Telescope buffers<CR>')
 map("n", "<leader>h", ":lua Toggle_hls()<CR>")
 map("n", "<leader>w", ":lua Trim_space()<CR>")
 map("n", "<leader>t", ":TagbarToggle<CR>")
@@ -60,3 +61,9 @@ map("n", "<A-j>", "<C-w>j")
 map("n", "<A-k>", "<C-w>k")
 map("n", "<A-l>", "<C-w>l")
 
+-- Window Resize
+
+map("n", "+", "<C-w>2+" )
+map("n", "_", "<C-w>2-" )
+map("n", "=", "<C-w>2<" )
+map("n", "-", "<C-w>2>" )

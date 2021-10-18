@@ -40,14 +40,10 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
     buf_set_keymap("n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
-    -- require("completion").on_attach()
+    vim.cmd('COQnow -s')
 end
 
---Enable (broadcasting) snippet capability for completion
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-
+local capabilities = coq.lsp_ensure_capabilities{}
 
 -- from vscode-langservers-extracted
 lsp.html.setup {
@@ -94,39 +90,15 @@ lsp.denols.setup{
 ---  |_____\___/_/   \_\         `.___________.'
 -------------------------------------------------------
 
-
 -- set the path to the sumneko installation
-local system_name = "Linux" -- (Linux, macOS, or Windows)
+local system_name = "Linux"
 local sumneko_root_path = "/home/kraven/Desktop/lua-lsp"
 local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
 
 -- To get builtin LSP running, do something like:
 lsp.sumneko_lua.setup {
         cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
-        -- An example of settings for an LSP server.
-        --    For more options, see nvim-lsponfig
-       -- settings = {
-       --     Lua = {
-       --         runtime = {
-       --             -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-       --             version = "LuaJIT",
-       --             -- Setup your lua path
-       --             path = vim.split(package.path, ";")
-       --         },
-       --         diagnostics = {
-       --             -- Include globals you want to tell the LSP are real :)
-       --             globals = {"use"}
-       --         },
-       --         workspace = {
-       --             -- Make the server aware of Neovim runtime files
-       --             library = {
-       --                 [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-       --                 [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
-       --             }
-       --         }
-       --     }
-       -- },
-       -- capabilities = capabilities,
-       -- on_attach = on_attach
+       capabilities = capabilities,
+       on_attach = on_attach
 }
 

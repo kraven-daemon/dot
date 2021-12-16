@@ -20,7 +20,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 local packer = require('packer')
--- aliasing use to remove anoying lsp warnings of undefined global in use ...
+-- aliasing use to remove annoying lsp warnings of undefined global ...
 local use = packer.use
 local use_rocks = packer.use_rocks
 
@@ -31,16 +31,15 @@ packer.startup(
         -- LSP and completion
         use "neovim/nvim-lspconfig"
         -- Coq use python3-venv and sqlite3
-        use { 'ms-jpq/coq_nvim', branch = 'coq'} -- main one
-        -- too much snippet ... use { 'ms-jpq/coq.artifacts', branch= 'artifacts'} -- 9000+ Snippets
-
+        use { 'ms-jpq/coq_nvim', branch = 'coq'}
+        use { 'ms-jpq/coq.artifacts', branch= 'artifacts'}
+        use 'ms-jpq/chadtree'
         use "glepnir/lspsaga.nvim"
 
         -- Lua development
-        use {"tjdevries/nlua.nvim"}
+        -- use {"tjdevries/nlua.nvim"}
 
         -- Vim dispatch
-        use "tpope/vim-dispatch"
         use "tpope/vim-commentary"
         use "tpope/vim-fugitive"
 
@@ -48,6 +47,7 @@ packer.startup(
         use  "preservim/tagbar"
         use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"} -- trigger update on :PackerSync
         use "nvim-treesitter/playground"
+        -- Polyglot is a collection of syntax files, lighting treesitter leftovers
         use "sheerun/vim-polyglot"
         use "windwp/nvim-autopairs" -- it use treesitter to autopair (){}[]'"'
 

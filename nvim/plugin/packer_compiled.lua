@@ -73,6 +73,14 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kraven/.local/share/nvim/site/pack/packer/start/base16-vim"
   },
+  chadtree = {
+    loaded = true,
+    path = "/home/kraven/.local/share/nvim/site/pack/packer/start/chadtree"
+  },
+  ["coq.artifacts"] = {
+    loaded = true,
+    path = "/home/kraven/.local/share/nvim/site/pack/packer/start/coq.artifacts"
+  },
   coq_nvim = {
     loaded = true,
     path = "/home/kraven/.local/share/nvim/site/pack/packer/start/coq_nvim"
@@ -88,10 +96,6 @@ _G.packer_plugins = {
   ["lush.nvim"] = {
     loaded = true,
     path = "/home/kraven/.local/share/nvim/site/pack/packer/start/lush.nvim"
-  },
-  ["nlua.nvim"] = {
-    loaded = true,
-    path = "/home/kraven/.local/share/nvim/site/pack/packer/start/nlua.nvim"
   },
   ["nvim-autopairs"] = {
     loaded = true,
@@ -136,10 +140,6 @@ _G.packer_plugins = {
   ["vim-commentary"] = {
     loaded = true,
     path = "/home/kraven/.local/share/nvim/site/pack/packer/start/vim-commentary"
-  },
-  ["vim-dispatch"] = {
-    loaded = true,
-    path = "/home/kraven/.local/share/nvim/site/pack/packer/start/vim-dispatch"
   },
   ["vim-fugitive"] = {
     loaded = true,

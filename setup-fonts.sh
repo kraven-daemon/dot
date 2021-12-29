@@ -1,7 +1,28 @@
 #!/usr/bin/env sh
 
-# unpacking some nerd font from the repo
+# unpacking some sexy font from nerdfont
 
+
+	     #\		
+             # \ 	
+	    #	\         mmmm   mmmm           "      "  
+           #     \       #"   " #"   "  mmm   mmm    mmm
+	   #mmmmmm\_     "#mmm  "#mmm  #"  "    #      #
+	  #         \        "#     "# #        #      #
+	 #           \   "mmm#" "mmm#" "#mm"  mm#mm  mm#m
+	#             \       
+# ⠄⠄⠸⣿⣿⢣⢶⣟⣿⣖⣿⣷⣻⣮⡿⣽⣿⣻⣖⣶⣤⣭⡉⠄⠄⠄⠄⠄       
+# ⠄⠄⠄⢹⠣⣛⣣⣭⣭⣭⣁⡛⠻⢽⣿⣿⣿⣿⢻⣿⣿⣿⣽⡧⡄⠄⠄⠄       
+# ⠄⠄⠄⠄⣼⣿⣿⣿⣿⣿⣿⣿⣿⣶⣌⡛⢿⣽⢘⣿⣷⣿⡻⠏⣛⣀⠄⠄       
+# ⠄⠄⠄⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠙⡅⣿⠚⣡⣴⣿⣿⣿⡆⠄       
+# ⠄⠄⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠄⣱⣾⣿⣿⣿⣿⣿⣿⠄   ~  -
+# ⠄⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢸⣿⣿⣿⣿⣿⣿⣿⣿⠄  (O o )  
+# ⠄⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠣⣿⣿⣿⣿⣿⣿⣿⣿⣿⠄    0
+# ⠄⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠑⣿⣮⣝⣛⠿⠿⣿⣿⣿⣿⠄     
+# ⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⠄⠄⠄⠄⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠄	c==\
+# ⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠄⠄⠄⠄⢹⣿⣿⣿⣿⣿⣿⣿⣿⠁⠄      |  		
+# ⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠄⠄⠄⠄⠄⠸⣿⣿⣿⣿⣿⡿⢟⣣⣀       B		
+							
 target="${HOME}/.local/share/fonts"
 
 mkdir -p "$target"
@@ -19,4 +40,3 @@ for font in ${sauce} ${monoki}; do
 	curl -L -O "${baseurl}${font}"
 	unzip -tq "${font}" && unzip "${font}" -d "${target}"
 done
-	

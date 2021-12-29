@@ -1,0 +1,7 @@
+alacritty/
+├── alacritty.yml
+├── colors.yml
+├── fonts.yml
+└── keys.yml
+
+0 directories, 4 files

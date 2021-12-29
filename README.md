@@ -3,8 +3,9 @@
 ### Install
 
 ``` 
-git clone https://github.com/kraven-daemon/dot
+git clone 
 ```
 
 
-![alt Really there are so many dots](https://www.azuremagazine.com/wp-content/uploads/2012/01/Kusamas-Obilteration-Room-01-800x531.jpg)
+
+![alt Dumb image ref is broken!!!](https://github.com/kraven-daemon/gp-content/imgs/dots_800x531_2021-12-29.jpg)

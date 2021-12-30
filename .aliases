@@ -4,15 +4,15 @@
 # launch rust documentation
 alias rbook="rustup docs --book"
 
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
-    #alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
+# if [ -x /usr/bin/dircolors ]; then
+#     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+#     alias ls='ls --color=auto'
+#     alias dir='dir --color=auto'
+#     alias vdir='vdir --color=auto'
+#     #alias grep='grep --color=auto'
+#     alias fgrep='fgrep --color=auto'
+#     alias egrep='egrep --color=auto'
+# fi
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
@@ -21,27 +21,31 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # list
-alias ls="lsd"
-alias la="lsd -Al"
-alias ll="lsd -l"
-alias l="lsd -F"
-
+alias ls="exa"
+alias la="exa -a"
+alias ll="exa -l"
+alias l="exa -F"
+alias lt="exa -T"
 # not an alias but kinda..
 l.(){
-    lsd -A |
+    exa -A |
     rg '^\..*' |
     column -x
 }
 
-alias lt="lsd --tree"
+ltd(){
+	exa -TL $1
+}
+
 alias cl="clear"
 alias grep="rg --color=auto"
 
 # info
 alias df="df -h"
 alias free="free -ht"
+# -c is for continue download if file exist as partially downloaded
 alias wget="wget -c"
-alias userlist="cut -d: -f1 /etc/passwd"
+alias lsusr="cut -d: -f1 /etc/passwd"
 alias pp='echo ${PATH} | sed "s/:/\n/g"'
 
 # xrelated

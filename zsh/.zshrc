@@ -20,8 +20,6 @@ compinit
 zmodload zsh/complist
 setopt menucomplete
 zstyle ':completion:*' menu select=0 search
-
-
 # End of comp
 
 # Base16 Shell
@@ -53,5 +51,3 @@ extract()
     echo "'$1' is not a valid file"
   fi
 }
-
-setxkbmap -option "caps:swapescape"

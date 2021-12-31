@@ -28,7 +28,7 @@ alias l="exa -F"
 alias lt="exa -T"
 # not an alias but kinda..
 l.(){
-    exa -A |
+    exa -a |
     rg '^\..*' |
     column -x
 }

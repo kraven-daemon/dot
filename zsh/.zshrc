@@ -8,7 +8,7 @@ unsetopt beep
 # prompt
 # info at `man zshmisc`
 # under title : /SIMPLE PROMPT ESCAPES
-PROMPT="%B%F{green}%n%f%F{yellow}@%f%F{magenta}%m%f%K{}%F{yellow}[%f%F{blue}%2d%f%F{yellow}]%f%F{red}<>%f%b "
+PROMPT="%B%F{green}%n%f%F{yellow}@%f%F{magenta}%m%f%F{yellow}[%f%F{blue}%2d%f%F{yellow}]%f%F{red}→%f%b "
 
 # TODO: check the zshzle manpage for keybindings
 #bindkey -e
@@ -51,3 +51,6 @@ extract()
     echo "'$1' is not a valid file"
   fi
 }
+
+source $ZDOTDIR/.aliases
+

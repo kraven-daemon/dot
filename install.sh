@@ -2,9 +2,11 @@
 
 set -e
 
-## Candy crush
+
+SRC="list.json"
+
+
 reset="\033[0m"
-#
 ## regular
 red="\033[00;31m"
 green="\033[00;32m"
@@ -13,7 +15,6 @@ green="\033[00;32m"
 #purple="\033[00;35m"
 #cyan="\033[00;36m"
 #lightgrey="\033[00;37m"
-#
 ## Bold
 bred="\033[01;31m"
 bgreen="\033[01;32m"
@@ -32,7 +33,6 @@ coltest(){
     done
 }
 
-SRC="list.json"
 
 # test wrapper, see: man test
 _test(){
@@ -85,7 +85,7 @@ _linkable(){
     list="$(jq -r ".$1[]" ${SRC})"
     for file in $list
     do
-        echo "$(realpath "${file}") to ${2}/${file}"
+        echo "$(realpath "${file}")\v -> ${2}/${file}"
     done
 }
 # ln -s "$(realpath "$link") to $2/$link"

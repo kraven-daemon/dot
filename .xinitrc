@@ -42,3 +42,4 @@ volumeicon &
 exec awesome
 
 
+xrdb ~/.Xresources

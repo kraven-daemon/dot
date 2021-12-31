@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+
+# this is just for small commit
+# personal repo, never use on teams..
+# refs from doctable => https://git-scm.com/docs/git-status
+# ' ' = unmodified
+# M = modified
+# T = file type changed (regular file, symbolic link or submodule)
+# A = added
+# D = deleted
+# R = renamed
+# C = copied (if config option status.renames is set to "copies")
+# U = updated but unmerged
+
+
+set -eu
+git status --porcelain=1 | while read -r change
+do
+	endl="$(echo $change | cut -c3-)"
+	case $change in
+		M*) printf "%-10s : %s\n" "Modified" "$endl";;
+		A*) printf "%-10s : %s\n" "Added" "$endl";;
+		D*) printf "%-10s : %s\n" "Deleted" "$endl";;
+		R*) printf "%-10s : %s\n" "Renamed" "$endl";;
+		*) printf "%-10s : %s\n" "unmanaged" "$endl";;
+	esac
+
+done
+
+

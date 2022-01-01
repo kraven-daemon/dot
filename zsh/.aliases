@@ -70,3 +70,4 @@ alias dlight="redshift -x"
 # youtube download shortcut
 alias yta="youtube-dl -x --audio-quality 0"
 
+alias decolorise='sed "s/\x1b[[0-9;]\{1,\}m//g"'

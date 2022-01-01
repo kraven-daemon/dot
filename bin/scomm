@@ -18,11 +18,11 @@ git status --porcelain=1 | while read -r change
 do
 	endl="$(echo $change | cut -c3-)"
 	case $change in
-		M*) printf "%-10s : %s\n" "Modified" "$endl";;
-		A*) printf "%-10s : %s\n" "Added" "$endl";;
-		D*) printf "%-10s : %s\n" "Deleted" "$endl";;
-		R*) printf "%-10s : %s\n" "Renamed" "$endl";;
-		*) printf "%-10s : %s\n" "unmanaged" "$endl";;
+		M*) printf "%-10s =>  %s\n" "Modified" "$endl";;
+		A*) printf "%-10s =>  %s\n" "Added" "$endl";;
+		D*) printf "%-10s =>  %s\n" "Deleted" "$endl";;
+		R*) printf "%-10s =>  %s\n" "Renamed" "$endl";;
+		*) printf "%-10s =>  %s\n" "Untracked" "$endl";;
 	esac
 
 done

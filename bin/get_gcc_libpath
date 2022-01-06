@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+
+derivation=$(nix-store -qR $(nix-store -qd $(which nvim)) | /usr/bin/grep -P '.+gcc-10.\d.\d.drv')
+
+gcclib=$(nix show-derivation $derivation | jq --raw-output '.[].outputs.lib.path')
+
+echo $gcclib

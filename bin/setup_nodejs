@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+# depends: npm
+
+set -eu
+
+if [ -n "$(command -v node)" ]; then
+    if [ -n "$(command -v npm)" ]; then
+        target="${HOME}/.npm-global"
+        echo "Creating ... $target"
+        mkdir -p "$target"
+        echo "Setting npm global prefix to $target"
+        npm config set prefix -g "$target"
+
+    else
+        echo 'Abording: npm is not in $PATH'
+    fi
+else
+    echo 'Abording: node is not in $PATH'
+fi

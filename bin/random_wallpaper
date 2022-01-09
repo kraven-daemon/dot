@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+
+set -eu
+
+# random [0-255] decimal from entropy device
+random=$(hexdump -n1 -d /dev/random | head -n1 | awk '{print $2}')
+
+pickfile() {
+	list=$(/usr/bin/ls -C1 "$1")
+	max=$(echo "$list" | wc -l)
+	file=$(echo "$random % $max + 1" | bc)
+	chosen=$(echo "$list" | sed "$file!d")
+	echo "$1/$chosen"
+}
+
+# feh has option for this
+# --bg-center --bg-fill --bg-max --bg-scale --bg-tile
+# 50% change to system's wallpaper path or user's path
+if [ "${random}" -gt 127 ];then
+	walldir=$(echo "${WALLPATH}" | cut -d: -f1)
+	feh --bg-fill "$(pickfile "$walldir")"
+else
+	walldir=$(echo "${WALLPATH}" | cut -d: -f2)
+	feh --bg-fill "$(pickfile "$walldir")"
+fi
+

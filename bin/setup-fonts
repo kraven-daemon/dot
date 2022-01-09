@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
+# depends: curl unzip
 
+set -eu
 # unpacking some sexy font from nerdfont
 
             #\
@@ -30,10 +32,8 @@ mkdir -p "$target"
 sauce="SourceCodePro.zip"
 monoki="Mononoki.zip"
 
+# the nerd font repo
 baseurl="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/"
-
-
-
 
 cd /tmp 2> /dev/null &&
 for font in ${sauce}; do

@@ -24,17 +24,8 @@ bgreen="\033[01;32m"
 #bcyan="\033[01;36m"
 #white="\033[01;37m"
 
-coltest(){
-    crap=1
-    while [ $crap -lt 8 ]
-    do
-        printf "%b hello %b\t%b bold-hello %b\n" "\033[00;3${crap}m" "$reset" "\033[01;3${crap}m" "$reset"
-        crap=$(( crap + 1 ))
-    done
-}
-
-
-# test wrapper, see: man test
+# test wrapper, with colors
+# _test [flags] [file] [error message] [minimum char width for space padding] => return 0|1 to make it stoppable
 _test(){
     flag=$1
     file=$2
@@ -51,7 +42,7 @@ _test(){
     return $retstatus
 }
 
-# return the caracter width of the longest word
+# return the caracter width of the longest word of a list
 _getlongest(){
     long=0
     next=0
@@ -64,13 +55,12 @@ _getlongest(){
     echo "$long"
 }
 
-
+# in posix there is no arrays, loop in a space
 _canrun(){
     retstatus=0
     # -x, -e, -n
     depend_on="$(command -v jq) ${SRC} ${XDG_CONFIG_HOME} ${XDG_DATA_HOME}"
     alignto=$(_getlongest "$depend_on")
-    echo "$depend_on : $alignto"
 
     # flag file errmsg align
     _test "-x" "$(command -v jq)" "executable not found" "$alignto"
@@ -85,7 +75,7 @@ _linkable(){
     list="$(jq -r ".$1[]" ${SRC})"
     for file in $list
     do
-        echo "$(realpath "${file}")\v -> ${2}/${file}"
+        echo "$(realpath "${file}")\n\t -> ${2}/${file}"
     done
 }
 # ln -s "$(realpath "$link") to $2/$link"

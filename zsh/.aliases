@@ -26,6 +26,8 @@ alias la="exa -a"
 alias ll="exa -l"
 alias l="exa -F"
 alias lt="exa -T"
+alias lla="exa -al"
+
 # not an alias but kinda..
 l.(){
     exa -a |
@@ -71,3 +73,6 @@ alias dlight="redshift -x"
 alias yta="youtube-dl -x --audio-quality 0"
 
 alias decolorise='sed "s/\x1b[[0-9;]\{1,\}m//g"'
+
+# run `:read! bin/get_gcc_libpath`, neovim use treesitter(c++) now
+alias nvim='LD_LIBRARY_PATH=/nix/store/b0p7nvkwxr65q016zsqicrd4bcg5bv1s-gcc-10.3.0-lib/lib nvim'

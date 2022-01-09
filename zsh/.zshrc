@@ -1,56 +1,45 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.config/zsh/.histfile
+# zshrc is read on each interactive invocation
+# only put interactive related settings here
+
+# global zsh config
+HISTFILE="${ZDOTDIR}/.histfile"
 HISTSIZE=1000
 SAVEHIST=1000
-setopt autocd extendedglob nomatch
+setopt autocd extendedglob nomatch notify
 unsetopt beep
+# Warning: vim's keybinding for navigation have weird behavior on some terminal emulator
+# set it back to -e for emacs, if its too weird(double escape, unresponsive insert.. etc..)
+bindkey -v
 
-# prompt
-# info at `man zshmisc`
-# under title : /SIMPLE PROMPT ESCAPES
-PROMPT="%B%F{green}%n%f%F{yellow}@%f%F{magenta}%m%f%F{yellow}[%f%F{blue}%2d%f%F{yellow}]%f%F{red}→%f%b "
+# prompt at `man zshmisc`
+PROMPT="%B%F{green}%n%f%F{yellow}@%f%F{magenta}%m%f%F{yellow}[%f%F{blue}%2d%f%F{yellow}]%f%F{red}➜ %f%b"
 
-# TODO: check the zshzle manpage for keybindings
-#bindkey -e
+# base16 shell color theme for the shell
+# BASE16_SHELL="$HOME/.config/base16-shell/"
+# [ -n "$PS1" ] && \
+#     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+#         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
-# compinstall 
-zstyle :compinstall filename "$ZDOTDIR/.zshrc"
+# completion engine of zsh
+zstyle ':completion:*' add-space true
+zstyle ':completion:*' auto-description 'Specify: %d'
+zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
+zstyle ':completion:*' completions 1
+zstyle ':completion:*' format 'COMP : %d'
+zstyle ':completion:*' glob 1
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '+' '+' '+' '+'
+zstyle ':completion:*' max-errors 3 not-numeric
+zstyle ':completion:*' menu select=long-list select=0
+zstyle ':completion:*' prompt 'Errors => %e'
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' substitute 1
+zstyle ':completion:*' word true
+zstyle :compinstall filename "${ZDOTDIR}/.zshrc"
 autoload -Uz compinit
 compinit
-zmodload zsh/complist
-setopt menucomplete
-zstyle ':completion:*' menu select=0 search
-# End of comp
 
-# Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        eval "$("$BASE16_SHELL/profile_helper.sh")"
 
-extract()
-{
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1   ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *.deb)       ar x $1      ;;
-      *.tar.xz)    tar xf $1    ;;
-      *)           echo "'$1' cannot be extracted" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
-}
-
-source $ZDOTDIR/.aliases
-
+# source aliases
+test -e "${ZDOTDIR}/.aliases" && . "${ZDOTDIR}/.aliases"

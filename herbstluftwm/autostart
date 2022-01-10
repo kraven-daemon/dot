@@ -11,12 +11,12 @@ hcs(){
 hc emit_hook reload
 
 # restore last wallpaper or set a random
-if [ -x ~/.fehbg ];then
-    ~/.fehbg
-else
-    
-fi
-xsetroot -bg "#003300"
+# if [ -x ~/.fehbg ];then
+#     ~/.fehbg
+# else
+#
+# fi
+# xsetroot -bg "#003300"
 
 ## reset all
 # reload behave strangelly otherwise

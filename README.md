@@ -1,5 +1,4 @@
-## Dot files repo
-
+## .config, .local, .state
 ### Install
 
 ``` 

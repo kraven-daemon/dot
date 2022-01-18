@@ -1,34 +1,43 @@
-! Xcursor.theme: Pop
-Xcursor.size: 13
+!TEMPLATE
+!name.Class.resource: value
+!WILDCARD
+!=> ?.Class.ressource
+!=> * mean all
+!=> xprop for window info
+!=> xev for events
 
-! Traditionnal 16 -> normal [0-7] bright or bold [8-15]
-! special
-*.foreground:   #98d1ce
-*.background:   #0a0f14
-*.cursorColor:  #98d1ce
+! Xcursor.theme: Pop
+Xcursor.size: 12
+
+
+!urxvt.font
+urxvt.scrollBar: false
+urxvt.foreground:   #efffef
+urxvt.background:   #002000
+urxvt.cursorColor:  #ccffcc
 ! black
-*.color0:       #0a0f14
-*.color8:       #10151b
+urxvt.color0:       #000000
+urxvt.color8:       #001233
 ! red
-*.color1:       #c33027
-*.color9:       #d26939
+urxvt.color1:       #c54329
+urxvt.color9:       #e74b4b
 ! green
-*.color2:       #26a98b
-*.color10:      #081f2d
+urxvt.color2:       #27a818
+urxvt.color10:      #05ca3a
 ! yellow
-*.color3:       #edb54b
-*.color11:      #245361
+urxvt.color3:       #c8d323
+urxvt.color11:      #eeee23
 ! blue
-*.color4:       #195465
-*.color12:      #093748
+urxvt.color4:       #0056ff
+urxvt.color12:      #0055bb
 ! magenta
-*.color5:       #4e5165
-*.color13:      #888ba5
+urxvt.color5:       #ae2fd9
+urxvt.color13:      #bc75d1
 ! cyan
-*.color6:       #33859d
-*.color14:      #599caa
+urxvt.color6:       #16c2c9
+urxvt.color14:      #25ffe2
 ! white
-*.color7:       #98d1ce
-*.color15:      #d3ebe9
+urxvt.color7:       #efefef
+urxvt.color15:      #fefefe
 
 

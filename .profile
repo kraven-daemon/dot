@@ -2,7 +2,6 @@
 # depends: nvim bat alacritty
 
 
-export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config/zsh}"
 # Always start by updating paths.. just in case
 
 H=${HOME}
@@ -49,10 +48,13 @@ export XDG_DATA_DIRS="${XDG_DATA_HOME}:/usr/local/share:/usr/share"
 export XDG_CONFIG_DIRS="${XDG_CONFIG_HOME}:/etc/xdg"
 
 # Misc
-export TERMINAL="alacritty"
+# export TERMINAL="alacritty"
+export TERMINAL="urxvtc"
 export EDITOR="nvim"
 export VISUAL="bat"
 export WALLPATH="${XDG_DATA_HOME}/backgrounds:/usr/share/backgrounds"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
 
 # other might remove
 #export LANG=en_ca.utf-8

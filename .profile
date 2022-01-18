@@ -1,10 +1,8 @@
-# (info) zshenv is sourced first
+# .profile is sourced after /etc/profile, and /etc/profile.d/*
 # depends: nvim bat alacritty
 
-
-# Always start by updating paths.. just in case
-
 H=${HOME}
+
 # include the bin
 if [ -d "${H}/.local/bin" ] ; then
     PATH="${H}/.local/bin:$PATH"

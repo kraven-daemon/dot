@@ -1,10 +1,8 @@
 #!/usr/bin/env sh
-
-set -e
-
+# depends: jq
+set -eu
 
 SRC="list.json"
-
 
 reset="\033[0m"
 ## regular

@@ -1,53 +1,112 @@
-; Please refer to the web documentation hosted at:
-; https://github.com/polybar/polybar#configuration
-; https://github.com/polybar/polybar/wiki/Configuration
+; Global settings
+; at https://github.com/polybar/polybar/wiki/Configuration
+; xrdb, so launch bar after .xinitrc
 
+; syntax
+; [section]  valid => [a-z/A-Z_]
+; 	     invalid => "':;[]{}()$#=\% and any isspace(char) that return true (' '\t\r...)
+; 	     also reserved word : self root BAR
+# comment
+; key = #feafea
+; int = 10
+; float = 10.0
+; str = "  surrounding space"
+; alist-0 = value
+; alist-1 = value
+; alist-2 = othervalue
+; alist-5 = invalid, must increment!
 
-[bar/wonderbar]
-modules-left = date
-modules-center = xwindow
-modules-right = cpu time
+[colors]
+# = ${xrdb:key:fallbackvalue}
+bg = ${xrdb:background:#554467}
+fg = ${xrdb:foreground}
+cursor = ${xrdb:cursorColor}
+black = ${xrdb:color0}
+bblack = ${xrdb:color8}
+red = ${xrdb:color1}
+bred = ${xrdb:color9}
+green = ${xrdb:color2}
+bgreen = ${xrdb:color10}
+yellow = ${xrdb:color3}
+byellow = ${xrdb:color11}
+blue = ${xrdb:color4}
+bblue = ${xrdb:color12}
+magenta = ${xrdb:color5}
+bmagenta = ${xrdb:color13}
+cyan = ${xrdb:color6}
+bcyan = ${xrdb:color14}
+white = ${xrdb:color7}
+bwhite = ${xrdb:color15}
 
-; <font-name>:size=12:style/weight;<vertical-offset>
-font-0 = SauceCodePro Nerd Font Mono:size=14:style=Bold;2
-;font-1 = SauceCodePro Nerd Font Mono:style=Bold
+[settings]
+; The throttle settings lets the eventloop swallow up til X events
+; if they happen within Y millisecond after first event was received.
+; This is done to prevent flood of update event.
+;
+; For example if 5 modules emit an update event at the same time, we really
+; just care about the last one. But if we wait too long for events to swallow
+; the bar would appear sluggish so we continue if timeout
+; expires or limit is reached.
+throttle-output = 5
+throttle-output-for = 10
 
-width = 100%
-height = 40
+; Reload upon receiving XCB_RANDR_SCREEN_CHANGE_NOTIFY events
+screenchange-reload = false
 
-bottom = true
+; Compositing operators
+; @see: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-operator-t
+compositing-background = source
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
 
-;[bar/mybar]
-;; Use either of the following command to list available outputs:
-;; $ polybar -M | cut -d ':' -f 1
-;; $ xrandr -q | grep " connected" | cut -d ' ' -f1
-;; If no monitor is given, the primary monitor is used if it exists
-;monitor =
-;; Use the specified monitor as a fallback if the main one is not found.
-;monitor-fallback =
-;; Require the monitor to be in connected state
-;monitor-strict = false
-;; Use fuzzy matching for monitors (only ignores dashes -)
-;; Useful when monitors are named differently with different drivers.
-;monitor-exact = true
+; Define fallback values used by all module formats
+format-foreground = 
+format-background = 
+format-underline =
+format-overline =
+format-spacing =
+format-padding =
+format-margin =
+format-offset =
 
-;; Tell the Window Manager not to configure the window.
-;; Use this to detach the bar if your WM is locking its size/position.
-;; Note: With this most WMs will no longer reserve space for 
-;; the bar and it will overlap other windows. You need to configure
-;; your WM to add a gap where the bar will be placed.
-;override-redirect = false
+; Enables pseudo-transparency for the bar
+; If set to true the bar can be transparent without a compositor.
+pseudo-transparency = false
 
-;; Put the bar at the bottom of the screen
+[global/wm] 
+; Used for top/bottom aligned bars: adjust the _NET_WM_STRUT_PARTIAL top value
+margin-bottom = 3
+margin-top = 3
+
+[bar/status]
+# aEsthetic
+background = ${colors.bg}
+foreground = ${colors.fg}
+height = 20
 ;bottom = false
+;override-redirect = true
 
-;; Prefer fixed center position for the `modules-center` block. 
+modules-left = time
+
+modules-center = title
+;; Prefer fixed center position
+fixed-center = false
+
+modules-right = cpu date
+; <font-name>:size=12:style/weight;<vertical-offset>
+font-0 = SauceCodePro Nerd Font Mono:size=12:style=Bold;2
+;font-1 = SauceCodePro Nerd Font Mono:style=Bold
+;; the bar will overlap other windows
+
+
+
 ;; The center block will stay in the middle of the bar whenever
 ;; possible. It can still be pushed around if other blocks need
 ;; more space.
 ;; When false, the center block is centered in the space between 
 ;; the left and right block.
-;fixed-center = true
 
 ;; Dimension defined as pixel value (e.g. 35) or percentage (e.g. 50%),
 ;; the percentage can optionally be extended with a pixel offset like so:
@@ -174,11 +233,6 @@ bottom = true
 ;; Tray icon max size
 ;tray-maxsize = 16
 
-;; DEPRECATED! Since 3.3.0 the tray always uses pseudo-transparency
-;; Enable pseudo transparency
-;; Will automatically be enabled if a fully transparent
-;; background color is defined using `tray-background`
-;tray-transparent = false
 
 ;; Background color for the tray container 
 ;; ARGB color (e.g. #f00, #ff992a, #ddff1023)
@@ -241,80 +295,38 @@ bottom = true
 
 [module/time]
 type = internal/date
+interval = 2.0
 date = %R
 
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:30:...%
+
 
 [module/date]
 type = internal/date
-date = %B: %A, %d
+; See "https://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+date = %Y %B %d, %A
+format = <label>
+format-prefix = " "
+format-suffix = " "
+format-background = ${colors.green}
+format-foreground = ${colors.bg}
+
+[module/title]
+type = internal/xwindow
+format= <label>
+label = %title%
 
 [module/cpu]
 type = internal/cpu
-interval = 2
-format-prefix = "[ ]"
+interval = 2.0
+format-prefix = "O: "
 format-prefix-foreground = ${colors.fg}
-label = "%percentage:2%% "
-
-[colors]
-bg = ${xrdb:background}
-fg = ${xrdb:background}
-cursor = ${xrdb:cursorColor}
-black = ${xrdb:color0}
-bblack = ${xrdb:color8}
-red = ${xrdb:color1}
-bred = ${xrdb:color9}
+label = "%percentage:2%%"
 
 
 
 
-[settings]
-; The throttle settings lets the eventloop swallow up til X events
-; if they happen within Y millisecond after first event was received.
-; This is done to prevent flood of update event.
-;
-; For example if 5 modules emit an update event at the same time, we really
-; just care about the last one. But if we wait too long for events to swallow
-; the bar would appear sluggish so we continue if timeout
-; expires or limit is reached.
-throttle-output = 5
-throttle-output-for = 10
 
-; Reload upon receiving XCB_RANDR_SCREEN_CHANGE_NOTIFY events
-screenchange-reload = false
-
-; Compositing operators
-; @see: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-operator-t
-compositing-background = source
-compositing-foreground = over
-compositing-overline = over
-compositing-underline = over
-compositing-border = over
-
-; Define fallback values used by all module formats
-format-foreground = 
-format-background = 
-format-underline =
-format-overline =
-format-spacing =
-format-padding =
-format-margin =
-format-offset =
-
-; Enables pseudo-transparency for the bar
-; If set to true the bar can be transparent without a compositor.
-pseudo-transparency = false
-
-[global/wm]
-; Adjust the _NET_WM_STRUT_PARTIAL top value
-;   Used for top aligned bars
-margin-bottom = 15
-
-; Adjust the _NET_WM_STRUT_PARTIAL bottom value
-;   Used for bottom aligned bars
-margin-top = 5
 
 
 ; vim:ft=dosini

@@ -9,35 +9,42 @@
 ! Xcursor.theme: Pop
 Xcursor.size: 12
 
+Xft.autohint:   0
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintsmedium
 
-!urxvt.font
 urxvt.scrollBar: false
-urxvt.foreground:   #efffef
-urxvt.background:   #002000
-urxvt.cursorColor:  #ccffcc
+urxvt.font: xft:SauceCodePro Nerd Font Mono:style=Regular:size=10
+
+*.foreground:   #efffef
+*.background:   #002000
+*.cursorColor:  #ccffcc
 ! black
-urxvt.color0:       #000000
-urxvt.color8:       #001233
+*.color0:       #000000
+*.color8:       #001233
 ! red
-urxvt.color1:       #c54329
-urxvt.color9:       #e74b4b
+*.color1:       #c54329
+*.color9:       #e74b4b
 ! green
-urxvt.color2:       #27a818
-urxvt.color10:      #05ca3a
+*.color2:       #27a818
+*.color10:      #05ca3a
 ! yellow
-urxvt.color3:       #c8d323
-urxvt.color11:      #eeee23
+*.color3:       #c8d323
+*.color11:      #eeee23
 ! blue
-urxvt.color4:       #0056ff
-urxvt.color12:      #0055bb
+*.color4:       #0056ff
+*.color12:      #0055bb
 ! magenta
-urxvt.color5:       #ae2fd9
-urxvt.color13:      #bc75d1
+*.color5:       #ae2fd9
+*.color13:      #bc75d1
 ! cyan
-urxvt.color6:       #16c2c9
-urxvt.color14:      #25ffe2
+*.color6:       #16c2c9
+*.color14:      #25ffe2
 ! white
-urxvt.color7:       #efefef
-urxvt.color15:      #fefefe
+*.color7:       #efefef
+*.color15:      #fefefe
 
 

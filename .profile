@@ -3,29 +3,26 @@
 
 H=${HOME}
 
-# include the bin
+# BIN?
 if [ -d "${H}/.local/bin" ] ; then
     PATH="${H}/.local/bin:$PATH"
 fi
-
-# if nix is installed..
+# NIX?
 if [ -e "${H}/.nix-profile/etc/profile.d/nix.sh" ]; then
     . "${H}/.nix-profile/etc/profile.d/nix.sh"
 fi
-
-# if rustup toolchain source the provided import script
+# RUST?
 if [ -f "${H}/.cargo/env" ]; then
     . "${H}/.cargo/env"
 fi
-
-# if nodejs, for lsp, and other frontend utils
+# NODEJS?
 if [ -d "${H}/.npm-global" ]; then
     PATH="${H}/.npm-global/bin:${PATH}"
 fi
 
-# Depending on distros, XDG should be set, or overriden
+# XDG?
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
-
+# Also `xdg-utils`
 # analog: /etc
 export XDG_CONFIG_HOME="${H}/.config"
 # analog: /var/cache (WARNING!! login out => flush)
@@ -35,10 +32,9 @@ export XDG_DATA_HOME="${H}/.local/share"
 # analog: /var/lib user-specific state files
 export XDG_STATE_HOME="${H}/.local/state"
 
-#  pam_systemd sets this to /run/user/$UID, automatically
 # XDG_RUNTIME_DIR=???
-# this might need to be set manually 
-# 	on other init system like : initd, openrc, runit, s6, 66, dinit or any other im not aware of :P
+# pam_systemd sets this to /run/user/$UID, automatically
+# initd, openrc, runit, s6, 66, dinit might need manual setting
 
 # System directories
 # analog: PATH
@@ -47,11 +43,18 @@ export XDG_CONFIG_DIRS="${XDG_CONFIG_HOME}:/etc/xdg"
 
 # Misc
 # export TERMINAL="alacritty"
-export TERMINAL="urxvtc"
+export TERMINAL="st"
 export EDITOR="nvim"
-export VISUAL="bat"
-export WALLPATH="${XDG_DATA_HOME}/backgrounds:/usr/share/backgrounds"
+export VISUAL="bat -p"
+export WALLPATH="${XDG_DATA_HOME}/backgrounds"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+if [ -e "${H}/.aliases" ]; then
+	. ${H}/.aliases
+fi
 
 
 # other might remove
@@ -69,5 +72,4 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # should be backed up?     yes   yes     yes    no     no
 # can live in tmpfs?       no    no      no     yes    yes?
 # contains much data?      yes   no      no     yes    no
-# desktop cli utilities for minimal standard,, some app refer to generic structure
-# install`xdg-utils` and run `xdg-user-dirs-update`
+# 

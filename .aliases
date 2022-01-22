@@ -1,6 +1,3 @@
-# alias are used in interactive mode only
-# shopt -s expand_aliases  # to enable alias in shell script
-
 # launch rust documentation
 alias rbook="rustup docs --book"
 
@@ -14,44 +11,28 @@ alias rbook="rustup docs --book"
 #     alias egrep='egrep --color=auto'
 # fi
 
-# colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# notification
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # list
-alias ls="exa"
-alias la="exa -a"
-alias ll="exa -l"
-alias l="exa -F"
-alias lt="exa -T"
-alias lla="exa -al"
+alias ls='exa'
+alias la='exa -a'
+alias ll='exa -l'
+alias l='exa -F'
+alias lt='exa -T'
+alias lla='exa -al'
 
-# not an alias but kinda..
-l.(){
-    exa -a |
-    rg '^\..*' |
-    column -x
-}
+alias cl='clear'
+alias grep='rg --color=auto'
 
-ltd(){
-	exa -TL $1
-}
-
-alias cl="clear"
-alias grep="rg --color=auto"
-
-# info
-alias df="df -h"
-alias free="free -ht"
-# -c is for continue download if file exist as partially downloaded
-alias wget="wget -c"
-alias lsusr="cut -d: -f1 /etc/passwd"
+# pretty info
+alias df='df -h'
+alias free='free -ht'
+alias wget='wget -c'
+alias lsusr='cut -d: -f1 /etc/passwd'
 alias pp='echo ${PATH} | sed "s/:/\n/g"'
+alias env='env | sort'
 
 # xrelated
-alias merge="xrdb -merge ~/.Xresources"
+alias xl="xrdb ~/.Xresources"
 #alias printlock="printf '\t\    |    /\n\n\n.^_^-  SCREENLOCKED  -^_^.\n\n\n\t/    |    \'"
 #alias lock="slock -m '$(printlock)'"
 #alias testwm="Xephyr :5 & sleep 1 ; DISPLAY=:5 awesome"
@@ -61,18 +42,18 @@ alias merge="xrdb -merge ~/.Xresources"
 #alias dlight="redshift -x"
 
 # cd into config repo
-alias cdc="cd \$HOME/Desktop/dot"
+alias cdc='cd $HOME/Desktop/dot'
 
 # read screen brightness
-alias brightness="cat /sys/class/backlight/acpi_video0/brightness"
+alias brightness='cat /sys/class/backlight/acpi_video0/brightness'
 
-alias nlight="redshift -O 4000"
-alias dlight="redshift -x"
+alias nlight='redshift -O 4000'
+alias dlight='redshift -x'
 
 # youtube download shortcut
-alias yta="youtube-dl -x --audio-quality 0"
+alias yta='youtube-dl -x --audio-quality 0'
 
 alias decolorise='sed "s/\x1b[[0-9;]\{1,\}m//g"'
 
 # run `:read! bin/get_gcc_libpath`, neovim use treesitter(c++) now
-alias nvim='LD_LIBRARY_PATH=/nix/store/b0p7nvkwxr65q016zsqicrd4bcg5bv1s-gcc-10.3.0-lib/lib nvim'
+#alias nvim='LD_LIBRARY_PATH=/nix/store/b0p7nvkwxr65q016zsqicrd4bcg5bv1s-gcc-10.3.0-lib/lib nvim'

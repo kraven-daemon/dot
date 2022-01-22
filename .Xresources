@@ -9,19 +9,41 @@
 ! Xcursor.theme: Pop
 Xcursor.size: 12
 
-Xft.autohint:   0
-Xft.dpi:        96
-Xft.antialias:  true
-Xft.rgba:       rgb
-Xft.hinting:    true
-Xft.hintstyle:  hintsmedium
+!"color0",
+!"color1",
+!"color2",
+!"color3",
+!"color4",
+!"color5",
+!"color6",
+!"color7",
+!"color8",
+!"color9",
+!"color10",
+!"color11",
+!"color12",
+!"color13",
+!"color14",
+!"color15",
+!"background",
+!"foreground",
+!"cursorColor",
+!"termname",
+!"shell",
+!"minlatency",
+!"maxlatency",
+!"blinktimeout",
+!"bellvolume",
+!"tabspaces",
+!"borderpx",
+!"cwscale",
+!"chscale",
 
-urxvt.scrollBar: false
-urxvt.font: xft:SauceCodePro Nerd Font Mono:style=Regular:size=10
 
-*.foreground:   #efffef
+
+*.foreground:   #efffee
 *.background:   #002000
-*.cursorColor:  #ccffcc
+*.cursorColor:  #ffeeff
 ! black
 *.color0:       #000000
 *.color8:       #001233
@@ -46,5 +68,3 @@ urxvt.font: xft:SauceCodePro Nerd Font Mono:style=Regular:size=10
 ! white
 *.color7:       #efefef
 *.color15:      #fefefe
-
-

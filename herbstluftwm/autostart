@@ -9,8 +9,8 @@ hct(){ herbstclient attr theme."$1" "$2"; }
 ## reset all
 hc keyunbind --all
 hc mouseunbind --all
-hc attr theme.reset 1
 hc unrule -F
+hc attr theme.reset 1
 
 ############
 # Keyboard #
@@ -21,7 +21,7 @@ Mod=Mod4   # winkey
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-q close
-hc keybind $Mod-Return spawn st -e fish
+hc keybind $Mod-Return spawn st -e zsh
 hc keybind $Mod-p spawn dmenu_run
 # focus frame
 hc keybind $Mod-h     focus left
@@ -159,4 +159,3 @@ hc detect_monitors
 #     # start it on each monitor
 #     "$panel" "$monitor" &
 # done
-

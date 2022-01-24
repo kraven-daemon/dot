@@ -13,6 +13,10 @@ pickfile() {
 	echo "$1/$chosen"
 }
 
+# Single local directory
+feh --no-fehbg --bg-fill "$(pickfile "${WALLPATH}")"
+exit 0
+
 # feh has option for this
 # --bg-center --bg-fill --bg-max --bg-scale --bg-tile
 # 50% change to system's wallpaper path or user's path

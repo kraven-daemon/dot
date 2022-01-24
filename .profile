@@ -46,6 +46,7 @@ export XDG_CONFIG_DIRS="${XDG_CONFIG_HOME}:/etc/xdg"
 export TERMINAL="st"
 export EDITOR="nvim"
 export VISUAL="bat -p"
+export BROWSER="firefox-developper-edition"
 export WALLPATH="${XDG_DATA_HOME}/backgrounds"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
@@ -73,3 +74,5 @@ fi
 # can live in tmpfs?       no    no      no     yes    yes?
 # contains much data?      yes   no      no     yes    no
 # 
+
+if [ -e /home/kraven/.nix-profile/etc/profile.d/nix.sh ]; then . /home/kraven/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

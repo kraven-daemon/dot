@@ -53,7 +53,9 @@ alias dlight='redshift -x'
 # youtube download shortcut
 alias yta='youtube-dl -x --audio-quality 0'
 
+#  remove terminal formating code
 alias decolorise='sed "s/\x1b[[0-9;]\{1,\}m//g"'
 
+alias dinit='dinit -d "${XDG_CONFIG_HOME}/.config/dinit.d/"'
 # run `:read! bin/get_gcc_libpath`, neovim use treesitter(c++) now
 #alias nvim='LD_LIBRARY_PATH=/nix/store/b0p7nvkwxr65q016zsqicrd4bcg5bv1s-gcc-10.3.0-lib/lib nvim'

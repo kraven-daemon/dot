@@ -1,22 +1,22 @@
 {
     "home":[
         ".zshenv",
-        ".xinitrc",
-        ".Xresources"
+        ".profile",
+	".aliases",
+	".xinitrc"
     ],
     "config":[
-        "alacritty",
         "tmux",
-        "zsh",
-        "nvim"
+	"alacritty",
+	"awesome",
+	"conky",
+	"Xmodmap",
+	"Xresources"
     ],
     "data":[
-        "backgrounds",
-        "fonts",
-        "icons"
-    ],
-    "local":[
-        "bin",
-        "lib"
+	"backgrounds",
+	"fonts",
+	"homepage",
+	"repos"
     ]
 }

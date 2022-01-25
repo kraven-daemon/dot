@@ -1,0 +1,22 @@
+{
+    "home":[
+        ".zshenv",
+        ".profile",
+	".aliases"
+    ],
+    "config":[
+        "alacritty",
+        "tmux",
+        "zsh",
+        "nvim"
+    ],
+    "data":[
+        "backgrounds",
+        "fonts",
+        "icons"
+    ],
+    "local":[
+        "bin",
+        "lib"
+    ]
+}

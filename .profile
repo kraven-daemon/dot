@@ -12,8 +12,8 @@ if [ -e "${H}/.nix-profile/etc/profile.d/nix.sh" ]; then
     . "${H}/.nix-profile/etc/profile.d/nix.sh"
 fi
 # RUST?
-if [ -f "${H}/.cargo/env" ]; then
-    . "${H}/.cargo/env"
+if [ -d "${H}/.cargo/bin" ]; then
+    PATH="${H}/.cargo/bin:$PATH"
 fi
 # NODEJS?
 if [ -d "${H}/.npm-global" ]; then

@@ -57,14 +57,15 @@ _getlongest(){
     echo "$long"
 }
 
-# iterate over list
+# iterate over list 
+# ( key, destination )
 _linkable(){
     list="$(jq -r ".$1[]" ${SRC})"
     for file in $list
     do
 		FILE="$(realpath "${file}")"
-		DEST="${2}/${file}"
-		printf "FILE : %s\nDESTINATION -> %s\n" "${FILE}" "${DEST}"
+		DEST="${2}"
+		printf "FILE : %s\nDESTINATION -> %s\n" "${FILE}" "${DEST}/${file}"
 		echo "LINKING ..."
 		if ln -s "${FILE}" "${DEST}"; then
 				printf "%bSucess%b linking %s to %s\n" "${bgreen}" "${reset}" "${FILE}" "${DEST}"
@@ -73,13 +74,13 @@ _linkable(){
 				read  -r answer
 				case $answer in
 					y)
-						echo "removing ${DEST}"
-						rm "${DEST}"
+						echo "removing ${DEST}/${file}"
+						rm "${DEST}/${file}"
 						ln -s "${FILE}" "${DEST}" 
 					;;
 					Y)
-						echo "removing ${DEST}"
-						rm "${DEST}"
+						echo "removing ${DEST}/${file}"
+						rm "${DEST}/${file}"
 						ln -s "${FILE}" "${DEST}" 
 					;;
 					*)
@@ -89,7 +90,6 @@ _linkable(){
 		fi
     done
 }
-# ln -s "$(realpath "$link") to $2/$link"
 
 # iterate over keys
 _parse(){
@@ -105,7 +105,7 @@ _parse(){
                 _linkable "$key" "$XDG_CONFIG_HOME"
                 ;;
             "home" )
-                echo "In $HOME/"
+                echo "In $HOME"
                 _linkable "$key" "$HOME"
                 ;;
             "data" )

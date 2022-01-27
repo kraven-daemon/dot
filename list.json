@@ -11,7 +11,10 @@
 	"awesome",
 	"conky",
 	"Xmodmap",
-	"Xresources"
+	"Xresources",
+	"zsh",
+	"user-dirs.dirs",
+	"user-dirs.locale"
     ],
     "data":[
 	"backgrounds",

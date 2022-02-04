@@ -12,14 +12,15 @@
 	"conky",
 	"Xmodmap",
 	"Xresources",
-	"zsh",
-	"user-dirs.dirs",
-	"user-dirs.locale"
+	"zsh"
     ],
     "data":[
 	"backgrounds",
 	"fonts",
 	"homepage",
 	"repos"
+    ],
+    "local":[
+    	"scripts"
     ]
 }

@@ -93,12 +93,12 @@ _linkable(){
 
 # iterate over keys
 _parse(){
-    iter=0
+    index=0
     key=""
     while :
     do
-        key="$(jq -r "keys[$iter]" ${SRC})"
-        printf "\t%s :\t%s\n" "${iter}" "${key}"
+        key="$(jq -r "keys[$index]" ${SRC})"
+        printf "\t%s :\t%s\n" "${index}" "${key}"
         case $key in
             "config" )
                 echo "In $XDG_CONFIG_HOME"
@@ -121,7 +121,7 @@ _parse(){
                 break
                 ;;
         esac
-        iter="$(( iter + 1 ))"
+        index="$(( index + 1 ))"
     done
 }
 

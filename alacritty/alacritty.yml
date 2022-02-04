@@ -5,7 +5,6 @@ import:
 window:
   padding:
     x: 2
-    y: 2
   dynamic_padding: true
   decorations: none
   # Window class (for xserver on linux/BSD):
@@ -15,4 +14,4 @@ window:
 scrolling:
   history: 10000
   multiplier: 3
-background_opacity: 1.0
+window_opacity: 0.8

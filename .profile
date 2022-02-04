@@ -3,76 +3,69 @@
 
 H=${HOME}
 
+ENCODING="en_CA.UTF-8"
+export LANG="$ENCODING"
+export LC_CTYPE="$ENCODING"
+export LC_NUMERIC="$ENCODING"
+export LC_TIME="$ENCODING"
+export LC_COLLATE="$ENCODING"
+export LC_MONETARY="$ENCODING"
+export LC_MESSAGES="$ENCODING"
+export LC_PAPER="$ENCODING"
+export LC_NAME="$ENCODING"
+export LC_ADDRESS="$ENCODING"
+export LC_TELEPHONE="$ENCODING"
+export LC_MEASUREMENT="$ENCODING"
+export LC_IDENTIFICATION="$ENCODING"
+
 # BIN?
-if [ -d "${H}/.local/bin" ] ; then
-    PATH="${H}/.local/bin:$PATH"
-fi
+if [ -d "${H}/.local/bin" ]; then PATH="${H}/.local/bin:$PATH"; fi
+# SCRIPTS
+if [ -d "${H}/.local/scripts" ] ; then PATH="${H}/.local/scripts:$PATH"; fi
 # NIX?
-if [ -e "${H}/.nix-profile/etc/profile.d/nix.sh" ]; then
-    . "${H}/.nix-profile/etc/profile.d/nix.sh"
-fi
+if [ -e "${H}/.nix-profile/etc/profile.d/nix.sh" ]; then . "${H}/.nix-profile/etc/profile.d/nix.sh"; fi
 # RUST?
-if [ -d "${H}/.cargo/bin" ]; then
-    PATH="${H}/.cargo/bin:$PATH"
-fi
+if [ -d "${H}/.cargo/bin" ]; then PATH="${H}/.cargo/bin:$PATH"; fi
 # NODEJS?
 if [ -d "${H}/.npm-global" ]; then
     PATH="${H}/.npm-global/bin:${PATH}"
 fi
 
 # XDG?
-# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
-# Also `xdg-utils`
 # analog: /etc
 export XDG_CONFIG_HOME="${H}/.config"
-# analog: /var/cache (WARNING!! login out => flush)
+# analog: /var/cache
 export XDG_CACHE_HOME="${H}/.cache"
 # analog: /usr/share
 export XDG_DATA_HOME="${H}/.local/share"
 # analog: /var/lib user-specific state files
 export XDG_STATE_HOME="${H}/.local/state"
-
-# XDG_RUNTIME_DIR=???
-# pam_systemd sets this to /run/user/$UID, automatically
-# initd, openrc, runit, s6, 66, dinit might need manual setting
-
 # System directories
 # analog: PATH
 export XDG_DATA_DIRS="${XDG_DATA_HOME}:/usr/local/share:/usr/share"
 export XDG_CONFIG_DIRS="${XDG_CONFIG_HOME}:/etc/xdg"
-
+# XDG_RUNTIME_DIR=???
+# pam_systemd sets this to /run/user/$UID, automatically
+# initd, openrc, runit, s6, 66, dinit might need manual setting
 # Misc
-# export TERMINAL="alacritty"
-export TERMINAL="st"
-export EDITOR="nvim"
-export VISUAL="bat -p"
-export BROWSER="firefox-developper-edition"
+
+export TERMINAL='alacritty'
+export EDITOR='nvim'
+export VISUAL='bat -p'
+export BROWSER='chromium'
 export WALLPATH="${XDG_DATA_HOME}/backgrounds"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export CLICOLOR=1
 
 if [ -e "${H}/.aliases" ]; then
-	. ${H}/.aliases
+	. "${H}/.aliases"
 fi
 
-
 # other might remove
-#export LANG=en_ca.utf-8
 # Ui toolkit stuff for gtk/qt
 #export QT_QPA_PLATFORMTHEME="qt5ct"
 #export QT_AUTO_SCREEN_SCALE_FACTOR=0
 #export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/.gtkrc-2.0"
-# X desktop group specification
-# https://wiki.archlinux.org/title/XDG_Base_Directory
-# 2021/2022 -> new directory proposition from XDG-STANDARD, STATE, based on this
-#                          DATA  CONFIG  STATE  CACHE  RUNTIME
-# sync across machines?    yes?  yes     no     no     no
-# manage in VCS (Git/SVN)? no    yes     no     no     no
-# should be backed up?     yes   yes     yes    no     no
-# can live in tmpfs?       no    no      no     yes    yes?
-# contains much data?      yes   no      no     yes    no
-# 
-
-if [ -e /home/kraven/.nix-profile/etc/profile.d/nix.sh ]; then . /home/kraven/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

@@ -33,7 +33,7 @@ sauce="SourceCodePro.zip"
 monoki="Mononoki.zip"
 
 # the nerd font repo
-baseurl="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/"
+baseurl="https://github.com/ryanoasis/nerd-fonts/releases/download/2.2.0-RC/"
 
 cd /tmp 2> /dev/null &&
 for font in ${sauce}; do

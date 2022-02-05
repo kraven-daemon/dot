@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-
-#polybar status 2&>1 | tee -a /tmp/polybar1.log
-polybar status

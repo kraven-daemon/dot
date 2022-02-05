@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+set -eu
+
+curl -sSL https://github.com/ryanoasis/nerd-fonts/releases \
+	| hq '#repo-content-pjax-container > div:nth-child(2) > div:nth-child(1) > div.col-md-9 > div > div.Box-footer > div:nth-child(2) > details > div' text \
+	| awk '{print $2}' \
+	| grep 'zip$' \
+	| column

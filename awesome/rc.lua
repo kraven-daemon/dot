@@ -48,7 +48,7 @@ end
 beautiful.init(gears.filesystem.get_xdg_config_home() .. "/awesome/xresources/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "st -e 'zsh'"
+terminal = "alacritty -e 'zsh'"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 

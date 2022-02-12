@@ -17,7 +17,7 @@ fi
 
 # crank up key repeat rate
 xset r rate 300 100
-
+volumeicon &
 # ssh-add `keys` #later
 eval "$(ssh-agent)"
 

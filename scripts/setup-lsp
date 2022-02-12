@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+# lsp server
+# check for `npm set prefix 'somepath in userland'`
+
+# html, css, and json
+npm install -g vscode-langservers-extracted
+# typescript, javascript
+npm install -g typescript typescript-language-server
+
+# shell
+npm install -g bash-language-server
+
+# telescope deps: fd(find),rg(ripgrep),fzf
+
+

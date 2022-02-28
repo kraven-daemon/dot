@@ -1,4 +1,4 @@
-## .config, .local, .state
+## .config and .local
 ### Install
 
 ``` 

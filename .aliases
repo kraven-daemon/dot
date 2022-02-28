@@ -42,10 +42,11 @@ alias xl="xrdb ~/.Xresources"
 #alias dlight="redshift -x"
 
 # cd into config repo
-alias cdc='cd $HOME/Desktop/dot'
+alias cdc='cd $HOME/dot'
 
+# TODO: make conditionnal for on laptop/battery alias vs desktop/powersupply
 # read screen brightness
-alias brightness='cat /sys/class/backlight/acpi_video0/brightness'
+# alias brightness='cat /sys/class/backlight/acpi_video0/brightness'
 
 alias nlight='redshift -O 4000'
 alias dlight='redshift -x'

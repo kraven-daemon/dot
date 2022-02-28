@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+set -eu
+
+pids="$(cat /tmp/panel.*)"
+rm /tmp/panel.*
+
+for pid in $pids
+do
+    echo "$pid"
+    kill -15 "$pid"
+done
+

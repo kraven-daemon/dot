@@ -22,8 +22,9 @@ volumeicon &
 eval "$(ssh-agent)"
 
 # feh --bg-fill "${WALLPATH}/purple-haze.jpg"
+if test -x ~/.fehbg; then . ~/.fehbg; fi
 
 # nvidia need extra settings otherwise erroR
 # picom --xrender-sync-fence --backend glx --config /dev/null
 eval "$(dbus-launch --sh-syntax --exit-with-x11)"
-exec awesome
+exec herbstluftwm

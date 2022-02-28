@@ -1,0 +1,34 @@
+#!/usr/bin/env sh
+
+set -eu
+
+# usage: gdbar [-s <o|v>] [-w <pixel>] [-h <pixel>] [-sw <pixel>] 
+# [-ss <pixel>] [-sw <pixel>] [-fg <color>] [-bg <color>] 
+# [-min <minvalue>] [-max <maxvalue>] [-l <string>] [-nonl]
+
+# sane globals
+. DIMENS
+WIDGETW=200
+WIDGETH=26
+POSX=$(( SCREENW / 2 - WIDGETW ))
+POSY=$(( SCREENH / 2 - WIDGETH ))
+
+case $1 in
+    '--up') pactl set-sink-volume @DEFAULT_SINK@ +5%
+        ;;
+    '--down') pactl set-sink-volume @DEFAULT_SINK@ -5%
+        ;;
+    '--mute') pactl set-sink-mute @DEFAULT_SINK@ toggle
+        exit 0
+        ;;
+    *) exit 1
+esac
+
+
+
+pactl play-sample output
+curr="$(pactl get-sink-volume @DEFAULT_SINK@ | grep -o '..%' | head -n1)"
+echo "$curr" | gdbar -s 'o' -w $WIDGETW -h $WIDGETH \
+    -min 0 -max 100 -bg '#00de44' -fg '#0044de' \
+    | dzen2 -p 1 -x $POSX -y $POSY -w $WIDGETW -h $WIDGETH -bg '#222222'
+

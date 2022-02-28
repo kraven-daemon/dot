@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+set -eu
+
+# sane globals
+. DIMENS
+WIDGETW=200
+WIDGETH=26
+POSX=$(( SCREENW / 2 - WIDGETW ))
+POSY=$(( SCREENH / 2 - WIDGETH ))
+
+usage(){
+    echo " Usage: volume --[up|down|mute] "
+}
+
+if [ -z "$1" ]
+then
+    usage
+else
+    case "$1" in
+        '--up') pactl set-sink-volume @DEFAULT_SINK@ +5%
+            ;;
+        '--down') pactl set-sink-volume @DEFAULT_SINK@ -5%
+            ;;
+        '--mute') pactl set-sink-mute @DEFAULT_SINK@ toggle
+            exit 0
+            ;;
+        *)
+            usage
+            exit 0
+            ;;
+    esac
+fi
+
+pactl play-sample output
+curr="$(pactl get-sink-volume @DEFAULT_SINK@ | grep -o '..%' | head -n1)"
+echo "$curr" | gdbar -s 'o' -w $WIDGETW -h $WIDGETH \
+    -min 0 -max 100 -bg '#00de44' -fg '#0044de' \
+    | dzen2 -p 1 -x $POSX -y $POSY -w $WIDGETW -h $WIDGETH -bg '#222222'
+

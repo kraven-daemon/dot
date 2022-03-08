@@ -9,8 +9,9 @@ bindkey -v
 zstyle :compinstall filename '/home/kraven/.config/zsh/.zshrc'
 
 autoload -Uz compinit
-compinit
-# End of lines added by compinstall
+# load from file otherwise its ZDOTDIR..
+compinit -d "$XDG_CACHE_HOME/.zcompdump"
+
 prompt="%B%F{green}%n%f%F{magenta}@%f%F{yellow}%M%f%F{red}[%f%F{blue}%2d%f%F{red}]%f%F{cyan}|>%f%b "
 #neofetch --backend off
 #

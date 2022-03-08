@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
-
 set -eu
 
 pids="$(cat /tmp/panel.*)"

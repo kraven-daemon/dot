@@ -17,14 +17,15 @@ fi
 
 # crank up key repeat rate
 xset r rate 300 100
-volumeicon &
 # ssh-add `keys` #later
 eval "$(ssh-agent)"
 
 # feh --bg-fill "${WALLPATH}/purple-haze.jpg"
 if test -x ~/.fehbg; then . ~/.fehbg; fi
 
+
 # nvidia need extra settings otherwise erroR
 # picom --xrender-sync-fence --backend glx --config /dev/null
 eval "$(dbus-launch --sh-syntax --exit-with-x11)"
-exec herbstluftwm
+sxhkd &
+exec bspwm

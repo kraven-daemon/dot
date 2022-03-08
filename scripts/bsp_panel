@@ -1,0 +1,88 @@
+#!/usr/bin/env sh
+
+set -eu
+
+# tag colors
+notempty='^bg(#00ef00)'
+select='^bg(#de0022)'
+empty='^bg(#000000)'
+unmonitor='^bg(#760076)'
+# Icons
+
+# Widgets
+SYS_SUS='^ca(1,systemctl suspend)^bg(#00efef)  suspend  ^bg()^ca()'
+CAL='^ca(1,yad --calendar)^bg(#000def)  cal  ^bg()^ca()'
+
+
+# ^ca(1,<path to your script>)Sysinfo^ca()
+# foo ^ca(1, echo one)^fg(red)click me and i'll echo one^fg()^ca() bar
+
+# Client window title
+# getTitle(){
+#     echo "$(xdotool getactivewindow getwindowname 2> /dev/null)"
+# }
+
+# ## args $1 : tag, $2 : formating
+# genTag(){
+#     tagnum="${1#[#:.!+\-%]}"
+#     printf "%s%s %s %s" "^ca(1, herbstclient use ${tagnum})" "$2" "${tagnum}" "^bg()^ca()"
+# }
+# ## Print all the tags
+# genTags(){
+#     for tag in $(herbstclient tag_status)
+#     do
+#         case "${tag%[1-9]*}"
+#             in
+#             :) genTag "$tag" "${notempty}";; # tag not empty
+#             \#) genTag "$tag" "${select}";; # tag focused on monitor
+#             .) genTag "$tag" "${empty}";; # tag empty
+#             #!) genTag ${urgent} $tag;; # urgent window there
+#             #+) genTag '' $tag;; # multi-monitor
+#             -) genTag "$tag" "${unmonitor}";; # unfocused monitor
+#             #%) genTag '' $tag;; # multi-monitor
+#             *) genTag "$tag" "" ;;
+#         esac
+#     done
+# }
+
+# herbstclient --idle |
+# while read -r line
+# do
+#     case $line
+#         in
+#         INIT*)
+#             tags="$(genTags)"
+#             wtitle="$(getTitle)"
+#             ;;
+#         tag_changed*|tag_flags*|focus_changed*)
+#             tags="$(genTags)"
+#             wtitle="$(getTitle)"
+#             ;;
+#     esac
+#     echo "${tags} ${wtitle}"
+# done | dzen2 -p -dock -w 960 -h 24 -ta 'l' &
+# PID="$!"
+
+
+echo "$CAL  $SYS_SUS" | dzen2 -p -w 960 -x 960 -h 24 -dock -ta 'r' &
+PID="$!"
+
+conky -c "$XDG_CONFIG_HOME/conky/dzen_status.conf" | dzen2 -p -y 1080 -x 0 -h 24 -w 1920 -dock -ta 'l' &
+PID="$PID $!"
+
+# sleep 0.5
+
+# stalonetray --geometry 1x1-0 -bg '#997700' &
+# PID="$PID $!"
+
+# for bspwm to keep all panels below fullscreen (like z-index)
+for pan in $(xdo id -N 'dzen')
+do
+    xdo above -t "$(xdo id -n 'root')" "$pan"
+done
+
+# for the killer on exit
+pidfile="$(mktemp /tmp/panel.XXXXX)"
+trap 'echo $PID > $pidfile' 0 15
+
+

@@ -10,7 +10,7 @@ unmonitor='^bg(#760076)'
 # Icons
 
 # Widgets
-SYS_SUS='^ca(1,systemctl suspend)^bg(#00efef)suspend^bg()^ca()'
+SYS_SUS='^ca(1,systemctl suspend)^bg(#00efef)  suspend  ^bg()^ca()'
 CAL='^ca(1,yad --calendar)^bg(#000def)  cal  ^bg()^ca()'
 
 
@@ -59,12 +59,15 @@ do
             wtitle="$(getTitle)"
             ;;
     esac
-    echo "${tags}| ${wtitle}  ^p(+200)$CAL ^p(+500)$SYS_SUS"
-done | dzen2 -p -dock -w 1920 -h 24 -ta 'l' &
+    echo "${tags} ${wtitle}"
+done | dzen2 -p -dock -w 960 -h 24 -ta 'l' &
 PID="$!"
 
 
-conky -c "$XDG_CONFIG_HOME/conky/dzen_status.conf" | dzen2 -p -y 1080 -x 0 -h 20 -w 1920 -dock -ta l &
+echo "$CAL  $SYS_SUS" | dzen2 -p -w 960 -x 960 -h 24 -ta 'r' &
+PID="$PID $!"
+
+conky -c "$XDG_CONFIG_HOME/conky/dzen_status.conf" | dzen2 -p -y 1080 -x 0 -h 24 -w 1920 -dock -ta 'l' &
 PID="$PID $!"
 
 # trigger first update

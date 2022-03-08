@@ -1,7 +1,7 @@
 colors:
   # Default colors
   primary:
-    background: '0x001000'
+    background: '0x000100'
     foreground: '0xefffee'
   cursor:
     text: '0x001100'

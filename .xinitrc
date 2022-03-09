@@ -17,6 +17,8 @@ fi
 
 # crank up key repeat rate
 xset r rate 300 100
+xsetroot -cursor_name hand1
+
 # ssh-add `keys` #later
 eval "$(ssh-agent)"
 

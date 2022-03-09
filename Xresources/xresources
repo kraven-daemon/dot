@@ -7,7 +7,8 @@
 !=> xev for events
 
 ! Xcursor.theme: Pop
-Xcursor.size: 12
+Xcursor.size: 32
+Xcursor.theme: XCursor-Pro-Dark
 
 !"color0",
 !"color1",

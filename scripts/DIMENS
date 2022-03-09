@@ -1,6 +1,0 @@
-#!/usr/bin/env sh
-
-set -eu
-export SCREENW=1920
-export SCREENH=1080
-

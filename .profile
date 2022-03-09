@@ -1,6 +1,4 @@
 # .profile is sourced after /etc/profile, and /etc/profile.d/*
-# depends: nvim bat alacritty
-
 H=${HOME}
 
 ENCODING="en_CA.UTF-8"
@@ -49,7 +47,7 @@ export TERMINAL='alacritty'
 export EDITOR='nvim'
 export VISUAL='bat -p'
 export BROWSER='chromium'
-export WALLPATH="${XDG_DATA_HOME}/backgrounds"
+export WALLPAPERS="${XDG_DATA_HOME}/backgrounds"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # colored GCC warnings and errors
@@ -60,20 +58,15 @@ if [ -e "${H}/.aliases" ]; then
 	. "${H}/.aliases"
 fi
 
-# other might remove
-# Ui toolkit stuff for gtk/qt
-#export QT_QPA_PLATFORMTHEME="qt5ct"
-#export QT_AUTO_SCREEN_SCALE_FACTOR=0
-#export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/.gtkrc-2.0"
+# Panel data, so its easier to interact with keybindings (sxhkd)
+export PANEL_FIFO="/tmp/panel-fifo"
+export PANEL_WM_NAME="bsp_panel"
 
 # LUA stuff
 export PATH="/opt/lua-language-server/bin:$PATH"
-
 # added luajit
 export LUA_PATH='/usr/share/luajit-2.1.0-beta3/?.lua;/usr/share/lua/5.1/?.lua;/usr/share/lua/5.1/?/init.lua;/usr/lib/lua/5.1/?.lua;/usr/lib/lua/5.1/?/init.lua;./?.lua;./?/init.lua;/home/kraven/.luarocks/share/lua/5.1/?.lua;/home/kraven/.luarocks/share/lua/5.1/?/init.lua'
 export LUA_CPATH='/usr/lib/lua/5.1/?.so;/usr/lib/lua/5.1/loadall.so;./?.so;/home/kraven/.luarocks/lib/lua/5.1/?.so'
 export PATH='/home/kraven/.luarocks/bin:/opt/lua-language-server/bin:/home/kraven/.cargo/bin:/home/kraven/.local/scripts:/home/kraven/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl'
-
 export PATH="/usr/local/openresty/bin:$PATH"
-# oups add luajit
 

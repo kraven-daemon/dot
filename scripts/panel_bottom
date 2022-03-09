@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+set -eu
+
+# for my dirty french date
+LC_TIME='fr_CA.utf8'
+
+# TODO:Maybe merge with DATA_PANEL_SPEC
+BG="#de000B00"
+FG="#feFFF4FF"
+UNDER="#FF4FFF"
+FONT1="SauceCodePro Nerd Font Mono:style=Bold:size=11"
+
+conky -c "$XDG_CONFIG_HOME/conky/lemonbar_status.conf" \
+    | lemonbar -p -b -g 1920x32 -B "${BG}" -F "${FG}" \
+    -U "${UNDER}" -u 5 -f "${FONT1}" -n "${1}" | sh &

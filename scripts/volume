@@ -2,16 +2,11 @@
 
 set -eu
 
-# usage: gdbar [-s <o|v>] [-w <pixel>] [-h <pixel>] [-sw <pixel>] 
-# [-ss <pixel>] [-sw <pixel>] [-fg <color>] [-bg <color>] 
-# [-min <minvalue>] [-max <maxvalue>] [-l <string>] [-nonl]
-
-# sane globals
-. DIMENS
+. DATA_MONITORS
 WIDGETW=200
 WIDGETH=26
-POSX=$(( SCREENW / 2 - WIDGETW ))
-POSY=$(( SCREENH / 2 - WIDGETH ))
+POSX=$(( SCREEN_WIDTH_1 / 2 - WIDGETW ))
+POSY=$(( SCREEN_HEIGHT_1 / 2 - WIDGETH ))
 
 case $1 in
     '--up') pactl set-sink-volume @DEFAULT_SINK@ +5%

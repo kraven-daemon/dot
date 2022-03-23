@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+set -eu
+
+selection="$(xsel)"
+echo "selection : $selection, and hello automan" | xclip -i -selection 'clipboard'
+xdotool sleep 0.100 key --clearmodifiers ctrl+v

@@ -70,3 +70,6 @@ export LUA_CPATH='/usr/lib/lua/5.1/?.so;/usr/lib/lua/5.1/loadall.so;./?.so;/home
 export PATH='/home/kraven/.luarocks/bin:/opt/lua-language-server/bin:/home/kraven/.cargo/bin:/home/kraven/.local/scripts:/home/kraven/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl'
 export PATH="/usr/local/openresty/bin:$PATH"
 
+# GNU guix :D
+export GUIX_PROFILE="${H}/.guix-profile"
+export GUIX_LOCPATH="${H}/.guix-profile/lib/locale"

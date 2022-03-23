@@ -1,0 +1,9 @@
+# analog /etc/stalonetrayrc
+
+background "#020301"
+
+icon_size 26
+geometry 1x1+1894-1054
+icon_gravity E
+grow_gravity E
+

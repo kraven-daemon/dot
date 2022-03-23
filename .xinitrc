@@ -29,5 +29,5 @@ if test -x ~/.fehbg; then . ~/.fehbg; fi
 # nvidia need extra settings otherwise erroR
 # picom --xrender-sync-fence --backend glx --config /dev/null
 eval "$(dbus-launch --sh-syntax --exit-with-x11)"
-sxhkd &
-exec bspwm
+#sxhkd &
+exec herbstluftwm

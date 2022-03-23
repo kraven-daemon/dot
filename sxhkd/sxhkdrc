@@ -1,9 +1,8 @@
-#
+# [MODIFIER + ]*[@|!]KEYSYM
+# 	    COMMAND
 # wm independent hotkeys
 
-
 # Audio stuff
-
 # this is the so called music button
 #XF86Tools
 XF86AudioRaiseVolume
@@ -19,8 +18,13 @@ XF86AudioPrev
 XF86AudioPlay
 	mpc toggle
 XF86AudioStop
-	mpc stop
+	mpc stoa
 
+super + o
+	emacsclient -c
+# crat test clip pipe
+super + c
+	autoclip
 # terminal emulator
 super + Return
 	alacritty -e 'zsh'
@@ -58,7 +62,10 @@ super + y
 super + g
 	bspc node -s biggest.window
 
-#
+# disable gap
+super + semicolon
+	bspc config -n focused window_gap 0
+
 # state/flags
 #
 
@@ -81,9 +88,6 @@ super + {_,shift + }{h,j,k,l}
 super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
-# focus the next/previous window in the current desktop
-super + {_,shift + }c
-	bspc node -f {next,prev}.local.!hidden.window
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
@@ -93,11 +97,6 @@ super + bracket{left,right}
 super + {grave,Tab}
 	bspc {node,desktop} -f last
 
-# focus the older or newer node in the focus history
-super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}

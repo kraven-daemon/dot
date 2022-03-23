@@ -2,25 +2,25 @@
     "home":[
         ".zshenv",
         ".profile",
-	".aliases",
-	".xinitrc"
+        ".aliases",
+        ".xinitrc"
     ],
     "config":[
         "tmux",
-	"alacritty",
-	"awesome",
-	"conky",
-	"Xmodmap",
-	"Xresources",
-	"zsh"
+        "alacritty",
+        "awesome",
+        "conky",
+        "Xmodmap",
+        "Xresources",
+        "zsh"
     ],
     "data":[
-	"backgrounds",
-	"fonts",
-	"homepage",
-	"repos"
+        "backgrounds",
+        "fonts",
+        "homepage",
+        "repos"
     ],
     "local":[
-    	"scripts"
+        "scripts"
     ]
 }

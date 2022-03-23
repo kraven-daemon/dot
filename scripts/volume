@@ -9,9 +9,13 @@ POSX=$(( SCREEN_WIDTH_1 / 2 - WIDGETW ))
 POSY=$(( SCREEN_HEIGHT_1 / 2 - WIDGETH ))
 
 case $1 in
-    '--up') pactl set-sink-volume @DEFAULT_SINK@ +5%
+    '--up')
+        pactl set-sink-volume @DEFAULT_SINK@ +5%
+        play "$XDG_DATA_HOME/sounds/volume_up.oga"
         ;;
-    '--down') pactl set-sink-volume @DEFAULT_SINK@ -5%
+    '--down') 
+        pactl set-sink-volume @DEFAULT_SINK@ -5%
+        play "$XDG_DATA_HOME/sounds/volume_up.oga"
         ;;
     '--mute') pactl set-sink-mute @DEFAULT_SINK@ toggle
         exit 0
@@ -20,10 +24,6 @@ case $1 in
 esac
 
 
-
-pactl play-sample output
+# utility sox
 curr="$(pactl get-sink-volume @DEFAULT_SINK@ | grep -o '..%' | head -n1)"
-echo "$curr" | gdbar -s 'o' -w $WIDGETW -h $WIDGETH \
-    -min 0 -max 100 -bg '#00de44' -fg '#0044de' \
-    | dzen2 -p 1 -x $POSX -y $POSY -w $WIDGETW -h $WIDGETH -bg '#222222'
 

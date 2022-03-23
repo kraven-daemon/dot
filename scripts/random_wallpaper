@@ -14,7 +14,7 @@ pickfile() {
 }
 
 # Single local directory
-feh --no-fehbg --bg-fill "$(pickfile "${WALLPATH}")"
+feh --no-fehbg --bg-fill "$(pickfile "${WALLPAPERS}")"
 exit 0
 
 # feh has option for this

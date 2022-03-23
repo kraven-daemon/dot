@@ -16,9 +16,3 @@ panel_bottom "$PANEL_1"
 panel_top "$PANEL_2"
 # system tray
 stalonetray -c ~/.config/stalonetray/stalonetrayrc 2> /dev/null &
-
-sleep 1
-# make them covered when fullscreen
-# xdo is a filter based, results crop themselves..
-xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n1)" "$(xdo id -a $PANEL_1)"
-xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n1)" "$(xdo id -a $PANEL_2)"

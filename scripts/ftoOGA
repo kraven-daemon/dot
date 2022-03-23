@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+set -eu
+
+fileName="$(echo $1 | cut -d. -f1)"
+ffmpeg -i $1 -c:a libvorbis $fileName.oga

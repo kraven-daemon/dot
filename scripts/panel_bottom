@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+# depends: conky
 set -e
 if [ -z "$1" ]; then
     echo "Give name for the bar"
@@ -6,24 +7,14 @@ if [ -z "$1" ]; then
 fi
 set -u
 
-
-
-
 # for my dirty french date
 LC_TIME='fr_CA.utf8'
 # TODO:Maybe merge with DATA_PANEL_SPEC
-BG="#de000B00"
-FG="#feFFF4FF"
+BG="#264653"
+FG="#ffffff"
 UNDER="#FF4FFF"
 FONT1="SauceCodePro Nerd Font Mono:style=Bold:size=11"
-
 
 conky -c "$XDG_CONFIG_HOME/conky/lemonbar_status.conf" \
     | lemonbar -p -b -g 1920x32 -B "${BG}" -F "${FG}" \
     -U "${UNDER}" -u 5 -f "${FONT1}" -n "${1}" | sh &
-
-
-sleep 1
-# make them covered when fullscreen
-# xdo is a filter based, results crop themselves..
-xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n1)" "$(xdo id -a $1)"

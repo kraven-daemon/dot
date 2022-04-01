@@ -1,21 +1,18 @@
 #!/usr/bin/env sh
-
+# depends: sox
 set -eu
+IFS=$(printf ' \n\t')
 
-. DATA_MONITORS
-WIDGETW=200
-WIDGETH=26
-POSX=$(( SCREEN_WIDTH_1 / 2 - WIDGETW ))
-POSY=$(( SCREEN_HEIGHT_1 / 2 - WIDGETH ))
+RATIO=5
 
 case $1 in
     '--up')
-        pactl set-sink-volume @DEFAULT_SINK@ +5%
-        play "$XDG_DATA_HOME/sounds/volume_up.oga"
+        pactl set-sink-volume @DEFAULT_SINK@ +$RATIO%
+        play "$XDG_DATA_HOME/sounds/volume_up.oga" > /dev/null
         ;;
     '--down') 
-        pactl set-sink-volume @DEFAULT_SINK@ -5%
-        play "$XDG_DATA_HOME/sounds/volume_up.oga"
+        pactl set-sink-volume @DEFAULT_SINK@ -$RATIO%
+        play "$XDG_DATA_HOME/sounds/volume_up.oga" > /dev/null
         ;;
     '--mute') pactl set-sink-mute @DEFAULT_SINK@ toggle
         exit 0
@@ -24,6 +21,5 @@ case $1 in
 esac
 
 
-# utility sox
 curr="$(pactl get-sink-volume @DEFAULT_SINK@ | grep -o '..%' | head -n1)"
-
+echo $curr

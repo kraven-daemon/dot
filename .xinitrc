@@ -30,4 +30,4 @@ if test -x ~/.fehbg; then . ~/.fehbg; fi
 # picom --xrender-sync-fence --backend glx --config /dev/null
 eval "$(dbus-launch --sh-syntax --exit-with-x11)"
 #sxhkd &
-exec herbstluftwm
+exec herbstluftwm --locked

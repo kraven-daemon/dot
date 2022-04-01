@@ -1,116 +1,77 @@
 #!/usr/bin/env sh
+# depends: herbstluftwm
 set -eu
 
 . DATA_PANEL_SPEC
 
+# file pipe
 [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
 mkfifo "$PANEL_FIFO"
+herbstclient --idle > "$PANEL_FIFO" &
 
-bspc subscribe report > "$PANEL_FIFO" &
+width=1920
+height=24
+# color-set background foreground
+select="%{B#01f2d1}%{F#041a1e}"
+notempty="%{B#007a68}%{F#7fffff}"
+empty="%{B#020202}%{F#007a68}"
+#urgent=""
 
-num_mon=$(bspc query -M | wc -l)
+## Tags
+tag_gen(){
+    num="${2#[#:.!+-%]}"
+    printf "%s%s %s %s" "%{A:herbstclient use ${num}:}" "${1}" "${num}" "%{B-F-A}"
+}
+tags_gen(){
+    for t in $(herbstclient tag_status)
+    do
+        case "${t%[1-5]*}"
+            in
+            :) tag_gen "${notempty}" "$t";; # tag not empty
+            \#) tag_gen "${select}" "$t" ;; # tag focused on monitor
+            .) tag_gen "${empty}" "$t"   ;; # tag empty
+            #!) tag_gen ${urgent} $t;; # urgent window there
+            #+) tag_gen '' $t;; # multi-monitor
+            #-) printf "DP-3" # tag_gen "" "$t";; # multi-monitor
+            #%) tag_gen '' $t;; # multi-monitor
+            *) tag_gen "" "${t#?}"           ;;
+        esac
+    done
+}
+# window title
+window_title(){
+    printf "%.32s" "$(herbstclient get_attr clients.focus.title 2> /dev/null ||  echo 'O_o')"
+}
 
-cat "$PANEL_FIFO" | while read -r line ;do
-	case $line in
-		W*)
-			# bspwm's state
-			wm=
-			IFS=':'
-			set -- ${line#?}
-			while [ $# -gt 0 ] ; do
-				item=$1
-				name=${item#?}
-				case $item in
-					[mM]*)
-						case $item in
-							m*)
-								# monitor
-								FG=$COLOR_MONITOR_FG
-								BG=$COLOR_MONITOR_BG
-								on_focused_monitor=
-								;;
-							M*)
-								# focused monitor
-								FG=$COLOR_FOCUSED_MONITOR_FG
-								BG=$COLOR_FOCUSED_MONITOR_BG
-								on_focused_monitor=1
-								;;
-						esac
-						[ $num_mon -lt 2 ] && shift && continue
-						wm="${wm}%{F${FG}}%{B${BG}}%{A:bspc monitor -f ${name}:} ${name} %{A}%{B-}%{F-}"
-						;;
-					[fFoOuU]*)
-						case $item in
-							f*)
-								# free desktop
-								FG=$COLOR_FREE_FG
-								BG=$COLOR_FREE_BG
-								UL=$BG
-								;;
-							F*)
-								if [ "$on_focused_monitor" ] ; then
-									# focused free desktop
-									FG=$COLOR_FOCUSED_FREE_FG
-									BG=$COLOR_FOCUSED_FREE_BG
-									UL=$BG
-								else
-									# active free desktop
-									FG=$COLOR_FREE_FG
-									BG=$COLOR_FREE_BG
-									UL=$COLOR_FOCUSED_FREE_BG
-								fi
-								;;
-							o*)
-								# occupied desktop
-								FG=$COLOR_OCCUPIED_FG
-								BG=$COLOR_OCCUPIED_BG
-								UL=$BG
-								;;
-							O*)
-								if [ "$on_focused_monitor" ] ; then
-									# focused occupied desktop
-									FG=$COLOR_FOCUSED_OCCUPIED_FG
-									BG=$COLOR_FOCUSED_OCCUPIED_BG
-									UL=$BG
-								else
-									# active occupied desktop
-									FG=$COLOR_OCCUPIED_FG
-									BG=$COLOR_OCCUPIED_BG
-									UL=$COLOR_FOCUSED_OCCUPIED_BG
-								fi
-								;;
-							u*)
-								# urgent desktop
-								FG=$COLOR_URGENT_FG
-								BG=$COLOR_URGENT_BG
-								UL=$BG
-								;;
-							U*)
-								if [ "$on_focused_monitor" ] ; then
-									# focused urgent desktop
-									FG=$COLOR_FOCUSED_URGENT_FG
-									BG=$COLOR_FOCUSED_URGENT_BG
-									UL=$BG
-								else
-									# active urgent desktop
-									FG=$COLOR_URGENT_FG
-									BG=$COLOR_URGENT_BG
-									UL=$COLOR_FOCUSED_URGENT_BG
-								fi
-								;;
-						esac
-						wm="${wm}%{F${FG}}%{B${BG}}%{U${UL}}%{+u}%{A:bspc desktop -f ${name}:} ${name} %{A}%{B-}%{F-}%{-u}"
-						;;
-					[LTG]*)
-						# layout, state and flags
-						wm="${wm}%{F$COLOR_STATE_FG}%{B$COLOR_STATE_BG} ${name} %{B-}%{F-}"
-						;;
-				esac
-				shift
-			done
-			;;
-	esac
-	printf "%s\n" "%{l}${wm}"
-done | lemonbar -a 32 -u 3 -n "${1}" -g 1920x"$PANEL_HEIGHT" -F "$COLOR_DEFAULT_FG" -B "$COLOR_DEFAULT_BG" | sh &
+while read -r line;do
+    tags=''
+    title=''
+    case $line
+        in
+        INIT*)
+           tags="$(tags_gen)"
+           title="$(window_title)"
+            ;;
+        tag_changed*)
+           tags="$(tags_gen)"
+           title="$(window_title)"
+            ;;
+        focus_changed*)
+           tags="$(tags_gen)"
+           title="$(window_title)"
+           ;;
+        *) tags="$(tags_gen)"
+           title="$(window_title)"
+           ;;
+    esac
+    printf "%s\n" "%{l}${tags} | ${title}"
+done < "$PANEL_FIFO" | lemonbar -p \
+    -n "$1" \
+    -g "${width}x32+0+0" \
+    -B "${COLOR_BG}" \
+    -F "${COLOR_FG}" \
+    -U "#00ff40" \
+    -o 1 -u 0 \
+    -f "SauceCodePro Nerd Font Mono:style=Semibold,Regular:size=14" | sh &
 
-
+herbstclient emit_hook INIT

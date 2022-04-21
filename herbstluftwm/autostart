@@ -163,12 +163,12 @@ hc unlock
 # hc set_monitors 1280x1024+0+0 1280x1024+1280+0
 # or simply:
 # hc detect_monitors
-# MTAG="DP-3"
-# hc add $MTAG
-# hc keybind "$Mod-0" use $MTAG
-# hc keybind "$Mod-Shift-0" move $MTAG
-# hc add_monitor 1920x1080+1920+0 $MTAG "side"
-# hc lock_tag "side" $MTAG
+MTAG="DP-3"
+hc add $MTAG
+hc keybind "$Mod-0" use $MTAG
+hc keybind "$Mod-Shift-0" move $MTAG
+hc add_monitor 1920x1080+1920+0 $MTAG "side"
+hc lock_tag "side" $MTAG
 
 
 

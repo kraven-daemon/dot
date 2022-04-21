@@ -23,8 +23,7 @@ xsetroot -cursor_name hand1
 eval "$(ssh-agent)"
 
 # feh --bg-fill "${WALLPATH}/purple-haze.jpg"
-if test -x ~/.fehbg; then . ~/.fehbg; fi
-
+random_wallpaper
 
 # nvidia need extra settings otherwise erroR
 # picom --xrender-sync-fence --backend glx --config /dev/null

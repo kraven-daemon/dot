@@ -25,8 +25,4 @@ eval "$(ssh-agent)"
 # feh --bg-fill "${WALLPATH}/purple-haze.jpg"
 random_wallpaper
 
-# nvidia need extra settings otherwise erroR
-# picom --xrender-sync-fence --backend glx --config /dev/null
-eval "$(dbus-launch --sh-syntax --exit-with-x11)"
-#sxhkd &
-exec herbstluftwm --locked
+exec dbus-launch --sh-syntax --exit-with-session herbstluftwm --locked

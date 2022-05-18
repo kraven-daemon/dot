@@ -1,3 +1,5 @@
 [user]
 	email = kravendaemon@gmail.com
 	name = Kraven Daemon
+[core]
+	editor = nvim

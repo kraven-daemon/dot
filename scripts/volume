@@ -8,11 +8,11 @@ RATIO=5
 case $1 in
     '--up')
         pactl set-sink-volume @DEFAULT_SINK@ +$RATIO%
-        play "$XDG_DATA_HOME/sounds/volume_up.oga" > /dev/null
+        play "$XDG_DATA_HOME/sounds/volume_up.oga" 2> /dev/null
         ;;
     '--down') 
         pactl set-sink-volume @DEFAULT_SINK@ -$RATIO%
-        play "$XDG_DATA_HOME/sounds/volume_up.oga" > /dev/null
+        play "$XDG_DATA_HOME/sounds/volume_up.oga" 2> /dev/null
         ;;
     '--mute') pactl set-sink-mute @DEFAULT_SINK@ toggle
         exit 0

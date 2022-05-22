@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+# depends: coreutils(gnu) yad
+set -eu
+IFS=$(printf ' \n\t')
+
+yad --no-buttons --progress --align=center $1

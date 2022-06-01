@@ -171,7 +171,7 @@ hc keybind "$Mod-Shift-0" move $MTAG
 hc add_monitor 1920x1080+1920+0 $MTAG "side"
 hc lock_tag "side" $MTAG
 
-
+panels
 
 
 

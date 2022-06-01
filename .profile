@@ -58,9 +58,25 @@ if [ -e "${H}/.aliases" ]; then
 	. "${H}/.aliases"
 fi
 
-# Panel data, so its easier to interact with keybindings (sxhkd)
+# Panel data
 export PANEL_FIFO="/tmp/panel-fifo"
-export PANEL_WM_NAME="bsp_panel"
+
+# nnn - file manager
+export NNN_FIFO=/tmp/nnn.fifo
+BLK="04"
+CHR="04" 
+DIR="04" 
+EXE="00"
+REG="00"
+HARDLINK="00"
+SYMLINK="06"
+MISSING="00"
+ORPHAN="01"
+FIFO="0F"
+SOCK="0F"
+OTHER="02"
+export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$OTHER"
+
 
 # LUA stuff
 export PATH="/opt/lua-language-server/bin:$PATH"

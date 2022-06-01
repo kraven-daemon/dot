@@ -6,10 +6,9 @@
 !=> xprop for window info
 !=> xev for events
 
-! Xcursor.theme: Pop
 Xcursor.size: 32
-Xcursor.theme: XCursor-Pro-Dark
-
+!Xcursor.theme: XCursor-Pro-Dark
+Xcursor.theme: Bluecurve
 !"color0",
 !"color1",
 !"color2",

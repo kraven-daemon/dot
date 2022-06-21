@@ -25,6 +25,6 @@ eval "$(ssh-agent)"
 # feh --bg-fill "${WALLPATH}/purple-haze.jpg"
 random_wallpaper
 
-picom &
+#picom &
 
 exec dbus-launch --sh-syntax --exit-with-session herbstluftwm --locked

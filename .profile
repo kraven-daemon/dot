@@ -77,15 +77,13 @@ SOCK="0F"
 OTHER="02"
 export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$OTHER"
 
-
 # LUA stuff
 export PATH="/opt/lua-language-server/bin:$PATH"
 # added luajit
 export LUA_PATH='/usr/share/luajit-2.1.0-beta3/?.lua;/usr/share/lua/5.1/?.lua;/usr/share/lua/5.1/?/init.lua;/usr/lib/lua/5.1/?.lua;/usr/lib/lua/5.1/?/init.lua;./?.lua;./?/init.lua;/home/kraven/.luarocks/share/lua/5.1/?.lua;/home/kraven/.luarocks/share/lua/5.1/?/init.lua'
 export LUA_CPATH='/usr/lib/lua/5.1/?.so;/usr/lib/lua/5.1/loadall.so;./?.so;/home/kraven/.luarocks/lib/lua/5.1/?.so'
 export PATH='/home/kraven/.luarocks/bin:/opt/lua-language-server/bin:/home/kraven/.cargo/bin:/home/kraven/.local/scripts:/home/kraven/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl'
-export PATH="/usr/local/openresty/bin:$PATH"
 
-# GNU guix :D
-export GUIX_PROFILE="${H}/.guix-profile"
-export GUIX_LOCPATH="${H}/.guix-profile/lib/locale"
+export PNPM_HOME="${H}/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+

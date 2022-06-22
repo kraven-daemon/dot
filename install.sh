@@ -2,7 +2,7 @@
 # depends: jq
 set -eu
 
-SRC='list.json'
+JSON='list.json'
 
 reset='\033[0m'
 ## regular
@@ -22,23 +22,6 @@ byellow="\033[01;33m"
 #bcyan="\033[01;36m"
 #white="\033[01;37m"
 
-# test wrapper, with colors
-# _test [flags] [file] [error message] [minimum char width for space padding] => return 0|1 to make it stoppable
-_test(){
-    flag=$1
-    file=$2
-    errmsg=$3
-    align=$4
-    retstatus=0
-    if test "$flag" "$file";then
-        printf "%-*s : %bOK%b\n" "${align}" "${file}" "${bgreen}" "${reset}"
-    else
-        printf "%-*s : %bFAIL%b\n%s : %s\n" "${align}" "${file}" "${bred}" "${reset}" "${file}" "${errmsg}"
-        printf "Exiting...\n"
-        retstatus=1
-    fi
-    return $retstatus
-}
 
 # return the caracter width of the longest word of a list
 _getlongest(){
@@ -56,13 +39,13 @@ _getlongest(){
 # iterate over list 
 # ( key, destination )
 _linkable(){
-    list="$(jq -r ".$1[]" ${SRC})"
+    list="$(jq -r ".$1[]" ${JSON})"
     for file in $list
     do
+        clear
 		FILE="$(realpath "${file}")"
 		DEST="${2}"
 		printf "FILE : %s\nDESTINATION -> %s\n" "${FILE}" "${DEST}/${file}"
-		echo "LINKING ..."
 		if ln -s "${FILE}" "${DEST}"; then
 				printf "%bSucess%b linking %s to %s\n" "${bgreen}" "${reset}" "${FILE}" "${DEST}"
 		else
@@ -82,19 +65,17 @@ _linkable(){
 					*)
 						;;
 				esac
-
 		fi
     done
 }
 
-# iterate over keys
+# iterate over a sequence of keys
 _parse(){
-    index=0
-    key=""
-    while :
+    len=$(jq 'keys | length' ${JSON})
+    for index in $(seq 0 "$(( len - 1 ))")
     do
-        key="$(jq -r "keys[$index]" ${SRC})"
-        printf "\t%s :\t%s\n" "${index}" "${key}"
+        key="$(jq -r "keys[$index]" ${JSON})"
+        printf "%s : %s\n" "${index}" "${key}"
         case $key in
             "config" )
                 echo "In $XDG_CONFIG_HOME"
@@ -112,13 +93,10 @@ _parse(){
                 echo "In $HOME/.local"
                 _linkable "$key" "$HOME/.local"
                 ;;
-            "null" )
-                echo "List done!"
-                break
-                ;;
         esac
-        index="$(( index + 1 ))"
     done
 }
 
 _parse
+echo "Done"
+exit 0

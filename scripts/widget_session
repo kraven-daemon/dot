@@ -1,0 +1,45 @@
+#!/usr/bin/env sh
+
+set -eu
+
+action=$(yad --list \
+    --title="Session" \
+    --window-icon="/usr/share/icons/artix/logo-gray.svg" \
+    --width=300 \
+    --height=400 \
+    --text="Session" \
+    --text-align="center" \
+    --column="" \
+    --separator="" \
+    --no-headers \
+    --center \
+    --css="$HOME/.config/gtk-3.0/yad.css" \
+    "Power Off" "Reboot" "Suspend" "Logout")
+# ret=$?
+
+echo "action : $action"
+
+# [ $ret -eq 1 ] && exit 0
+#
+# if [ $ret -eq 2 ]; then
+#     gdmflexiserver --startnew &
+#     exit 0
+# fi
+#
+# case $action in
+#     Power*) cmd="sudo /sbin/poweroff" ;;
+#     Reboot*) cmd="sudo /sbin/reboot" ;;
+#     Suspend*) cmd="sudo /bin/sh -c 'echo disk > /sys/power/state'" ;;
+#     Logout*) 
+#     case $(wmctrl -m | grep Name) in
+#         *Openbox) cmd="openbox --exit" ;;
+#         *FVWM) cmd="FvwmCommand Quit" ;;
+#             *Metacity) cmd="gnome-save-session --kill" ;; 
+#         *) exit 1 ;;
+#     esac
+#     ;;
+#     *) exit 1 ;;    
+# esac
+#
+# eval exec $cmd
+#

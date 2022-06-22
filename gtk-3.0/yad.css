@@ -1,0 +1,13 @@
+window {
+  background-color: #000210;
+}
+button {
+  background-color: #0000AE;
+}
+button:hover {
+  background-color: #00F0AE;
+}
+
+box * {
+  font: 20px Mono;
+}

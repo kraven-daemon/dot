@@ -2,15 +2,13 @@
 # depends: herbstluftwm
 set -eu
 
-. DATA_PANEL_SPEC
+. PANEL_DATA
 
 # file pipe
 [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
 mkfifo "$PANEL_FIFO"
 herbstclient --idle > "$PANEL_FIFO" &
 
-width=1920
-height=24
 # color-set background foreground
 select="%{B#01f2d1}%{F#041a1e}"
 notempty="%{B#007a68}%{F#7fffff}"
@@ -43,9 +41,14 @@ window_title(){
     printf "%.32s" "$(herbstclient get_attr clients.focus.title 2> /dev/null ||  echo 'O_o')"
 }
 
+window_ops(){
+    printf "%s %b %s" "%{B#04f000}" "\Uf2d0 \Uf2d1 \Uf656" "%{B-}"
+}
+
 while read -r line;do
     tags=''
     title=''
+    wops=$(window_ops)
     case $line
         in
         INIT*)
@@ -64,14 +67,14 @@ while read -r line;do
            title="$(window_title)"
            ;;
     esac
-    printf "%s\n" "%{l}${tags} | ${title}"
+    printf "%s\n" "%{l}${tags} | ${title} %{r}${wops}"
 done < "$PANEL_FIFO" | lemonbar -p \
-    -n "$1" \
-    -g "${width}x32+0+0" \
+    -n "$PANEL_NAME" \
+    -g "${WIDTH}x${HEIGHT}+0+0" \
     -B "${COLOR_BG}" \
     -F "${COLOR_FG}" \
     -U "#00ff40" \
     -o 1 -u 0 \
-    -f "SauceCodePro Nerd Font Mono:style=Semibold,Regular:size=14" | sh &
+    -f "SauceCodePro Nerd Font Mono:style=Semibold,Regular:size=16" | sh &
 
 herbstclient emit_hook INIT

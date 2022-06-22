@@ -8,11 +8,16 @@
     "config":[
         "tmux",
         "alacritty",
-        "awesome",
         "conky",
         "Xmodmap",
         "Xresources",
-        "zsh"
+        "zsh",
+        "git",
+        "picom",
+        "mpd",
+        "gtk-3.0",
+        "stalonetray",
+        "dunst"
     ],
     "data":[
         "backgrounds",

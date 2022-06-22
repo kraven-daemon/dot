@@ -30,6 +30,7 @@ alias wget='wget -c'
 alias lsusr='cut -d: -f1 /etc/passwd'
 alias pp='echo ${PATH} | sed "s/:/\n/g"'
 alias env='env | sort'
+alias cat='bat --style="plain"'
 
 # xrelated
 alias xl="xrdb ~/.Xresources"

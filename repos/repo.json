@@ -1,13 +1,15 @@
 {
-	"me":{	
-		"baseurl":"https://github.com/kraven-daemon/",
-		"name":[ "kraven-daemon.github.io", "dot", "docs", "advent-of-code" ]
+	"github":{
+		"base": "https://github.com/",
+		"fetch":[
+			"chriskempson/base16-shell",
+			"brndnmtthws/conky"
+		]
 	},
-	"suckless":{
-		"baseurl":"https://git.suckless.org/",
-		"name":[ "dmenu" ]
-	},
-	"misc":[
-	"https://github.com/chriskempson/base16-shell"
-	]
+	"gitlab":{
+		"base": "https://gitlab.com",
+		"fetch":[
+			"protesilaos/lemonbar-xft"
+		]
+	}
 }

@@ -42,7 +42,7 @@ window_title(){
 }
 
 window_ops(){
-    printf "%s %b %s" "%{B#04f000}" "\Uf2d0 \Uf2d1 \Uf656" "%{B-}"
+    printf "%s %b %s" "%{B#04f000}%{A:widget_session:}" "\Uf2d0 \Uf2d1 \Uf656" "%{B-A}"
 }
 
 while read -r line;do

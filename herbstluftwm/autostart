@@ -134,6 +134,7 @@ hc attr settings.frame_border_normal_color '#004321'
 hc attr settings.frame_gap 5
 hc attr settings.window_border_width 1
 hc attr settings.window_border_active_color '#feaa00'
+hc attr settings.default_frame_layout = 'horizontal'
 
 #hc rule class=XTerm tag=3 # move all xterms to tag 3
 hc rule focus=on # normally focus new clients

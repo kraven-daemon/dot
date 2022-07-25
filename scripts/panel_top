@@ -9,12 +9,6 @@ set -eu
 mkfifo "$PANEL_FIFO"
 herbstclient --idle > "$PANEL_FIFO" &
 
-# color-set background foreground
-select="%{B#01f2d1}%{F#041a1e}"
-notempty="%{B#007a68}%{F#7fffff}"
-empty="%{B#020202}%{F#007a68}"
-#urgent=""
-
 ## Tags
 tag_gen(){
     num="${2#[#:.!+-%]}"
@@ -25,9 +19,9 @@ tags_gen(){
     do
         case "${t%[1-5]*}"
             in
-            :) tag_gen "${notempty}" "$t";; # tag not empty
-            \#) tag_gen "${select}" "$t" ;; # tag focused on monitor
-            .) tag_gen "${empty}" "$t"   ;; # tag empty
+            :) tag_gen "%{B${TAG_BG_BUSY}}%{F${TAG_FG_BUSY}}" "$t";; # tag not empty
+            \#) tag_gen "%{B${TAG_BG_CURRENT}}%{F${TAG_FG_CURRENT}}" "$t" ;; # tag focused on monitor
+            .) tag_gen "%{B${TAG_BG_EMPTY}}%{F${TAG_FG_EMPTY}}" "$t"   ;; # tag empty
             #!) tag_gen ${urgent} $t;; # urgent window there
             #+) tag_gen '' $t;; # multi-monitor
             #-) printf "DP-3" # tag_gen "" "$t";; # multi-monitor
@@ -38,17 +32,23 @@ tags_gen(){
 }
 # window title
 window_title(){
-    printf "%.32s" "$(herbstclient get_attr clients.focus.title 2> /dev/null ||  echo 'O_o')"
+    printf "%.48s" "$(herbstclient get_attr clients.focus.title 2> /dev/null ||  echo 'O_o')"
+}
+
+button1(){
+    printf "%s" "%{B${BUTTON1_BG}}%{F${BUTTON1_FG}}%{A:widget_session:} BUTTON %{B-F-A}"
+}
+button2(){
+    printf "%s" "%{B${BUTTON1_BG}}%{F${BUTTON1_FG}}%{A:alacritty -e 'pulsemixer':} VOL %{B-F-A}"
 }
 
 window_ops(){
-    printf "%s %b %s" "%{B#04f000}%{A:widget_session:}" "\Uf2d0 \Uf2d1 \Uf656" "%{B-A}"
+    printf "%s %b %s" "%{B#003500}" "\Uf2d0 \Uf2d1 \Uf656" "%{B-}"
 }
 
 while read -r line;do
     tags=''
     title=''
-    wops=$(window_ops)
     case $line
         in
         INIT*)
@@ -67,7 +67,7 @@ while read -r line;do
            title="$(window_title)"
            ;;
     esac
-    printf "%s\n" "%{l}${tags} | ${title} %{r}${wops}"
+    printf "%s\n" "%{l}${tags} | ${title} %{r}$(button1) $(button2) $(window_ops)"
 done < "$PANEL_FIFO" | lemonbar -p \
     -n "$PANEL_NAME" \
     -g "${WIDTH}x${HEIGHT}+0+0" \
@@ -75,6 +75,6 @@ done < "$PANEL_FIFO" | lemonbar -p \
     -F "${COLOR_FG}" \
     -U "#00ff40" \
     -o 1 -u 0 \
-    -f "SauceCodePro Nerd Font Mono:style=Semibold,Regular:size=16" | sh &
+    -f "${FONT_PANGO}" | sh &
 
 herbstclient emit_hook INIT

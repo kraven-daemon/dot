@@ -1,9 +1,15 @@
 WIDTH=1920
 HEIGHT=26
-PANEL_NAME="lemonherbs"
-# greenish #2a9d8f, 
-# goldie #e9c46a,
-# pumpkin #f4a261,
-# redorange #e76f51
-COLOR_FG="#ffffff"
-COLOR_BG="#264653"
+PANEL_NAME='lemonherbs'
+COLOR_FG='#ffffff'
+COLOR_BG='#050302'
+TAG_BG_CURRENT='#FFAA00'
+TAG_FG_CURRENT='#000000'
+TAG_BG_BUSY='#50FB7D'
+TAG_FG_BUSY='#000201'
+TAG_BG_EMPTY='#004321'
+TAG_FG_EMPTY='#002001'
+BUTTON1_BG='#EA7106'
+BUTTON1_FG='#000000'
+FONT_PANGO='SauceCodePro Nerd Font Mono:style=Semibold,Regular:size=12'
+FONT_ICON='SauceCodePro Nerd Font Mono:style=Semibold,Regular:size=20'

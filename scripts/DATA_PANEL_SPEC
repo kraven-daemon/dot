@@ -1,9 +1,0 @@
-WIDTH=1920
-HEIGHT=26
-PANEL_NAME="lemonherbs"
-# greenish #2a9d8f, 
-# goldie #e9c46a,
-# pumpkin #f4a261,
-# redorange #e76f51
-COLOR_FG="#ffffff"
-COLOR_BG="#264653"

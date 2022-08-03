@@ -36,14 +36,14 @@ window_title(){
 }
 
 button1(){
-    printf "%s" "%{B${BUTTON1_BG}}%{F${BUTTON1_FG}}%{A:widget_session:} BUTTON %{B-F-A}"
+    printf "%s" "%{B${BUTTON1_BG}}%{F${BUTTON1_FG}}%{A:widget_session &:} BUTTON %{B-F-A}"
 }
 button2(){
-    printf "%s" "%{B${BUTTON1_BG}}%{F${BUTTON1_FG}}%{A:alacritty -e 'pulsemixer':} VOL %{B-F-A}"
+    printf "%s" "%{B${BUTTON1_BG}}%{F${BUTTON1_FG}}%{A:alacritty -e 'pulsemixer' &:} VOL %{B-F-A}"
 }
 
 window_ops(){
-    printf "%s %b %s" "%{B#003500}" "\Uf2d0 \Uf2d1 \Uf656" "%{B-}"
+    printf "%s %b %s" "%{B#003500}%{A:herbstclient close && herbstclient remove:}" "\Uf2d0 \Uf2d1 \Uf656" "%{B-A}"
 }
 
 while read -r line;do

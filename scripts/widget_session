@@ -14,7 +14,7 @@ action=$(yad --list \
     --no-headers \
     --center \
     --css="$HOME/.config/gtk-3.0/yad.css" \
-    "Suspend")
+    "Suspend" "Power")
 # ret=$?
 
 # [ $ret -eq 1 ] && exit 0
@@ -25,6 +25,7 @@ action=$(yad --list \
 # fi
 #
 case $action in
-    Suspend*) loginctl suspend;;
+    Suspend) loginctl suspend;;
+    Power) loginctl poweroff;;
     *) exit 0
 esac

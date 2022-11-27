@@ -22,9 +22,11 @@ xsetroot -cursor_name hand1
 # ssh-add `keys` #later
 eval "$(ssh-agent)"
 
-# feh --bg-fill "${WALLPATH}/purple-haze.jpg"
-random_wallpaper
-
+feh --bg-fill "${WALLPAPERS}/green.png"
+#random_wallpaper
 #picom &
+pipewire &
+pipewire-pulse &
+wireplumber &
 
-exec dbus-launch --sh-syntax --exit-with-session herbstluftwm --locked
+exec dbus-launch herbstluftwm --locked panel_top

@@ -42,3 +42,5 @@ function br {
 # ---------------------------------------------------------
 # EARL NIGHTINGALE
 # FILE
+
+eval "$(zoxide init zsh)"

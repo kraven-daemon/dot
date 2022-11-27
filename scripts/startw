@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+set -eu
+
+# dbus
+eval "$(dbus-launch --sh-syntax --exit)"
+
+pipewire &
+pipewire-pulse &
+wireplumber &
+cagebreak

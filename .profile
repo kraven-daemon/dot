@@ -46,7 +46,7 @@ export XDG_CONFIG_DIRS="${XDG_CONFIG_HOME}:/etc/xdg"
 export TERMINAL='alacritty'
 export EDITOR='nvim'
 export VISUAL='bat -p'
-export BROWSER='chromium'
+export BROWSER='firefox'
 export WALLPAPERS="${XDG_DATA_HOME}/backgrounds"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
@@ -54,6 +54,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export CLICOLOR=1
 
+# general aliases
 if [ -e "${H}/.aliases" ]; then
 	. "${H}/.aliases"
 fi

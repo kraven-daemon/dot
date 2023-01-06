@@ -9,6 +9,7 @@ hc() {
 hc emit_hook reload
 
 # reset wm data : keybinding, mousebinding, rules, theme
+# some artifacts are staying upon restart
 hc keyunbind --all
 hc mouseunbind --all
 hc unrule -F
@@ -19,7 +20,7 @@ Mod=Super
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-q close
-hc keybind $Mod-Return spawn alacritty -e 'zsh'
+hc keybind $Mod-Return spawn alacritty
 hc keybind $Mod-p spawn rofi -show run
 hc keybind $Mod+Menu spawn rofi -modi drun -show drun
 # volume stuff
@@ -72,7 +73,9 @@ tagTOkey() {
     hc keybind "$Mod-Shift-$1" move "$2"
 }
 
-# the first tag is at index 0 but keyboard start at 1
+# Matching the keyboard leftside numbers, starting at 1
+# with the workspaces starting at 0,
+# ...recycling the 0 workspace for later
 hc rename default 1
 tagTOkey 1 1
 for t in $(seq 2 5)
@@ -80,6 +83,8 @@ do
     hc add "$t"
     tagTOkey "$t" "$t"
 done
+
+
 
 # cycle through tags
 hc keybind $Mod-period use_index +1 --skip-visible
@@ -155,16 +160,11 @@ hc set tree_style '╾│ ├└╼─┐'
 hc unlock
 
 # if second monitor is on,
-# and doesnt already exist, add it with a new tag and lock it
-
-# for the panel
-# MONITORS=$(xrandr | /usr/bin/grep ' connected')
-# echo $MONITORS | grep primary
-# echo $MONITORS | grep primary -v | awk '{print $3}'
+# add it with a new tag and lock it
 
 # hc set_monitors 1280x1024+0+0 1280x1024+1280+0
-# or simply:
-# hc detect_monitors
+# or
+hc detect_monitors
 #MTAG="DP-3"
 #hc add $MTAG
 #hc keybind "$Mod-0" use $MTAG
@@ -173,7 +173,4 @@ hc unlock
 #hc lock_tag "side" $MTAG
 
 #panels
-
-
-
 

@@ -1,6 +1,5 @@
 {
     "home":[
-        ".zshenv",
         ".profile",
         ".aliases",
         ".xinitrc"

@@ -1,10 +1,12 @@
 #!/usr/bin/env sh
 set -eu
 
-# dbus
-eval "$(dbus-launch --sh-syntax --exit)"
+export XKB_DEFAULT_OPTIONS=caps:escape
 
-pipewire &
-pipewire-pulse &
-wireplumber &
-cagebreak
+# dbus
+# eval "$(dbus-launch --sh-syntax --exit)"
+#
+# pipewire &
+# pipewire-pulse &
+# wireplumber &
+sway

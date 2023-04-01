@@ -25,6 +25,7 @@ hc keybind $Mod-p spawn rofi -show run
 hc keybind $Mod+Menu spawn rofi -modi drun -show drun
 
 hc keybind Print spawn scrot --select
+hc keybind $Mod-e spawn emote
 
 # volume stuff
 # hc keybind XF86AudioLowerVolume spawn volume --down
@@ -155,7 +156,8 @@ hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 hc rule class="Yad" floating=true floatplacement=center
 hc rule class="feh" floating=true floatplacement=center
-
+hc rule class="Gcr-prompter" floating=true floatplacement=center
+hc rule class="Emote" floating=true floatplacement=center
 
 hc set tree_style '╾│ ├└╼─┐'
 

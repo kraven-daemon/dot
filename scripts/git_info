@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+# using the github api and jq
+set -eu
+
+
+echo "Fetching data from github..."
+curl -s "https://api.github.com/users/kraven-daemon" | jq '.name' -r
+echo "Repositories..."
+curl -s "https://api.github.com/users/kraven-daemon/repos" | jq '.[].name' -r 

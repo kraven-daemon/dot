@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+# this is for cloning only a subdirectory/file inside a git repo
+
+set -eu
+if [ -n "$1" ] && [ -n "$2" ]; then
+        echo "Starting clone/copy ..."
+        repo=$(echo "$1" | sed 's/\/$\|.git$//')
+        svn export "$repo/trunk/$2"
+else
+        echo "Use: git-svn <repository> <subdirectory>"
+fi

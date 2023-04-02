@@ -4,6 +4,7 @@ set $left h
 set $down j
 set $up k
 set $right l
+set $steps 20
 set $term alacritty
 set $menu wofi --show run
 
@@ -16,22 +17,37 @@ output * bg /home/kraven/.local/share/backgrounds/green.png fill
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 ### Idle configuration
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 ### Input configuration - man 5 sway-input
+# get the names of your inputs:
+#   run> swaymsg -t get_inputs
+
+## home-ryzen
+input "7247:2:SIGMACHIP_USB_Keyboard" {
+    repeat_delay 400
+    repeat_rate 150
+    xkb_layout us,ca
+    xkb_options caps:swapescape
+    xkb_switch_layout next
+}
+
+
+## laptop device identifier configuration
 input "2:7:SynPS/2_Synaptics_TouchPad" {
     dwt enabled
     tap enabled
     # natural_scroll enabled
     middle_emulation enabled
 }
+# 
 input "1:1:AT_Translated_Set_2_keyboard" {
     repeat_delay 400
     repeat_rate 150
@@ -40,9 +56,6 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     xkb_switch_layout next
 }
 
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
 
 ### Key bindings
 bindsym $mod+Return exec $term
@@ -107,48 +120,48 @@ bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
-# Note: workspaces can have any name you want, not just numbers.
-# We just use 1-10 as the default.
-#
-# Layout stuff:
-#
-# You can "split" the current object of your focus with
-# $mod+b or $mod+v, for horizontal and vertical splits
-# respectively.
-bindsym $mod+b splith
-bindsym $mod+v splitv
+
+# resize
+bindsym $mod+Ctrl+$left resize grow width $steps px
+bindsym $mod+Ctrl+$right resize shrink width $steps px
+bindsym $mod+Ctrl+$up resize grow height $steps px
+bindsym $mod+Ctrl+$down resize shrink height $steps px
+
+# bindsym $ resize grow height 10px
+# bindsym $ resize shrink height 10px
+# bindsym $ resize grow width 10px
+
+# open next window horizontally/vertically
+bindsym $mod+o splith
+bindsym $mod+u splitv
 
 # Switch the current container between different layout styles
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
+# Move focus to the parent container
+bindsym $mod+a focus parent
 
 # Make the current focus fullscreen
 bindsym $mod+f fullscreen
 
+## Floating
 # Toggle the current focus between tiling and floating mode
 bindsym $mod+Shift+space floating toggle
-
 # Swap focus between the tiling area and the floating area
 bindsym $mod+space focus mode_toggle
 
-# Move focus to the parent container
-bindsym $mod+a focus parent
-#
-# Scratchpad:
-# Sway has a "scratchpad", which is a bag of holding for windows.
-# You can send windows there and get them back later.
 
-# Move the currently focused window to the scratchpad
+# Scratchpad/minimized windows bag
+# minimize windows
 bindsym $mod+Shift+minus move scratchpad
-
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
+# cycle focus on windows from the bag
 bindsym $mod+minus scratchpad show
-#
+
+
 # Resizing containers:
 #
-mode "resize" {
+mode "RESIZE" {
     # left will shrink the containers width
     # right will grow the containers width
     # up will shrink the containers height
@@ -168,7 +181,7 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym $mod+r mode "RESIZE"
 
 #
 # Status Bar:
@@ -179,7 +192,7 @@ bar {
     gaps 0 2
     height 24
     position top
-    status_command i3status-rs
+    status_command i3status
     colors {
         #000000 #070B04, #137727, #1B291A, #25AF5F
         background #070B04
@@ -188,7 +201,7 @@ bar {
         # --- <border> <background> <text>
         inactive_workspace #121212 #121212 #5c5c5c
         focused_workspace #137727 #1B291A #25AF5F
-        binding_mode #000000 #070B04 #137727
+        binding_mode #000000 #DA466C #000000
         urgent_workspace #000000 #FF0000 #FFFFFF
     }
 }

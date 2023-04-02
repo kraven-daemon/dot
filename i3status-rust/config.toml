@@ -1,6 +1,6 @@
 icons_format = "{icon}"
-theme = "native"
-icons = "awesome6"
+# theme = "native"
+# icons = "awesome6"
 
 [[block]]
 block = "cpu"
@@ -26,12 +26,12 @@ block = "cpu"
 # button = "left"
 # cmd = "pavucontrol"
 #
-# [[block]]
-# block = "time"
-# interval = 5
-# format = " $timestamp.datetime(f:'%a %d/%m %R') "
-
 [[block]]
-block = "backlight"
-device = "intel_backlight"
-step_width = 10
+block = "time"
+interval = 5
+format = "$icon $timestamp.datetime(f:'%a %d/%m %R') "
+
+# [[block]]
+# block = "backlight"
+# device = "intel_backlight"
+# step_width = 10

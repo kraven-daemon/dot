@@ -1,0 +1,5 @@
+partial modifier_keys
+xkb_symbols "swap_rshift_rctrl" {
+    replace key <RTSH> { [ Control_R ] };
+    replace key <RCTL> { [ Shift_R ] };
+};

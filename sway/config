@@ -26,33 +26,35 @@ exec swayidle -w \
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
-### Input configuration - man 5 sway-input
-# get the names of your inputs:
+##### Input configuration
+# Docs
+#
+# man 5 sway-input
+# https://xkbcommon.org/doc/current/md_doc_user_configuration.html#autotoc_md17
+#
+# get the names of your inputs identifier:
 #   run> swaymsg -t get_inputs
+#
+#####
 
-## home-ryzen
-input "7247:2:SIGMACHIP_USB_Keyboard" {
-    repeat_delay 400
-    repeat_rate 150
-    xkb_layout us,ca
-    xkb_options caps:swapescape
-    xkb_switch_layout next
-}
+# Advances settings - from /usr/share/X11/xkb/...
+# 1- get_codes - ../xkb/keycodes/evdev
+# 2- change_codes - ~/.config/xkb/symbols/ctrl
+# 3- add_rule - ~/.config/xkb/rule/evdev
 
-
-## laptop device identifier configuration
+## laptop touchpad device identifier configuration
 input "2:7:SynPS/2_Synaptics_TouchPad" {
     dwt enabled
     tap enabled
     # natural_scroll enabled
     middle_emulation enabled
 }
-# 
-input "1:1:AT_Translated_Set_2_keyboard" {
+## generic keyboard settings
+input type:keyboard {
     repeat_delay 400
     repeat_rate 150
     xkb_layout us,ca
-    xkb_options caps:swapescape
+    xkb_options caps:swapescape,ctrl:swap_rshift_rctrl
     xkb_switch_layout next
 }
 

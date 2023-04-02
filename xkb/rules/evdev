@@ -1,0 +1,4 @@
+! option = symbols
+  ctrl:swap_rshift_rctrl = +ctrl(swap_rshift_rctrl)
+
+! include %S/evdev

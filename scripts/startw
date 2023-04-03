@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -eu
 
-export XKB_DEFAULT_OPTIONS=caps:escape
+# export XKB_DEFAULT_OPTIONS=caps:escape
 
 # dbus
 # eval "$(dbus-launch --sh-syntax --exit)"

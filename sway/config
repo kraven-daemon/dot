@@ -30,7 +30,7 @@ exec swayidle -w \
 # Docs
 #
 # man 5 sway-input
-# https://xkbcommon.org/doc/current/md_doc_user_configuration.html#autotoc_md17
+# https://xkbcommon.org/doc/current
 #
 # get the names of your inputs identifier:
 #   run> swaymsg -t get_inputs

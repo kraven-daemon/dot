@@ -1,25 +1,58 @@
 #!/usr/bin/env sh
 # depends: sox
-set -eu
+set -e
 IFS=$(printf ' \n\t')
 
 RATIO=5
 
+
+
+## Wayland, wireplumber
+# Tips and tricks
+# Keyboard volume control
+#
+# See Keyboard shortcuts#Xorg to bind the following commands to your volume keys: XF86AudioRaiseVolume, XF86AudioLowerVolume, XF86AudioMute and XF86AudioMicMute.
+#
+# To raise the volume, with a limit of 150%:
+# $ wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
+
+
 case $1 in
-    '--up')
-        pactl set-sink-volume @DEFAULT_SINK@ +$RATIO%
-        play "$XDG_DATA_HOME/sounds/volume_up.oga" 2> /dev/null
+    --up)
+        wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ "$RATIO%+"
         ;;
-    '--down') 
-        pactl set-sink-volume @DEFAULT_SINK@ -$RATIO%
-        play "$XDG_DATA_HOME/sounds/volume_up.oga" 2> /dev/null
+    --down)
+        wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ "$RATIO%-"
         ;;
-    '--mute') pactl set-sink-mute @DEFAULT_SINK@ toggle
-        exit 0
+    --mute)
+        wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
         ;;
-    *) exit 1
+    *)
+        # To mute/unmute the microphone:
+        # wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ "$RATIO%-"
+        # $ wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+        #
+        echo $(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+        ;;
 esac
 
 
-curr="$(pactl get-sink-volume @DEFAULT_SINK@ | grep -o '..%' | head -n1)"
-echo $curr
+## x11,pulseaudio,sox
+# case $1 in
+#     '--up')
+#         pactl set-sink-volume @DEFAULT_SINK@ +$RATIO%
+#         play "$XDG_DATA_HOME/sounds/volume_up.oga" 2> /dev/null
+#         ;;
+#     '--down') 
+#         pactl set-sink-volume @DEFAULT_SINK@ -$RATIO%
+#         play "$XDG_DATA_HOME/sounds/volume_up.oga" 2> /dev/null
+#         ;;
+#     '--mute') pactl set-sink-mute @DEFAULT_SINK@ toggle
+#         exit 0
+#         ;;
+#     *) exit 1
+# esac
+#
+#
+# curr="$(pactl get-sink-volume @DEFAULT_SINK@ | grep -o '..%' | head -n1)"
+# echo $curr
